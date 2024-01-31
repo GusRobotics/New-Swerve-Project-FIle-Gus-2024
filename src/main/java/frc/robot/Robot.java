@@ -1,17 +1,11 @@
 package frc.robot;
 
-import com.ctre.phoenix6.hardware.CANcoder;
-import com.ctre.phoenix6.hardware.Pigeon2;
-
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.SwerveJoystickCmd;
-//import frc.robot.subsystems.SwerveModule;
-import frc.robot.subsystems.SwerveDrive;
+
 //FOR THE FIRST MEETING AFTER KICKOFF:: 
 //write method to read the cancoder values in SwerveDrive, use in robotinit to display to smartdashboard, 
 //callibrate values for cancodes for each of the modules somehow (idk average?) find reset values in test, 
@@ -29,62 +23,6 @@ import frc.robot.subsystems.SwerveDrive;
 public class Robot extends TimedRobot {
   XboxController baseController = new XboxController(0);
   Rotation2d desRot = new Rotation2d(0);
-
-  //SwerveDrive driveBase = new SwerveDrive();
-  SwerveModuleState driveStates[] = new SwerveModuleState[4];
-
-  // CANcoder blueCan = new CANcoder(6); //formerly 3
-  // CANcoder orangeCan = new CANcoder(5); //formerly 6
-  // CANcoder greenCan = new CANcoder(2); //formerly 5
-  // CANcoder redCan = new CANcoder(3); //formerly 2
-
-  private final Pigeon2 pigeon = new Pigeon2(Constants.kPigeonPort);
-
-  // SwerveModule blue = new SwerveModule(
-  //   Constants.blueDrive,
-  //   Constants.blueSteer,
-  //   Constants.kBlueDriveEncoderReversed,
-  //   Constants.kBlueTurningEncoderReversed,
-  //   Constants.kBlueDriveAbsoluteEncoderPort,
-  //   Constants.kBlueDriveAbsoluteEncoderOffsetRad,
-  //   Constants.kBlueDriveAbsoluteEncoderReversed,
-  //   Constants.blueDriveInvert,
-  //   Constants.blueTurnInvert);
-
-    // SwerveModule orange = new SwerveModule(
-    // Constants.orangeDrive,
-    // Constants.orangeSteer,
-    // Constants.kOrangeDriveEncoderReversed,
-    // Constants.kOrangeTurningEncoderReversed,
-    // Constants.kOrangeDriveAbsoluteEncoderPort,
-    // Constants.kOrangeDriveAbsoluteEncoderOffsetRad,
-    // Constants.kOrangeDriveAbsoluteEncoderReversed,
-    // Constants.orangeDriveInvert,
-    // Constants.orangeTurnInvert);
-
-    // SwerveModule green = new SwerveModule(
-    // Constants.greenDrive,
-    // Constants.greenSteer,
-    // Constants.kGreenTurningEncoderReversed,
-    // Constants.kGreenTurningEncoderReversed,
-    // Constants.kGreenDriveAbsoluteEncoderPort,
-    // Constants.kGreenDriveAbsoluteEncoderOffsetRad,
-    // Constants.kGreenDriveAbsoluteEncoderReversed,
-    // Constants.greenDriveInvert,
-    // Constants.greenTurnInvert);
-
-    // SwerveModule red = new SwerveModule(
-    // Constants.redDrive,
-    // Constants.redSteer,
-    // Constants.kRedDriveEncoderReversed,
-    // Constants.kRedTurningEncoderReversed,
-    // Constants.kRedDriveAbsoluteEncoderPort,
-    // Constants.kRedDriveAbsoluteEncoderOffsetRad,
-    // Constants.kRedDriveAbsoluteEncoderReversed,
-    // Constants.redDriveInvert,
-    // Constants.redTurnInvert);
-
-  //RelativeEncoder blue = new RelativeEncoder(3);
 
   /**
    * This function is run when the robot is first started up and should be used
