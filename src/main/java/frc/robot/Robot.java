@@ -33,7 +33,8 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     new RobotContainer();
     CommandScheduler.getInstance().setDefaultCommand(RobotContainer.drive, new SwerveJoystickCmd(RobotContainer.drive,
-     RobotContainer.controller::getLeftX, RobotContainer.controller::getLeftY, RobotContainer.controller::getRightX, RobotContainer.controller::getTriangleButton));
+     RobotContainer.controller::getLeftX, RobotContainer.controller::getLeftY, RobotContainer.controller::getRightX,
+     RobotContainer.controller::getAButton));
   }
 
   @Override
