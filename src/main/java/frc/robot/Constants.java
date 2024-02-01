@@ -1,5 +1,7 @@
 package frc.robot;
 
+import org.opencv.features2d.FlannBasedMatcher;
+
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
@@ -17,7 +19,7 @@ public class Constants {
         // private static int kDriveEncoderRot2Meter;
         public static final double kDriveEncoderRPM2MeterPerSec = kDriveEncoderRot2Meter / 60;
         public static final double kTurningEncoderRPM2RadPerSec = kTurningEncoderRot2Rad / 60;
-        public static final double kPTurning = 0.6;
+        public static final double kPTurning = 0.55;
 
         public static final double kTrackWidth = Units.inchesToMeters(21);
         // Distance between right and left wheels
