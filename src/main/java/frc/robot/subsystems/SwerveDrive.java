@@ -210,7 +210,7 @@ public class SwerveDrive extends SubsystemBase {
 
         // ensures field orientation
         chassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(
-                xSpeed, ySpeed, turningSpeed, getRotation2D());
+                (xSpeed * -1), ySpeed, turningSpeed, getRotation2D());
 
         // 5. Convert chassis speeds to individual module states
         SwerveModuleState[] moduleStates = Constants.kDriveKinematics.toSwerveModuleStates(chassisSpeeds);

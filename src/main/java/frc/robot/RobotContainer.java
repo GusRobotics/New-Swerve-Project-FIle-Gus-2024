@@ -4,8 +4,8 @@
 
 package frc.robot;
 
-//import edu.wpi.first.wpilibj.PS4Controller;
-import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.PS4Controller;
+//import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -24,7 +24,7 @@ public class RobotContainer {
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   //private final CommandXboxController m_driverController =
-      //new CommandXboxController(OperatorConstants.kDriverControllerPort);
+      //new CommandXboxController(OperatorConstants.kDriverControllerPort)
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -43,10 +43,10 @@ public class RobotContainer {
    */
 
   public static SwerveDrive drive = new SwerveDrive();
-  public static XboxController controller = new XboxController(0);
+  public static PS4Controller controller = new PS4Controller(0);
 
   private void configureBindings() {
-    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
+    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`x
     // new Trigger(m_exampleSubsystem::exampleCondition)
     //     .onTrue(new ExampleCommand(m_exampleSubsystem));
 
@@ -55,7 +55,7 @@ public class RobotContainer {
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
     //SmartDashboard.putData(new ModuleTest());
     SmartDashboard.putData(new SwerveJoystickCmd(drive, controller::getLeftX,
-       controller::getLeftY, controller::getRightX, controller::getAButton));
+       controller::getLeftY, controller::getRightX, controller::getTriangleButton));
   }
 
   /**
