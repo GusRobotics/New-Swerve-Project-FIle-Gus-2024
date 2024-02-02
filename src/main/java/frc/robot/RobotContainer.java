@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.PS4Controller;
 //import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.SwerveJoystickCmd;
 import frc.robot.subsystems.SwerveDrive;
@@ -51,11 +52,13 @@ public class RobotContainer {
     //     .onTrue(new ExampleCommand(m_exampleSubsystem));
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
-    // cancelling on release.
+    // cancellin on release.
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
     //SmartDashboard.putData(new ModuleTest());
+
     SmartDashboard.putData(new SwerveJoystickCmd(drive, controller::getLeftX,
-       controller::getLeftY, controller::getRightX, controller::getTriangleButton));
+       controller::getLeftY, controller::getRightX, controller::getTriangleButtonPressed));
+
   }
 
   /**

@@ -34,7 +34,7 @@ public class SwerveDrive extends SubsystemBase {
     // debug odometer
     SwerveModuleState driveStates[] = new SwerveModuleState[4];
 
-    public SwerveDrive() {
+    public SwerveDrive () {
         blue = new SwerveModule(
                 Constants.blueDrive,
                 Constants.blueSteer,
@@ -78,6 +78,7 @@ public class SwerveDrive extends SubsystemBase {
 
     }
 
+    
     public void zeroHeading() {
         pigeon.reset();
     }

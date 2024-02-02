@@ -35,7 +35,7 @@ public class Robot extends TimedRobot {
     new RobotContainer();
     CommandScheduler.getInstance().setDefaultCommand(RobotContainer.drive, new SwerveJoystickCmd(RobotContainer.drive,
      RobotContainer.controller::getLeftX, RobotContainer.controller::getLeftY, RobotContainer.controller::getRightX,
-     RobotContainer.controller::getTriangleButton));
+     RobotContainer.controller::getTriangleButtonPressed));
   }
 
   @Override
@@ -71,25 +71,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during teleoperated mode. */
   @Override
   public void teleopPeriodic() {
-    // apply deadband once the code is written
-    // if(Math.pow(baseController.getRightX(), 2) +
-    // Math.pow(baseController.getRightX(), 2) >= 0.5){
-    // if(baseController.getRightX() > 0){
-    // desRot = new
-    // Rotation2d(Math.atan(baseController.getRightY()/baseController.getRightX()));
-    // }
-    // else{
-    // desRot = new Rotation2d(Math.PI -
-    // Math.atan(baseController.getRightY()/baseController.getRightX()));
-    // }
-    // }
-    // driveBase.teleopControlSwerve(baseController.getLeftX(),
-    // baseController.getLeftY(), baseController.getRightX());
-    // driveBase.execute(baseController.getLeftX(), baseController.getLeftY(), baseController.getRightX());
-    // SmartDashboard.putNumber("sanity", 5);
-    // SmartDashboard.putNumber("Desired Rotation",
-    //     Math.atan(baseController.getRightY() / baseController.getRightX()) / (Math.PI * 2));
-    // driveBase.periodic();
+
 
   }
 
@@ -101,14 +83,6 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during test mode. */
   @Override
   public void testPeriodic() {
-    // driveBase.periodic();
-    // driveBase.execute(baseController.getLeftX(), baseController.getLeftY(), baseController.getRightX());
-    // SmartDashboard.putNumber("sanity", 5);
-    // SmartDashboard.putNumber("blue cancoder", blueCan.getAbsolutePosition().getValue());
-    // SmartDashboard.putNumber("red cancoder", redCan.getAbsolutePosition().getValue());
-    // SmartDashboard.putNumber("orange cancoder", orangeCan.getAbsolutePosition().getValue());
-    // SmartDashboard.putNumber("green cancoder", greenCan.getAbsolutePosition().getValue());
-    // SmartDashboard.putNumber("pigeon yaw value", pigeon.getYaw().getValue());
 
   }
 }
