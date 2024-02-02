@@ -20,6 +20,10 @@ import frc.robot.subsystems.SwerveDrive;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
+
+
+  public static SwerveDrive drive = new SwerveDrive();
+  public static PS4Controller controller = new PS4Controller(0);
   // The robot's subsystems and commands are defined here...
   //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
@@ -43,8 +47,6 @@ public class RobotContainer {
    * joysticks}.
    */
 
-  public static SwerveDrive drive = new SwerveDrive();
-  public static PS4Controller controller = new PS4Controller(0);
 
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`x
@@ -55,6 +57,7 @@ public class RobotContainer {
     // cancellin on release.
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
     //SmartDashboard.putData(new ModuleTest());
+
 
     SmartDashboard.putData(new SwerveJoystickCmd(drive, controller::getLeftX,
        controller::getLeftY, controller::getRightX, controller::getTriangleButtonPressed));
