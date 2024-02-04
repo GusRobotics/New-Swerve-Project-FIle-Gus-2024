@@ -60,7 +60,7 @@ public class RobotContainer {
 
 
     SmartDashboard.putData(new SwerveJoystickCmd(drive, controller::getLeftX,
-       controller::getLeftY, controller::getRightX, controller::getTriangleButtonPressed));
+       controller::getLeftY, controller::getRightY, controller::getTriangleButtonPressed));
 
   }
 

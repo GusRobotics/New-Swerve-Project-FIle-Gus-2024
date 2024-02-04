@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.SwerveJoystickCmd;
@@ -34,14 +35,17 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     new RobotContainer();
     CommandScheduler.getInstance().setDefaultCommand(RobotContainer.drive, new SwerveJoystickCmd(RobotContainer.drive,
-     RobotContainer.controller::getLeftX, RobotContainer.controller::getLeftY, RobotContainer.controller::getRightX,
+     RobotContainer.controller::getLeftX, RobotContainer.controller::getLeftY, RobotContainer.controller::getRightY,
      RobotContainer.controller::getTriangleButtonPressed));
   }
 
   @Override
   public void robotPeriodic() {
       CommandScheduler.getInstance().run();
-  }
+      SmartDashboard.putNumber("RightJoystickX", RobotContainer.controller.getRightX());
+      SmartDashboard.putNumber("LeftJoystickX", RobotContainer.controller.getLeftX());
+
+    }
   /** This function is run once each time the robot enters autonomous mode. */
   @Override
   public void autonomousInit() {
