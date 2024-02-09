@@ -10,6 +10,7 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.kinematics.SwerveModulePosition;
 //import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import frc.robot.Constants;
@@ -60,9 +61,9 @@ public class SwerveModule {
         turningMotor.setSmartCurrentLimit(Constants.driveMotorCurrentLimit);
     }
 
-    public double getDrivePosition() {
-        return absoluteEncoder.getAbsolutePosition().getValue();
-    }
+    // public SwerveModulePosition getDrivePosition() {
+    //     return absoluteEncoder.getAbsolutePosition().getValue();
+    // }
 
     public CANSparkMax getDriveMotor(int driveId) {
     return new CANSparkMax(driveId, MotorType.kBrushless);
