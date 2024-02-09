@@ -1,7 +1,5 @@
 package frc.robot;
 
-import org.opencv.features2d.FlannBasedMatcher;
-
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
@@ -39,6 +37,11 @@ public class Constants {
         public static final int orangeSteer = 7;
         public static final int redDrive = 4;
         public static final int redSteer = 9;
+
+
+        public static final double kPXController = 1.5;
+        public static final double kPYController = 1.5;
+        public static final double kPThetaController = 3;
 
         // public static final int kBlueDriveMotorPort = 8;
         // public static final int kGreenDriveMotorPort = 2;

@@ -3,6 +3,7 @@ package frc.robot;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
 //import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.SwerveJoystickCmd;
@@ -25,7 +26,8 @@ import edu.wpi.first.wpilibj.PS4Controller;
 public class Robot extends TimedRobot {
   PS4Controller baseController = new PS4Controller(0);
   Rotation2d desRot = new Rotation2d(0);
-
+  private Command m_autonomousCommand;
+  private RobotContainer m_robotContainer;
   /**
    * This function is run when the robot is first started up and should be used
    * for any
@@ -35,8 +37,10 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     new RobotContainer();
     CommandScheduler.getInstance().setDefaultCommand(RobotContainer.drive, new SwerveJoystickCmd(RobotContainer.drive,
-     RobotContainer.controller::getLeftX, RobotContainer.controller::getLeftY, RobotContainer.controller::getRightY,
+     RobotContainer.controller::getLeftX, RobotContainer.controller::getLeftY, RobotContainer.controller::getR2Axis,
      RobotContainer.controller::getTriangleButtonPressed));
+
+     m_robotContainer = new RobotContainer();
   }
 
   @Override
@@ -51,6 +55,10 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     // m_timer.reset();
     // m_timer.start();
+    // m_autonomousCommand =  m_robotContainer.getAutonomousCommand();
+    // if (m_autonomousCommand != null) {
+    //   m_autonomousCommand.schedule();
+    // }
   }
 
   /** This function is called periodically during autonomous. */

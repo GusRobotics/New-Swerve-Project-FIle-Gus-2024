@@ -6,10 +6,12 @@ import com.ctre.phoenix6.hardware.Pigeon2;
 //import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.math.filter.SlewRateLimiter;
-//import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
+import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
+import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 //import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -18,9 +20,6 @@ import frc.robot.Constants;
 
 public class SwerveDrive extends SubsystemBase {
 
-    // private final SwerveDriveOdometry odometer = new
-    // SwerveDriveOdometry(constants.kDriveKinematics,
-    // new Rotation2d(0), null);
     private final SwerveModule blue;
     private final SwerveModule red;
     private final SwerveModule green;
@@ -29,7 +28,8 @@ public class SwerveDrive extends SubsystemBase {
     private SlewRateLimiter yLimiter = new SlewRateLimiter(0.5);
     private SlewRateLimiter turningLimiter = new SlewRateLimiter(0.5);
     private final Pigeon2 pigeon = new Pigeon2(Constants.kPigeonPort);
-
+    private static SwerveModulePosition[] position = new SwerveModulePosition[4]; 
+    private final SwerveDriveOdometry odometer = new SwerveDriveOdometry(Constants.kDriveKinematics, new Rotation2d(0), positioning(position));
     // toggling between SwerveModelState and SwerveModelPosition, attempting to
     // debug odometer
     SwerveModuleState driveStates[] = new SwerveModuleState[4];
@@ -78,7 +78,14 @@ public class SwerveDrive extends SubsystemBase {
 
     }
 
-    
+    public SwerveModulePosition[] positioning(SwerveModulePosition[] positions) {
+        positions[0] = new SwerveModulePosition(0, new Rotation2d(Constants.kBlueDriveAbsoluteEncoderOffset));
+        positions[1] = new SwerveModulePosition(0, new Rotation2d(Constants.kOrangeDriveAbsoluteEncoderOffset));
+        positions[2] = new SwerveModulePosition(0, new Rotation2d(Constants.kRedDriveAbsoluteEncoderOffset));
+        positions[3] = new SwerveModulePosition(0, new Rotation2d(Constants.kGreenDriveAbsoluteEncoderOffset));
+        return positions;
+    }
+
     public void zeroHeading() {
         pigeon.reset();
     }
@@ -111,13 +118,13 @@ public class SwerveDrive extends SubsystemBase {
     // public double getTurningVelocity() {
     //     return pigeon.getAngularVelocityXDevice().getValue();
     // }
-    // public Pose2d getPose() {
-    // return odometer.getPoseMeters();
-    // }
+    public Pose2d getPose() {
+        return odometer.getPoseMeters();
+    }
 
-    // public void resetOdometry(Pose2d pose) {
-    // odometer.resetPosition(getRotation2d(), null, pose);
-    // }
+     public void resetOdometry(Pose2d pose) {
+        odometer.resetPosition(getRotation2d(), position, pose);
+    }
 
     @Override
     public void periodic() {
