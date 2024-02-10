@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.SwerveJoystickCmd;
+import frc.robot.commands.Autonomous.AutoTest;
 import frc.robot.subsystems.SwerveDrive;
 
 /**
@@ -82,10 +83,8 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  // public Command getAutonomousCommand() {
-  // }
-
-
-
+  public Command getAutonomousCommand() {
+    return new AutoTest(drive);
+  }
    
 }
