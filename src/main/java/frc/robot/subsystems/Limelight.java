@@ -6,17 +6,29 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Limelight {
-    
-    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-    NetworkTableEntry tx = table.getEntry("tx");
-    NetworkTableEntry ty = table.getEntry("ty");
-    NetworkTableEntry ta = table.getEntry("ta");
+    NetworkTable table;
+    NetworkTableEntry tx;
+    NetworkTableEntry ty;
+    NetworkTableEntry ta;
+
+    double x;
+    double y; 
+    double area;
+
+    public Limelight(NetworkTable table, NetworkTableEntry tx, NetworkTableEntry ty, NetworkTableEntry ta){
+        this.table =  NetworkTableInstance.getDefault().getTable("limelight");
+        this.tx = table.getEntry("tx");
+        this.ty = table.getEntry("ty");
+        this.ta = table.getEntry("ta");
+    }
 
     //read values periodically
-    double x = tx.getDouble(0.0);
-    double y = ty.getDouble(0.0);
-    double area = ta.getDouble(0.0);
-
+    public void getValues(){    
+        x = tx.getDouble(0.0);
+        y = ty.getDouble(0.0);
+        area = ta.getDouble(0.0);
+    }
+    
     //post to smart dashboard periodically
     public void display(){
         SmartDashboard.putNumber("LimelightX", x);
