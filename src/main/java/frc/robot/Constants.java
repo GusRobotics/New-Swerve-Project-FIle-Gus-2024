@@ -68,6 +68,13 @@ public class Constants {
         public static final int kOrangeDriveAbsoluteEncoderPort = 5;
         public static final int kRedDriveAbsoluteEncoderPort = 3;
 
+        //ADD THE ACTUAL VALUES
+        public static final int topIntakeMotor;
+        public static final int bottomIntakeMotor;
+
+        public static final int topShooterMotor;
+        public static final int bottomShooterMotor;
+
         public static final boolean kBlueDriveAbsoluteEncoderReversed = false;
         public static final boolean kGreenDriveAbsoluteEncoderReversed = false;
         public static final boolean kOrangeDriveAbsoluteEncoderReversed = false;

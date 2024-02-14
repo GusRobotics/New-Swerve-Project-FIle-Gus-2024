@@ -29,6 +29,14 @@ public class Robot extends TimedRobot {
   Rotation2d desRot = new Rotation2d(0);
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
+
+  //temporary for testing purposes
+  CANSparkMax topIntake = new CANSparkMax(Constants.topIntakeMotor, MotorType.kBrushless);
+  CANSparkMax bottomIntake = new CANSparkMax(Constants.bottomIntakeMotor, MotorType.kBrushless);
+
+  CANSparkMax topShooter = new CANSparkMax(Constants.topShooterMotor, MotorType.kBrushless);
+  CANSparkMax bottomShooter = new CANSparkMax(Constants.bottomShooterMotor, MotorType.kBrushless);
+
   /**
    * This function is run when the robot is first started up and should be used
    * for any
@@ -49,6 +57,24 @@ public class Robot extends TimedRobot {
       CommandScheduler.getInstance().run();
       SmartDashboard.putNumber("RightJoystickX", RobotContainer.controller.getRightX());
       SmartDashboard.putNumber("LeftJoystickX", RobotContainer.controller.getLeftX());
+
+      if(baseController.getLeftBumper() > 0.1){
+        //add your actual values between -1 and 1 depending on forward or reverse and whatnot
+        topIntake.set(0);
+        bottomIntake.set(0);
+      } else{
+        topIntake.set(0);
+        bottomIntake.set(0);
+      }
+
+      if(baseController.getRightBumper() > 0.1){
+        //add your actual values between -1 and 1 depending on forward or reverse and whatnot
+        topShooter.set(0);
+        bottomShooter.set(0);
+      } else{
+        topShooter.set(0);
+        bottomShooter.set(0);
+      }
 
     }
   /** This function is run once each time the robot enters autonomous mode. */

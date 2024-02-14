@@ -1,9 +1,8 @@
 package frc.robot.subsystems;
 
-public class Intake {
-<<<<<<< HEAD
+import com.revrobotics.CANSparkMax;
 
-=======
-    
->>>>>>> 10a13a5fe96d8eb1d7937e6b4a72763dfea29203
+public class Intake {
+    public CANSparkMax topMotor;
+    public CANSparkMax bottomMotor;
 }
