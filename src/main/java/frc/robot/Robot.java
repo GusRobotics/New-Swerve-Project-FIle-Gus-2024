@@ -56,11 +56,13 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     // m_timer.reset();
     // m_timer.start();
-    m_autonomousCommand =  m_robotContainer.getAutonomousCommand();
-    if (m_autonomousCommand != null) {
-      SmartDashboard.putData(m_autonomousCommand);
-      m_autonomousCommand.schedule();
-    }
+    // m_autonomousCommand =  m_robotContainer.getAutonomousCommand();
+    // if (m_autonomousCommand != null) {
+    //   SmartDashboard.putData(m_autonomousCommand);
+    //   m_autonomousCommand.schedule();
+    // }
+
+    m_robotContainer.getAutonomousCommand().schedule();
 
   }
 
