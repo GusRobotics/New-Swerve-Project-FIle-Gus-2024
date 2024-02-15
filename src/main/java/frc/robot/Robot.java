@@ -1,5 +1,8 @@
 package frc.robot;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkLowLevel.MotorType;
+
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -29,6 +32,14 @@ public class Robot extends TimedRobot {
   Rotation2d desRot = new Rotation2d(0);
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
+
+  //temporary for testing purposes
+  CANSparkMax topIntake = new CANSparkMax(Constants.topIntakeMotor, MotorType.kBrushless);
+  CANSparkMax bottomIntake = new CANSparkMax(Constants.bottomIntakeMotor, MotorType.kBrushless);
+
+  CANSparkMax topShooter = new CANSparkMax(Constants.topShooterMotor, MotorType.kBrushless);
+  CANSparkMax bottomShooter = new CANSparkMax(Constants.bottomShooterMotor, MotorType.kBrushless);
+
   /**
    * This function is run when the robot is first started up and should be used
    * for any
@@ -50,18 +61,35 @@ public class Robot extends TimedRobot {
       SmartDashboard.putNumber("RightJoystickX", RobotContainer.controller.getRightX());
       SmartDashboard.putNumber("LeftJoystickX", RobotContainer.controller.getLeftX());
 
+      if(baseController.getL2Button()){
+        //add your actual values between -1 and 1 depending on forward or reverse and whatnot
+        topIntake.set(.6);
+        bottomIntake.set(.6);
+      } else{
+        topIntake.set(0);
+        bottomIntake.set(0);
+      }
+
+      if(baseController.getR2Button()){
+        //add your actual values between -1 and 1 depending on forward or reverse and whatnot
+        topShooter.set(.3);
+        bottomShooter.set(.3);
+      } else{
+        topShooter.set(0);
+        bottomShooter.set(0);
+      }
+
     }
   /** This function is run once each time the robot enters autonomous mode. */
   @Override
   public void autonomousInit() {
     // m_timer.reset();
     // m_timer.start();
-    // m_autonomousCommand =  m_robotContainer.getAutonomousCommand();
-    // if (m_autonomousCommand != null) {
-    //   SmartDashboard.putData(m_autonomousCommand);
-    //   m_autonomousCommand.schedule();
-    // }
-
+    m_autonomousCommand =  m_robotContainer.getAutonomousCommand();
+    if (m_autonomousCommand != null) {
+      SmartDashboard.putData(m_autonomousCommand);
+      m_autonomousCommand.schedule();
+    }
     m_robotContainer.getAutonomousCommand().schedule();
 
   }

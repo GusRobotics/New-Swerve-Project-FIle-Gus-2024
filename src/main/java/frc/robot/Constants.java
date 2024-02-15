@@ -67,6 +67,12 @@ public class Constants {
         public static final int kGreenDriveAbsoluteEncoderPort = 2;
         public static final int kOrangeDriveAbsoluteEncoderPort = 5;
         public static final int kRedDriveAbsoluteEncoderPort = 3;
+        //ADD THE ACTUAL VALUES
+        public static final int topIntakeMotor = 21;
+        public static final int bottomIntakeMotor = 22;
+
+        public static final int topShooterMotor = 23;
+        public static final int bottomShooterMotor = 20;
 
         public static final boolean kBlueDriveAbsoluteEncoderReversed = false;
         public static final boolean kGreenDriveAbsoluteEncoderReversed = false;
@@ -107,8 +113,8 @@ public class Constants {
 
 
         public static final class AutoConstants {
-                public static final double kMaxSpeedMetersPerSecond = 3;
-                public static final double kMaxAccelerationMetersPerSecondSquared = 3;
+                public static final double kMaxSpeedMetersPerSecond = 5;
+                public static final double kMaxAccelerationMetersPerSecondSquared = 5;
                 public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
                 public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
             
