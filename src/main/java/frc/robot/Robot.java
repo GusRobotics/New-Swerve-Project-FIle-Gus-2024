@@ -1,5 +1,8 @@
 package frc.robot;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkLowLevel.MotorType;
+
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -58,7 +61,7 @@ public class Robot extends TimedRobot {
       SmartDashboard.putNumber("RightJoystickX", RobotContainer.controller.getRightX());
       SmartDashboard.putNumber("LeftJoystickX", RobotContainer.controller.getLeftX());
 
-      if(baseController.getLeftBumper() > 0.1){
+      if(baseController.getL2Button()){
         //add your actual values between -1 and 1 depending on forward or reverse and whatnot
         topIntake.set(0);
         bottomIntake.set(0);
@@ -67,7 +70,7 @@ public class Robot extends TimedRobot {
         bottomIntake.set(0);
       }
 
-      if(baseController.getRightBumper() > 0.1){
+      if(baseController.getL2Button()){
         //add your actual values between -1 and 1 depending on forward or reverse and whatnot
         topShooter.set(0);
         bottomShooter.set(0);

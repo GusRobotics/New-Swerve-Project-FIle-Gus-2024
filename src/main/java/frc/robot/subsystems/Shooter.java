@@ -1,9 +1,25 @@
 package frc.robot.subsystems;
 
-public class Shooter {
-<<<<<<< HEAD
+import com.revrobotics.CANSparkMax;
 
-=======
+import frc.robot.Constants;
+
+public class Shooter {
+    CANSparkMax topMotor;
+    CANSparkMax bottomMotor;
     
->>>>>>> 10a13a5fe96d8eb1d7937e6b4a72763dfea29203
+    public Shooter(CANSparkMax topMotor, CANSparkMax bottomMotor){
+        this.topMotor = topMotor;
+        this.bottomMotor = bottomMotor;
+    }
+
+    public void baseState(){
+        topMotor.set(0);
+        bottomMotor.set(0);
+    }
+
+    public void shootState(){
+        topMotor.set(Constants.topShooterSpeed);
+        bottomMotor.set(Constants.bottomShooterSpeed);
+    }
 }

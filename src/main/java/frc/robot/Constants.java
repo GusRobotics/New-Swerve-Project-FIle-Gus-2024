@@ -75,6 +75,9 @@ public class Constants {
         public static final int topShooterMotor;
         public static final int bottomShooterMotor;
 
+        public static final double topShooterSpeed = 0.3;
+        public static final double bottomShooterSpeed = 0.3;
+
         public static final boolean kBlueDriveAbsoluteEncoderReversed = false;
         public static final boolean kGreenDriveAbsoluteEncoderReversed = false;
         public static final boolean kOrangeDriveAbsoluteEncoderReversed = false;
