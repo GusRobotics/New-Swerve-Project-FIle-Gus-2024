@@ -70,10 +70,10 @@ public class Robot extends TimedRobot {
         bottomIntake.set(0);
       }
 
-      if(baseController.getR2Button()){
+      if(baseController.getL2Button()){
         //add your actual values between -1 and 1 depending on forward or reverse and whatnot
-        topShooter.set(.3);
-        bottomShooter.set(.3);
+        topShooter.set(0);
+        bottomShooter.set(0);
       } else{
         topShooter.set(0);
         bottomShooter.set(0);
