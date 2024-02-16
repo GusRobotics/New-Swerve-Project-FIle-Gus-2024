@@ -20,18 +20,16 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import frc.robot.Constants;
-import frc.robot.subsystems.SwerveDrive;
 
+public class FourNoteNoMid extends SequentialCommandGroup{
 
-public class AutoTest extends SequentialCommandGroup{
-
-    public AutoTest(SwerveDrive s_Swerve) {
-        // SwerveModuleState[] startStates = new SwerveModuleState[4];
-        // startStates[0] = new SwerveModuleState(0, new Rotation2d(Constants.kBlueDriveAbsoluteEncoderOffset));
-        // startStates[1] = new SwerveModuleState(0, new Rotation2d(Constants.kOrangeDriveAbsoluteEncoderOffset));
-        // startStates[2] = new SwerveModuleState(0, new Rotation2d(Constants.kRedDriveAbsoluteEncoderOffset));
-        // startStates[3] = new SwerveModuleState(0, new Rotation2d(Constants.kGreenDriveAbsoluteEncoderOffset));
-        // s_Swerve.setModuleStates(startStates);
+    public FourNoteNoMid(SwerveDrive s_Swerve) {
+        SwerveModuleState[] startStates = new SwerveModuleState[4];
+        startStates[0] = new SwerveModuleState(0, new Rotation2d(Constants.kBlueDriveAbsoluteEncoderOffset));
+        startStates[1] = new SwerveModuleState(0, new Rotation2d(Constants.kOrangeDriveAbsoluteEncoderOffset));
+        startStates[2] = new SwerveModuleState(0, new Rotation2d(Constants.kRedDriveAbsoluteEncoderOffset));
+        startStates[3] = new SwerveModuleState(0, new Rotation2d(Constants.kGreenDriveAbsoluteEncoderOffset));
+        s_Swerve.setModuleStates(startStates);
 
         TrajectoryConfig config =
             new TrajectoryConfig(
@@ -61,9 +59,13 @@ public class AutoTest extends SequentialCommandGroup{
 
                 new Pose2d(0, 0, new Rotation2d(0)),
                 // Pass through these two interior waypoints, making an 's' curve path
-                List.of(new Translation2d(0, 1), new Translation2d(.5, .5), new Translation2d(1, 1)),
+                List.of(new Translation2d(.25, .1), 
+                new Translation2d(0, 1), 
+                new Translation2d(.25, .1), 
+                new Translation2d(1.25, 1), 
+                new Translation2d(1.5, .1)),
                 // End 3 meters straight ahead of where we started, facing forward
-                new Pose2d(0, 1, new Rotation2d(0)),
+                new Pose2d(2, 1, new Rotation2d(0)),
                 config);
 
     
