@@ -77,6 +77,9 @@ public class Constants {
         public static final double topShooterSpeed = 0.3;
         public static final double bottomShooterSpeed = 0.3;
 
+        //random id idfk i just want the code to work
+        public static final int flightId = 15;
+
         public static final boolean kBlueDriveAbsoluteEncoderReversed = false;
         public static final boolean kGreenDriveAbsoluteEncoderReversed = false;
         public static final boolean kOrangeDriveAbsoluteEncoderReversed = false;

@@ -4,6 +4,10 @@
 
 package frc.robot;
 
+import com.playingwithfusion.TimeOfFlight;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 //import edu.wpi.first.wpilibj.XboxController;
@@ -16,6 +20,7 @@ import frc.robot.commands.SwerveJoystickCmd;
 //import frc.robot.commands.Autonomous.AutoTest;
 import frc.robot.commands.Autonomous.FourNoteNoMid;
 import frc.robot.commands.Autonomous.fourPieceCenterMiddle;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.SwerveDrive;
 
 /**
@@ -26,15 +31,19 @@ import frc.robot.subsystems.SwerveDrive;
  */
 public class RobotContainer {
 
-
   public static SwerveDrive drive = new SwerveDrive();
   public static PS4Controller controller = new PS4Controller(0);
   public static PS4Controller coDriveControl = new PS4Controller(1);
   public static PS4Controller climbControl = new PS4Controller(2);
+  CANSparkMax topIntake = new CANSparkMax(Constants.topIntakeMotor,  MotorType.kBrushless);
+  CANSparkMax bottomIntake = new CANSparkMax(Constants.bottomIntakeMotor,  MotorType.kBrushless);
+  TimeOfFlight sensor = new TimeOfFlight(Constants.flightId);
+  static IntakeSubsystem intake = new IntakeSubsystem(topIntake, bottomIntake, sensor);
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
 
-  // The robot's subsystems and commands are defined here...
+
+  // The robot's subsystems and commands are defined here...s
   //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
