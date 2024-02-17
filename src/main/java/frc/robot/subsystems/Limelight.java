@@ -28,6 +28,18 @@ public class Limelight {
         y = ty.getDouble(0.0);
         area = ta.getDouble(0.0);
     }
+
+    public double getX(){
+        return tx.getDouble(0.0);
+    }
+
+    public double gety(){
+        return ty.getDouble(0.0);
+    }
+
+    public double getArea(){
+        return ta.getDouble(0.0);
+    }
     
     //post to smart dashboard periodically
     public void display(){
