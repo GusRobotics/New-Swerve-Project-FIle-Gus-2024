@@ -58,7 +58,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
       CommandScheduler.getInstance().run();
-      SmartDashboard.putNumber("RightJoystickX", RobotContainer.controller.getRightX());
+      SmartDashboard.putNumber("RightJoystickX", RobotContainer.controller.getR2Axis());
       SmartDashboard.putNumber("LeftJoystickX", RobotContainer.controller.getLeftX());
 
       if(baseController.getL2Button()){

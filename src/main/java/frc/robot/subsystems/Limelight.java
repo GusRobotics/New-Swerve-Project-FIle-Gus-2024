@@ -48,4 +48,6 @@ public class Limelight {
         SmartDashboard.putNumber("LimelightArea", area);
     }
 
+    //limelight demands:: vision tracking for the apriltags on amps, measure distance from the limelight to april tag (high goal)
+    //rumble joystick when in range if possible?? or make leds do something or whatever, 
 }
