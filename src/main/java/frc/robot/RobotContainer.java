@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.PS4Controller;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 //import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -28,6 +29,9 @@ public class RobotContainer {
 
   public static SwerveDrive drive = new SwerveDrive();
   public static PS4Controller controller = new PS4Controller(0);
+  SendableChooser<Command> m_chooser = new SendableChooser<>();
+
+
   // The robot's subsystems and commands are defined here...
   //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
@@ -37,6 +41,18 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+
+    m_chooser.setDefaultOption(
+            "RedFourNoteNoMid", 
+            new FourNoteNoMid(drive)
+        );
+
+        m_chooser.addOption(
+            "RedFourPieceCenterMiddle", 
+            new fourPieceCenterMiddle(drive)
+        );
+
+        SmartDashboard.putData("Autonomous", m_chooser);
     // Configure the trigger bindings
     configureBindings();
   }
@@ -76,6 +92,7 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
     //return Autos.exampleAuto(m_exampleSubsystem);
-    return new FourNoteNoMid(drive);
+    //return new FourNoteNoMid(drive);
+    return m_chooser.getSelected();
   }
 }
