@@ -29,6 +29,8 @@ public class RobotContainer {
 
   public static SwerveDrive drive = new SwerveDrive();
   public static PS4Controller controller = new PS4Controller(0);
+  public static PS4Controller coDriveControl = new PS4Controller(1);
+  public static PS4Controller climbControl = new PS4Controller(2);
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
 
