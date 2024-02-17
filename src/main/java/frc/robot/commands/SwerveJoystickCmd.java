@@ -31,7 +31,6 @@ public class SwerveJoystickCmd extends Command {
         this.yLimiter = new SlewRateLimiter(Constants.kTeleDriveMaxAccelerationUnitsPerSecond);
         this.turningLimiter = new SlewRateLimiter(Constants.kTeleDriveMaxAngularAccelerationUnitsPerSecond);
         addRequirements(swerveSubsystem);
-        this.resetGyro = resetGyro;
     }
 
     @Override

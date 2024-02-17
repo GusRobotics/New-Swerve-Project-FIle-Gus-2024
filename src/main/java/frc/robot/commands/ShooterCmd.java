@@ -3,33 +3,33 @@ package frc.robot.commands;
 import java.util.function.Supplier;
 
 import com.revrobotics.CANSparkMax;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.ShooterSubsystem;
 
 public class ShooterCmd{
     Supplier<Boolean> running; 
     CANSparkMax topShoot; 
     CANSparkMax bottomShoot;
-    Shooter shoot = new Shooter(topShoot, bottomShoot); 
+    ShooterSubsystem shoot = new ShooterSubsystem(topShoot, bottomShoot); 
 
-    public ShooterCmd(Shooter shoot, Supplier<Boolean> running){
+    public ShooterCmd(ShooterSubsystem shoot, Supplier<Boolean> running){
         this.running = running;
         this.shoot = shoot;
     }
 
     public void initialize(){
-        shoot.baseState();
+        shoot.baseShootState();
     }
 
     public void execute(){
         if(running.get()){
             shoot.shootState();
         } else{
-            shoot.baseState();
+            shoot.baseShootState();
         }
     }
 
     public void end(boolean interrupted) {
-        shoot.baseState();
+        shoot.baseShootState();
     }
 
     public boolean isFinished() {

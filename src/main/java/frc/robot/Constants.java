@@ -114,6 +114,15 @@ public class Constants {
                         kPhysicalMaxSpeedMetersPerSecond, kPhysicalMaxAngularSpeedRadiansPerSecond);
         TrapezoidProfile.State previousProfiledReference = new TrapezoidProfile.State();
 
+        public static final class ShooterConstants{
+                public static final int topShooterId = 23; //idk if thats the actual id
+                public static final int bottomShooterId = 24; //idk if that's the actual id
+        }
+
+        public static final class IntakeConstants{
+               public static final int topIntakeMotorId = 21; //idk if thats the actual id
+               public static final int bottomIntakeMotorId = 22; //idk if that's the actual id
+        }
 
         public static final class AutoConstants {
                 public static final double kMaxSpeedMetersPerSecond = 5;
