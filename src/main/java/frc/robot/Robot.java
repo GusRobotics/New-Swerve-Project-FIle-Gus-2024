@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 //import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.SwerveJoystickCmd;
 //import frc.robot.commands.Autonomous.AutoTest;
 import edu.wpi.first.wpilibj.PS4Controller;
@@ -53,11 +54,18 @@ public class Robot extends TimedRobot {
     RobotContainer.controller::getTriangleButtonPressed));
 
      m_robotContainer = new RobotContainer();
+    
+     //for actually intaking: charli gets the button, toggle on/off, when sensor triggered stop
+     //for shooting: charli gets spin up flywheel, carter gets l2 to run intake to shoot
+     CommandScheduler.schedule(RobotContainer.intake, new IntakeCmd(RobotContainer.intake, 
+     RobotContainer.coDriveControl::getL2Button, RobotContainer.intake::sensorInRange));
+
   }
 
   @Override
   public void robotPeriodic() {
       CommandScheduler.getInstance().run();
+
       SmartDashboard.putNumber("RightJoystickX", RobotContainer.controller.getR2Axis());
       SmartDashboard.putNumber("LeftJoystickX", RobotContainer.controller.getLeftX());
 

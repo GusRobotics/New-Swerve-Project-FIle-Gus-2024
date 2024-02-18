@@ -15,6 +15,10 @@ public class Limelight {
     double y; 
     double area;
 
+    //idfk i give up deal with this later
+    //what goes in constructor???????
+    //try: taking no parameters in the constructor, just make the network table 
+    //then figure out how to integrate this with april tags!!??? 
     public Limelight(NetworkTable table, NetworkTableEntry tx, NetworkTableEntry ty, NetworkTableEntry ta){
         this.table =  NetworkTableInstance.getDefault().getTable("limelight");
         this.tx = table.getEntry("tx");
@@ -27,6 +31,18 @@ public class Limelight {
         x = tx.getDouble(0.0);
         y = ty.getDouble(0.0);
         area = ta.getDouble(0.0);
+    }
+
+    public double getX(){
+        return tx.getDouble(0.0);
+    }
+
+    public double gety(){
+        return ty.getDouble(0.0);
+    }
+
+    public double getArea(){
+        return ta.getDouble(0.0);
     }
     
     //post to smart dashboard periodically
