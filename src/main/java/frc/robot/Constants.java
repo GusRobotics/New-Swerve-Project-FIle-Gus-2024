@@ -74,8 +74,13 @@ public class Constants {
         public static final int topShooterMotor = 23;
         public static final int bottomShooterMotor = 20;
 
-        public static final double topShooterSpeed = 0.3;
-        public static final double bottomShooterSpeed = 0.3;
+        public static final double topIntakeSpeed = 0.3;
+        public static final double bottomIntakeSpeed = 0.3;
+
+        public static final double topShooterSpeed = 0.6;
+        public static final double bottomShooterSpeed = 0.6;
+
+        public static final double negIntakeSpeed = -0.3;
 
         //random id idfk i just want the code to work
         public static final int flightId = 15;

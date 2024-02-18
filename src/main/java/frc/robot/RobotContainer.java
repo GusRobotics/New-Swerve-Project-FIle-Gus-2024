@@ -20,7 +20,7 @@ import frc.robot.commands.SwerveJoystickCmd;
 //import frc.robot.commands.Autonomous.AutoTest;
 import frc.robot.commands.Autonomous.FourNoteNoMid;
 import frc.robot.commands.Autonomous.fourPieceCenterMiddle;
-import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.SwerveDrive;
 
 /**
@@ -35,10 +35,10 @@ public class RobotContainer {
   public static PS4Controller controller = new PS4Controller(0);
   public static PS4Controller coDriveControl = new PS4Controller(1);
   public static PS4Controller climbControl = new PS4Controller(2);
-  CANSparkMax topIntake = new CANSparkMax(Constants.topIntakeMotor,  MotorType.kBrushless);
-  CANSparkMax bottomIntake = new CANSparkMax(Constants.bottomIntakeMotor,  MotorType.kBrushless);
-  TimeOfFlight sensor = new TimeOfFlight(Constants.flightId);
-  static IntakeSubsystem intake = new IntakeSubsystem(topIntake, bottomIntake, sensor);
+  public static CANSparkMax topIntake = new CANSparkMax(Constants.topIntakeMotor,  MotorType.kBrushless);
+  public static CANSparkMax bottomIntake = new CANSparkMax(Constants.bottomIntakeMotor,  MotorType.kBrushless);
+  public static TimeOfFlight sensor = new TimeOfFlight(Constants.flightId);
+  static Intake intake = new Intake(topIntake, bottomIntake, sensor);
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
 

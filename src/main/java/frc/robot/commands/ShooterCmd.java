@@ -3,15 +3,15 @@ package frc.robot.commands;
 import java.util.function.Supplier;
 
 import com.revrobotics.CANSparkMax;
-import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.Shooter;
 
 public class ShooterCmd{
     Supplier<Boolean> running; 
     CANSparkMax topShoot; 
     CANSparkMax bottomShoot;
-    ShooterSubsystem shoot = new ShooterSubsystem(topShoot, bottomShoot); 
+    Shooter shoot = new Shooter(topShoot, bottomShoot); 
 
-    public ShooterCmd(ShooterSubsystem shoot, Supplier<Boolean> running){
+    public ShooterCmd(Shooter shoot, Supplier<Boolean> running){
         this.running = running;
         this.shoot = shoot;
     }

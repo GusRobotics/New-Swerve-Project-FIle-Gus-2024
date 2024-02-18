@@ -2,18 +2,23 @@ package frc.robot.commands;
 
 import java.util.function.Supplier;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.Intake;
 
 public class IntakeCmd extends SubsystemBase{
     Supplier<Boolean> running; 
+    Supplier<Boolean> reversed;
     Supplier<Boolean> trigger;
-    IntakeSubsystem intake; 
+    Intake intake; 
+    Supplier<Boolean> indexToShoot;
     //running == controller input, trigger == flight sensor input
     //pray to god it works
-    public IntakeCmd(IntakeSubsystem shoot, Supplier<Boolean> running, Supplier<Boolean> trigger){
-        this.running = running;
-        this.intake = shoot;
-        this.trigger = trigger;
+    public IntakeCmd(Intake shoot, Supplier<Boolean> running, Supplier<Boolean> trigger, 
+        Supplier<Boolean> reversed, Supplier<Boolean> indexToShoot){
+            this.running = running;
+            this.intake = shoot;
+            this.trigger = trigger;
+            this.reversed = reversed;
+            this.indexToShoot = indexToShoot;
     }
 
     public void initialize(){
@@ -21,11 +26,16 @@ public class IntakeCmd extends SubsystemBase{
     }
 
     public void execute(){
-        if(running.get()){
+        //run the intake either when codriver is pressing and the sensor isn't triggered
+        //or when the sensor is triggered and the base driver runs intake to index
+        if(running.get() || (trigger.get() && indexToShoot.get())){
             intake.intakeState();
-        } //bc we dont want her to stop w controller input shes just running indefinitely 
-        //yes ik if the sensor doesn't work we're fucked
-        if(!trigger.get()){
+        } else if(trigger.get()){
+            intake.baseIntakeState();
+        } 
+        if(reversed.get()){
+            intake.reverseIntakeState();
+        } else {
             intake.baseIntakeState();
         }
     }
