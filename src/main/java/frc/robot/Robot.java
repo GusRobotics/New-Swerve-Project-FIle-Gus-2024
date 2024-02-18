@@ -57,8 +57,9 @@ public class Robot extends TimedRobot {
     
      //for actually intaking: charli gets the button, toggle on/off, when sensor triggered stop
      //for shooting: charli gets spin up flywheel, carter gets l2 to run intake to shoot
-     CommandScheduler.schedule(RobotContainer.intake, new IntakeCmd(RobotContainer.intake, 
-     RobotContainer.coDriveControl::getL2Button, RobotContainer.intake::sensorInRange));
+     CommandScheduler.getInstance().schedule(RobotContainer.intake, new IntakeCmd(RobotContainer.intake, 
+     RobotContainer.coDriveControl::getL2Button, RobotContainer.intake::getSensorInRange, 
+     RobotContainer.coDriveControl::getL1ButtonPressed, RobotContainer.controller::getL2ButtonPressed));
 
   }
 
