@@ -22,26 +22,26 @@ public class IntakeCmd extends SubsystemBase{
     }
 
     public void initialize(){
-        intake.baseIntakeState();
+        intake.baseState();
     }
 
     public void execute(){
         //run the intake either when codriver is pressing and the sensor isn't triggered
         //or when the sensor is triggered and the base driver runs intake to index
         if(running.get() || (trigger.get() && indexToShoot.get())){
-            intake.intakeState();
+            intake.forewardState();
         } else if(trigger.get()){
-            intake.baseIntakeState();
+            intake.baseState();
         } 
         if(reversed.get()){
-            intake.reverseIntakeState();
+            //intake.reverseIntakeState();
         } else {
-            intake.baseIntakeState();
+            intake.baseState();
         }
     }
 
     public void end(boolean interrupted) {
-        intake.baseIntakeState();
+        intake.baseState();
     }
 
     public boolean isFinished() {

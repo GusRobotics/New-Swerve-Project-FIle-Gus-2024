@@ -12,34 +12,28 @@ public class Intake extends SubsystemBase{
         private CANSparkMax bottomIntakeMotor;// = new CANSparkMax(Constants.IntakeConstants.bottomIntakeMotorId, CANSparkMax.MotorType.kBrushless);
         private TimeOfFlight sensor;
 
-    public Intake(CANSparkMax topIntakeMotor, CANSparkMax bottomIntakeMotor, TimeOfFlight sensor){
+    public Intake(CANSparkMax topIntakeMotor, CANSparkMax bottomIntakeMotor){ //TimeOfFlight sensor){
         this.topIntakeMotor = topIntakeMotor;
         this.bottomIntakeMotor = bottomIntakeMotor;
-        this.sensor = sensor;
     }
 
-    public void baseIntakeState(){
+    public void baseState(){
         topIntakeMotor.set(0);
         bottomIntakeMotor.set(0);
     }
 
     //we need the measurement in milimeters 
     //goal is if the sensor is triggered (ie if the note is in intake) it auto stops
-    public boolean getSensorInRange(){
+    public boolean sensorInRange(){
         if(sensor.getRange() < 110){
             return true;
         }
         return false;
     }
 
-    public void intakeState(){
+    public void forewardState(){
         topIntakeMotor.set(Constants.topIntakeSpeed);
         bottomIntakeMotor.set(Constants.bottomIntakeSpeed);
-    }
-
-    public void reverseIntakeState(){
-        topIntakeMotor.set(Constants.negIntakeSpeed);
-        bottomIntakeMotor.set(Constants.negIntakeSpeed);
     }
 
 }
