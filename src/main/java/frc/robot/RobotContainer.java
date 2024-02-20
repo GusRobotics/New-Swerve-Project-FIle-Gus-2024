@@ -35,10 +35,11 @@ public class RobotContainer {
   public static PS4Controller controller = new PS4Controller(0);
   public static PS4Controller coDriveControl = new PS4Controller(1);
   public static PS4Controller climbControl = new PS4Controller(2);
-  public static CANSparkMax topIntake = new CANSparkMax(Constants.topIntakeMotor,  MotorType.kBrushless);
-  public static CANSparkMax bottomIntake = new CANSparkMax(Constants.bottomIntakeMotor,  MotorType.kBrushless);
-  public static TimeOfFlight sensor = new TimeOfFlight(Constants.flightId);
-  static Intake intake = new Intake(topIntake, bottomIntake, sensor);
+  // CANSparkMax topIntake = new CANSparkMax(Constants.topIntakeMotor,  MotorType.kBrushless);
+  // CANSparkMax bottomIntake = new CANSparkMax(Constants.bottomIntakeMotor,  MotorType.kBrushless);
+  TimeOfFlight sensor = new TimeOfFlight(Constants.flightId);
+  // static Intake intake = new Intake(new CANSparkMax(Constants.topIntakeMotor,  MotorType.kBrushless), 
+  //   new CANSparkMax(Constants.bottomIntakeMotor,  MotorType.kBrushless));
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
 
