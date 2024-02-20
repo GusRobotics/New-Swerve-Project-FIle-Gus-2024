@@ -29,29 +29,9 @@ public class Constants {
                         new Translation2d(-kWheelBase / 2, -kTrackWidth / 2),
                         new Translation2d(-kWheelBase / 2, kTrackWidth / 2));
 
-        public static final int blueDrive = 15;
-        public static final int blueSteer = 10;
-        public static final int greenDrive = 13;
-        public static final int greenSteer = 14;
-        public static final int orangeDrive = 36;
-        public static final int orangeSteer = 7;
-        public static final int redDrive = 4;
-        public static final int redSteer = 9;
-
-
         public static final double kPXController = 1.5;
         public static final double kPYController = 1.5;
         public static final double kPThetaController = 3;
-
-        // public static final int kBlueDriveMotorPort = 8;
-        // public static final int kGreenDriveMotorPort = 2;
-        // public static final int kOrangeDriveMotorPort = 6;
-        // public static final int kRedDriveMotorPort = 4;
-
-        // public static final int kBlueTurningMotorPort = 7;
-        // public static final int kGreenTurningMotorPort = 1;
-        // public static final int kOrangeTurningMotorPort = 5;
-        // public static final int kRedTurningMotorPort = 3;
 
         public static final boolean kBlueTurningEncoderReversed = false;
         public static final boolean kGreenTurningEncoderReversed = false;
@@ -63,17 +43,40 @@ public class Constants {
         public static final boolean kOrangeDriveEncoderReversed = true;
         public static final boolean kRedDriveEncoderReversed = true;
 
-        public static final int kBlueDriveAbsoluteEncoderPort = 6;
-        public static final int kGreenDriveAbsoluteEncoderPort = 2;
-        public static final int kOrangeDriveAbsoluteEncoderPort = 5;
-        public static final int kRedDriveAbsoluteEncoderPort = 3;
+        //Drive ID Constants 
+        //Blue pod ids
+        public static final int blueDrive = 9;
+        public static final int blueSteer = 7;
+        public static final int kBlueDriveAbsoluteEncoderPort = 8;
+        //green pod ids
+        public static final int greenDrive = 10;
+        public static final int greenSteer = 12;
+        public static final int kGreenDriveAbsoluteEncoderPort = 11;
+        //orange drive ids
+        public static final int orangeDrive = 5;
+        public static final int orangeSteer = 3;
+        public static final int kOrangeDriveAbsoluteEncoderPort = 4;
+        //red drive ids
+        public static final int redDrive = 21;
+        public static final int redSteer = 19;
+        public static final int kRedDriveAbsoluteEncoderPort = 20;
+        //intake ids
+        public static final int topIntakeMotor = 15;
+        public static final int bottomIntakeMotor = 16;
+        //shooter ids
+        public static final int topShooterMotor = 17;
+        public static final int bottomShooterMotor = 18;
+        //pigeon id
+        public static final int kPigeonPort = 23;
+        //pneumatic hub id
+        public static final int pneumaticHubId = 22;
+        //time of flight id
+        public static final int timeOfFlightId = 14;
+        //climber ids
+        public static final int leftClimb = 6;
+        public static final int rightClimb = 13;
+
         //ADD THE ACTUAL VALUES
-        public static final int topIntakeMotor = 21;
-        public static final int bottomIntakeMotor = 22;
-
-        public static final int topShooterMotor = 23;
-        public static final int bottomShooterMotor = 20;
-
         public static final double topIntakeSpeed = 0.3;
         public static final double bottomIntakeSpeed = 0.3;
 
@@ -81,9 +84,6 @@ public class Constants {
         public static final double bottomShooterSpeed = 0.6;
 
         public static final double negIntakeSpeed = -0.3;
-
-        //random id idfk i just want the code to work
-        public static final int flightId = 15;
 
         public static final boolean kBlueDriveAbsoluteEncoderReversed = false;
         public static final boolean kGreenDriveAbsoluteEncoderReversed = false;
@@ -108,7 +108,7 @@ public class Constants {
         public static final double kTeleDriveMaxAngularAccelerationUnitsPerSecond = 3;
 
         public static final int kDriverControllerPort = 0;
-        public static final int kPigeonPort = 8;
+
 
         public static final int kDriverYAxis = 1;
         public static final int kDriverXAxis = 0;
