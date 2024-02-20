@@ -90,10 +90,10 @@ public class Constants {
         public static final boolean kOrangeDriveAbsoluteEncoderReversed = false;
         public static final boolean kRedDriveAbsoluteEncoderReversed = false;
 
-        public static final double kBlueDriveAbsoluteEncoderOffset = 0.176270;
-        public static final double kGreenDriveAbsoluteEncoderOffset = 0.299561;
-        public static final double kOrangeDriveAbsoluteEncoderOffset = 0.335693;
-        public static final double kRedDriveAbsoluteEncoderOffset = -0.078857;
+        public static final double kBlueDriveAbsoluteEncoderOffset = 0.061768;
+        public static final double kGreenDriveAbsoluteEncoderOffset = -0.117432;
+        public static final double kOrangeDriveAbsoluteEncoderOffset = 0.124268;
+        public static final double kRedDriveAbsoluteEncoderOffset = -0.046387;
 
         public static final double kPhysicalMaxSpeedMetersPerSecond = 7;
         //below originally 2 * 2 * Math.PI
