@@ -17,7 +17,7 @@ public class Constants {
         // private static int kDriveEncoderRot2Meter;
         public static final double kDriveEncoderRPM2MeterPerSec = kDriveEncoderRot2Meter / 60;
         public static final double kTurningEncoderRPM2RadPerSec = kTurningEncoderRot2Rad / 60;
-        public static final double kPTurning = 0.55;
+        public static final double kPTurning = 0.5;
 
         public static final double kTrackWidth = Units.inchesToMeters(21);
         // Distance between right and left wheels
@@ -35,8 +35,8 @@ public class Constants {
 
         public static final boolean kBlueTurningEncoderReversed = false;
         public static final boolean kGreenTurningEncoderReversed = false;
-        public static final boolean kOrangeTurningEncoderReversed = false;
-        public static final boolean kRedTurningEncoderReversed = false;
+        public static final boolean kOrangeTurningEncoderReversed = true;
+        public static final boolean kRedTurningEncoderReversed = true;
 
         public static final boolean kBlueDriveEncoderReversed = false;
         public static final boolean kGreenDriveEncoderReversed = false;
@@ -87,11 +87,11 @@ public class Constants {
 
         public static final boolean kBlueDriveAbsoluteEncoderReversed = false;
         public static final boolean kGreenDriveAbsoluteEncoderReversed = false;
-        public static final boolean kOrangeDriveAbsoluteEncoderReversed = false;
-        public static final boolean kRedDriveAbsoluteEncoderReversed = false;
+        public static final boolean kOrangeDriveAbsoluteEncoderReversed = true;
+        public static final boolean kRedDriveAbsoluteEncoderReversed = true;
 
         public static final double kBlueDriveAbsoluteEncoderOffset = 0.061768;
-        public static final double kGreenDriveAbsoluteEncoderOffset = -0.117432;
+        public static final double kGreenDriveAbsoluteEncoderOffset = 0.044922;
         public static final double kOrangeDriveAbsoluteEncoderOffset = 0.124268;
         public static final double kRedDriveAbsoluteEncoderOffset = -0.046387;
 

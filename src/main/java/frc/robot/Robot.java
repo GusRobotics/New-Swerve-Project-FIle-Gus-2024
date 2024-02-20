@@ -49,7 +49,7 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().setDefaultCommand(RobotContainer.drive, new SwerveJoystickCmd(RobotContainer.drive,
     RobotContainer.controller::getLeftX, RobotContainer.controller::getLeftY, RobotContainer.controller::getR2Axis,
     RobotContainer.controller::getTriangleButtonPressed));
-
+    //
      m_robotContainer = new RobotContainer();
     
      //for actually intaking: charli gets the button, toggle on/off, when sensor triggered stop
@@ -61,10 +61,11 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
-      CommandScheduler.getInstance().run();
+    CommandScheduler.getInstance().run();
 
       SmartDashboard.putNumber("RightJoystickX", RobotContainer.controller.getR2Axis());
       SmartDashboard.putNumber("LeftJoystickX", RobotContainer.controller.getLeftX());
+      //SmartDashboard.putNumber("Blue Encoder", Constants.getPosition());
 
     }
   /** This function is run once each time the robot enters autonomous mode. */
@@ -100,13 +101,13 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopInit() {
-  
+
   }
 
   /** This function is called periodically during teleoperated mode. */
   @Override
   public void teleopPeriodic() {
-    if(baseController.getL2Button()){
+    if(baseController.getL2Axis() > 0.01){
       intake.forewardState();
     } else{
       intake.baseState();

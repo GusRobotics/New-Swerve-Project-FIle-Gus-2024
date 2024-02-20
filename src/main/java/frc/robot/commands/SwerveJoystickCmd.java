@@ -17,6 +17,7 @@ public class SwerveJoystickCmd extends Command {
     private final Supplier<Double> xSpdFunction, ySpdFunction, turningSpdFunction;
     //private final Supplier<Boolean> fieldOrientedFunction;
     private final SlewRateLimiter xLimiter, yLimiter, turningLimiter;
+    SwerveModuleState[] startStates = new SwerveModuleState[4];
 
     Supplier<Boolean> resetGyro;
 
@@ -35,7 +36,6 @@ public class SwerveJoystickCmd extends Command {
 
     @Override
     public void initialize() {
-        SwerveModuleState[] startStates = new SwerveModuleState[4];
         startStates[0] = new SwerveModuleState(0, new Rotation2d(Constants.kBlueDriveAbsoluteEncoderOffset));
         startStates[1] = new SwerveModuleState(0, new Rotation2d(Constants.kOrangeDriveAbsoluteEncoderOffset));
         startStates[2] = new SwerveModuleState(0, new Rotation2d(Constants.kRedDriveAbsoluteEncoderOffset));
@@ -45,9 +45,9 @@ public class SwerveJoystickCmd extends Command {
 
     @Override
     public void execute() {
-        if(resetGyro.get()){
-            swerveSubsystem.zeroHeading();
-        }
+        // if(resetGyro.get()){
+        //     swerveSubsystem.zeroHeading();
+        // }
         // 1. Get real-time joystick inputs
         double xSpeed = (xSpdFunction.get()*2);
         double ySpeed = (ySpdFunction.get()*2);

@@ -21,11 +21,11 @@ public class ShooterCmd{
     }
 
     public void execute(){
-        if(running.get()){
-            shoot.shootState();
-        } else{
-            shoot.baseShootState();
-        }
+        // if(running.get()){
+        //     shoot.shootState();
+        // } else{
+        //     shoot.baseShootState();
+        // }
     }
 
     public void end(boolean interrupted) {

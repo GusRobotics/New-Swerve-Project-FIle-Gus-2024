@@ -4,9 +4,9 @@
 
 package frc.robot;
 
-import com.playingwithfusion.TimeOfFlight;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkLowLevel.MotorType;
+// import com.playingwithfusion.TimeOfFlight;
+// import com.revrobotics.CANSparkMax;
+// import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -14,13 +14,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+//import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.SwerveJoystickCmd;
 //import frc.robot.commands.Autonomous.AutoTest;
 import frc.robot.commands.Autonomous.FourNoteNoMid;
 import frc.robot.commands.Autonomous.fourPieceCenterMiddle;
-import frc.robot.subsystems.Intake;
+//import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.SwerveDrive;
 
 /**
@@ -37,7 +37,7 @@ public class RobotContainer {
   public static PS4Controller climbControl = new PS4Controller(2);
   // CANSparkMax topIntake = new CANSparkMax(Constants.topIntakeMotor,  MotorType.kBrushless);
   // CANSparkMax bottomIntake = new CANSparkMax(Constants.bottomIntakeMotor,  MotorType.kBrushless);
-  TimeOfFlight sensor = new TimeOfFlight(Constants.flightId);
+  //TimeOfFlight sensor = new TimeOfFlight(Constants.flightId);
   // static Intake intake = new Intake(new CANSparkMax(Constants.topIntakeMotor,  MotorType.kBrushless), 
   //   new CANSparkMax(Constants.bottomIntakeMotor,  MotorType.kBrushless));
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -91,9 +91,12 @@ public class RobotContainer {
     //SmartDashboard.putData(new ModuleTest());
 
 
-    SmartDashboard.putData(new SwerveJoystickCmd(drive, controller::getLeftX,
-       controller::getLeftY, controller::getRightY, controller::getTriangleButtonPressed));
+    // SmartDashboard.putData(new SwerveJoystickCmd(drive, controller::getLeftX,
+    //    controller::getLeftY, controller::getRightY, controller::getTriangleButtonPressed));
  
+    SmartDashboard.putData(new SwerveJoystickCmd(RobotContainer.drive,
+    RobotContainer.controller::getLeftX, RobotContainer.controller::getLeftY, RobotContainer.controller::getR2Axis,
+    RobotContainer.controller::getTriangleButtonPressed));
   }
 
   /**
