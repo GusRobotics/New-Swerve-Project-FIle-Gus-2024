@@ -95,14 +95,17 @@ public class RobotContainer {
     //SmartDashboard.putData(new ModuleTest());
 
 
-    // SmartDashboard.putData(new SwerveJoystickCmd(drive, controller::getLeftX,
-    //    controller::getLeftY, controller::getRightY, controller::getTriangleButtonPressed));
+    SmartDashboard.putData(new SwerveJoystickCmd(drive, controller::getLeftX,
+       controller::getLeftY, controller::getRightY, controller::getTriangleButtonPressed));
  
     SmartDashboard.putData(new SwerveJoystickCmd(RobotContainer.drive,
     RobotContainer.controller::getLeftX, RobotContainer.controller::getLeftY, RobotContainer.controller::getR2Axis,
     RobotContainer.controller::getTriangleButtonPressed));
 
     controller.button(2).onTrue(new IntakeCmd(intake, true));
+    // SmartDashboard.putData(new SwerveJoystickCmd(RobotContainer.drive,
+    // RobotContainer.controller::getLeftX, RobotContainer.controller::getLeftY, RobotContainer.controller::getR2Axis,
+    // RobotContainer.controller::getTriangleButtonPressed));
   }
 
   /**

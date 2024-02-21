@@ -6,6 +6,7 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
 //import edu.wpi.first.math.trajectory.TrapezoidProfile.Constraints;
 import edu.wpi.first.math.util.Units;
 //import edu.wpi.first.wpilibj2.command.TrapezoidProfileCommand;
+import frc.robot.subsystems.Intake;
 
 public class Constants {
         public static final double kWheelDiameterMeters = Units.inchesToMeters(4);
@@ -35,8 +36,8 @@ public class Constants {
 
         public static final boolean kBlueTurningEncoderReversed = false;
         public static final boolean kGreenTurningEncoderReversed = false;
-        public static final boolean kOrangeTurningEncoderReversed = true;
-        public static final boolean kRedTurningEncoderReversed = true;
+        public static final boolean kOrangeTurningEncoderReversed = false;
+        public static final boolean kRedTurningEncoderReversed = false;
 
         public static final boolean kBlueDriveEncoderReversed = false;
         public static final boolean kGreenDriveEncoderReversed = false;
@@ -87,8 +88,8 @@ public class Constants {
 
         public static final boolean kBlueDriveAbsoluteEncoderReversed = false;
         public static final boolean kGreenDriveAbsoluteEncoderReversed = false;
-        public static final boolean kOrangeDriveAbsoluteEncoderReversed = true;
-        public static final boolean kRedDriveAbsoluteEncoderReversed = true;
+        public static final boolean kOrangeDriveAbsoluteEncoderReversed = false;
+        public static final boolean kRedDriveAbsoluteEncoderReversed = false;
 
         public static final double kBlueDriveAbsoluteEncoderOffset = 0.061768;
         public static final double kGreenDriveAbsoluteEncoderOffset = 0.044922;
@@ -122,15 +123,18 @@ public class Constants {
                         kPhysicalMaxSpeedMetersPerSecond, kPhysicalMaxAngularSpeedRadiansPerSecond);
         TrapezoidProfile.State previousProfiledReference = new TrapezoidProfile.State();
 
+
+        public static Intake intake = new Intake();
+
         public static final class ShooterConstants{
                 public static final int topShooterId = 23; //idk if thats the actual id
                 public static final int bottomShooterId = 24; //idk if that's the actual id
         }
 
-        public static final class IntakeConstants{
-               public static final int topIntakeMotorId = 21; //idk if thats the actual id
-               public static final int bottomIntakeMotorId = 22; //idk if that's the actual id
-        }
+        // public static final class IntakeConstants{
+        //        public static final int topIntakeMotorId = 21; //idk if thats the actual id
+        //        public static final int bottomIntakeMotorId = 22; //idk if that's the actual id
+        // }
 
         public static final class AutoConstants {
                 public static final double kMaxSpeedMetersPerSecond = 5;

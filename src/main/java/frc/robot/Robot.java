@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 //import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 //import frc.robot.commands.IntakeCmd;
+// import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.SwerveJoystickCmd;
 import frc.robot.subsystems.Intake;
 //import frc.robot.commands.Autonomous.AutoTest;
@@ -55,6 +56,9 @@ public class Robot extends TimedRobot {
      //for shooting: charli gets spin up flywheel, carter gets l2 to run intake to shoot
     //  CommandScheduler.schedule(RobotContainer.intake, new IntakeCmd(RobotContainer.intake, 
     //  RobotContainer.coDriveControl::getL2Button, RobotContainer.intake::sensorInRange));
+    //  CommandScheduler.schedule(new IntakeCmd(RobotContainer.intake, 
+    //  RobotContainer.coDriveControl::getL2Button, RobotContainer.intake::getSensorInRange, 
+    //  RobotContainer.coDriveControl::getL1ButtonPressed, RobotContainer.controller::getL2ButtonPressed));
 
   }
 
@@ -64,7 +68,24 @@ public class Robot extends TimedRobot {
 
       SmartDashboard.putNumber("RightJoystickX", RobotContainer.controller.getR2Axis());
       SmartDashboard.putNumber("LeftJoystickX", RobotContainer.controller.getLeftX());
-      //SmartDashboard.putNumber("Blue Encoder", Constants.getPosition());
+
+      // if(baseController.getL2Button()){
+      //   //add your actual values between -1 and 1 depending on forward or reverse and whatnot
+      //   topIntake.set(.6);
+      //   bottomIntake.set(.6);
+      // } else{
+      //   topIntake.set(0);
+      //   bottomIntake.set(0);
+      // }
+
+      // if(baseController.getL2Button()){
+      //   //add your actual values between -1 and 1 depending on forward or reverse and whatnot
+      //   topShooter.set(0);
+      //   bottomShooter.set(0);
+      // } else{
+      //   topShooter.set(0);
+      //   bottomShooter.set(0);
+      // }
 
     }
   /** This function is run once each time the robot enters autonomous mode. */
@@ -106,11 +127,6 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during teleoperated mode. */
   @Override
   public void teleopPeriodic() {
-    // if(baseController.getL2ButtonPressed()){
-    //   intake.forewardState();
-    // } else{
-    //   intake.baseState();
-    // }
 
   }
 

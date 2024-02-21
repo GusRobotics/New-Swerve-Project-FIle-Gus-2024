@@ -45,13 +45,16 @@
 
 package frc.robot.subsystems;
 
+import com.playingwithfusion.TimeOfFlight;
+import com.revrobotics.CANSparkFlex;
+import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.util.datalog.DoubleLogEntry;
 import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.Constants;
-import frc.robot.Constants.IntakeConstants;
+import frc.robot.Constants;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkPIDController;
@@ -62,8 +65,10 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 /** Lower Intake Subsystem */
 public class Intake implements Subsystem {
     // Hardware
-    private CANSparkMax topIntakeMotor;    
-    private CANSparkMax bottomIntakeMotor;
+    private CANSparkFlex topIntakeMotor;    
+    private CANSparkFlex bottomIntakeMotor;
+    private TimeOfFlight sensor;
+
     private CANSparkMax intake = new CANSparkMax(Constants.topIntakeMotor, MotorType.kBrushless);
     private SparkPIDController intakeController;
 
@@ -78,8 +83,11 @@ public class Intake implements Subsystem {
         // intakeController.setI(IntakeConstants.kINTAKE_I, 0);
         // intakeController.setD(IntakeConstants.kINTAKE_D, 0);
 
+    // public Intake(){ //TimeOfFlight sensor){
+    //     topIntakeMotor = new CANSparkFlex(Constants.topIntakeMotor, MotorType.kBrushless);
+    //     bottomIntakeMotor = new CANSparkFlex(Constants.bottomIntakeMotor, MotorType.kBrushless);
+    // }
     }
-
     /** Sets the intake's default command (not moving) */
     public void initDefaultCommand() {
         setDefaultCommand(new InstantCommand(
@@ -97,6 +105,10 @@ public class Intake implements Subsystem {
     public void reverseIntake() {
         topIntakeMotor.set(-0.3);
         bottomIntakeMotor.set(-0.3);
+    }
+        public void forewardIntakeState(){
+        topIntakeMotor.set(Constants.topIntakeSpeed);
+        bottomIntakeMotor.set(Constants.bottomIntakeSpeed);
     }
 
     /** Ends the intake function */
