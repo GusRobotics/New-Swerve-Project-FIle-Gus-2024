@@ -18,23 +18,28 @@ public class Intake extends SubsystemBase{
         bottomIntakeMotor = new CANSparkFlex(Constants.bottomIntakeMotor, MotorType.kBrushless);
     }
 
-    public void baseState(){
+    public void baseIntakeState(){
         topIntakeMotor.set(0);
         bottomIntakeMotor.set(0);
     }
 
     //we need the measurement in milimeters 
     //goal is if the sensor is triggered (ie if the note is in intake) it auto stops
-    public boolean sensorInRange(){
+    public boolean getSensorInRange(){
         if(sensor.getRange() < 110){
             return true;
         }
         return false;
     }
 
-    public void forewardState(){
+    public void forewardIntakeState(){
         topIntakeMotor.set(Constants.topIntakeSpeed);
         bottomIntakeMotor.set(Constants.bottomIntakeSpeed);
+    }
+
+    public void reverseIntakeState(){
+        topIntakeMotor.set(Constants.negIntakeSpeed);
+        bottomIntakeMotor.set(Constants.negIntakeSpeed);
     }
 
 }

@@ -9,9 +9,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 //import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-//import frc.robot.commands.IntakeCmd;
+// import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.SwerveJoystickCmd;
-import frc.robot.subsystems.Intake;
 //import frc.robot.commands.Autonomous.AutoTest;
 import edu.wpi.first.wpilibj.PS4Controller;
 
@@ -36,7 +35,6 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
 
 
-
   /**
    * This function is run when the robot is first started up and should be used
    * for any
@@ -48,23 +46,41 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().setDefaultCommand(RobotContainer.drive, new SwerveJoystickCmd(RobotContainer.drive,
     RobotContainer.controller::getLeftX, RobotContainer.controller::getLeftY, RobotContainer.controller::getR2Axis,
     RobotContainer.controller::getTriangleButtonPressed));
-    //
+
      m_robotContainer = new RobotContainer();
     
      //for actually intaking: charli gets the button, toggle on/off, when sensor triggered stop
      //for shooting: charli gets spin up flywheel, carter gets l2 to run intake to shoot
-    //  CommandScheduler.schedule(RobotContainer.intake, new IntakeCmd(RobotContainer.intake, 
-    //  RobotContainer.coDriveControl::getL2Button, RobotContainer.intake::sensorInRange));
+    //  CommandScheduler.schedule(new IntakeCmd(RobotContainer.intake, 
+    //  RobotContainer.coDriveControl::getL2Button, RobotContainer.intake::getSensorInRange, 
+    //  RobotContainer.coDriveControl::getL1ButtonPressed, RobotContainer.controller::getL2ButtonPressed));
 
   }
 
   @Override
   public void robotPeriodic() {
-    CommandScheduler.getInstance().run();
+      CommandScheduler.getInstance().run();
 
       SmartDashboard.putNumber("RightJoystickX", RobotContainer.controller.getR2Axis());
       SmartDashboard.putNumber("LeftJoystickX", RobotContainer.controller.getLeftX());
-      //SmartDashboard.putNumber("Blue Encoder", Constants.getPosition());
+
+      // if(baseController.getL2Button()){
+      //   //add your actual values between -1 and 1 depending on forward or reverse and whatnot
+      //   topIntake.set(.6);
+      //   bottomIntake.set(.6);
+      // } else{
+      //   topIntake.set(0);
+      //   bottomIntake.set(0);
+      // }
+
+      // if(baseController.getL2Button()){
+      //   //add your actual values between -1 and 1 depending on forward or reverse and whatnot
+      //   topShooter.set(0);
+      //   bottomShooter.set(0);
+      // } else{
+      //   topShooter.set(0);
+      //   bottomShooter.set(0);
+      // }
 
     }
   /** This function is run once each time the robot enters autonomous mode. */
@@ -100,16 +116,16 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopInit() {
-
+  
   }
 
   /** This function is called periodically during teleoperated mode. */
   @Override
   public void teleopPeriodic() {
     if(baseController.getL2ButtonPressed()){
-      Constants.intake.forewardState();
+      Constants.intake.forewardIntakeState();
     } else{
-      Constants.intake.baseState();
+      Constants.intake.baseIntakeState();
     }
 
   }
