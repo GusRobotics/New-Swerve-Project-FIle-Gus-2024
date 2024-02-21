@@ -9,6 +9,7 @@ package frc.robot;
 // import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.PS4Controller;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 //import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -16,11 +17,12 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 //import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.SwerveJoystickCmd;
 //import frc.robot.commands.Autonomous.AutoTest;
 import frc.robot.commands.Autonomous.FourNoteNoMid;
 import frc.robot.commands.Autonomous.fourPieceCenterMiddle;
-//import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.SwerveDrive;
 
 /**
@@ -35,6 +37,8 @@ public class RobotContainer {
   public static PS4Controller controller = new PS4Controller(0);
   public static PS4Controller coDriveControl = new PS4Controller(1);
   public static PS4Controller climbControl = new PS4Controller(2);
+  private Intake intake = new Intake();
+
   // CANSparkMax topIntake = new CANSparkMax(Constants.topIntakeMotor,  MotorType.kBrushless);
   // CANSparkMax bottomIntake = new CANSparkMax(Constants.bottomIntakeMotor,  MotorType.kBrushless);
   //TimeOfFlight sensor = new TimeOfFlight(Constants.flightId);
@@ -97,6 +101,8 @@ public class RobotContainer {
     SmartDashboard.putData(new SwerveJoystickCmd(RobotContainer.drive,
     RobotContainer.controller::getLeftX, RobotContainer.controller::getLeftY, RobotContainer.controller::getR2Axis,
     RobotContainer.controller::getTriangleButtonPressed));
+
+    controller.button(2).onTrue(new IntakeCmd(intake, true));
   }
 
   /**
