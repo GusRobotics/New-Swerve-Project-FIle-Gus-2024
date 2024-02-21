@@ -2,19 +2,20 @@ package frc.robot.subsystems;
 
 import com.playingwithfusion.TimeOfFlight;
 import com.revrobotics.CANSparkFlex;
+import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Intake extends SubsystemBase{
 
-        private CANSparkFlex topIntakeMotor;// = new CANSparkMax(Constants.IntakeConstants.topIntakeMotorId, CANSparkMax.MotorType.kBrushless);    
-        private CANSparkFlex bottomIntakeMotor;// = new CANSparkMax(Constants.IntakeConstants.bottomIntakeMotorId, CANSparkMax.MotorType.kBrushless);
+        private CANSparkFlex topIntakeMotor;//    
+        private CANSparkFlex bottomIntakeMotor;// 
         private TimeOfFlight sensor;
 
-    public Intake(CANSparkFlex topIntakeMotor, CANSparkFlex bottomIntakeMotor){ //TimeOfFlight sensor){
-        this.topIntakeMotor = topIntakeMotor;
-        this.bottomIntakeMotor = bottomIntakeMotor;
+    public Intake(){ //TimeOfFlight sensor){
+        topIntakeMotor = new CANSparkFlex(Constants.topIntakeMotor, MotorType.kBrushless);
+        bottomIntakeMotor = new CANSparkFlex(Constants.bottomIntakeMotor, MotorType.kBrushless);
     }
 
     public void baseState(){

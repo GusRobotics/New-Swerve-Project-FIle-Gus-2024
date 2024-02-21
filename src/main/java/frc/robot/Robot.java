@@ -35,8 +35,7 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
 
-  Intake intake = new Intake(new CANSparkFlex(Constants.topIntakeMotor,  MotorType.kBrushless), 
-    new CANSparkFlex(Constants.bottomIntakeMotor,  MotorType.kBrushless));
+
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -107,10 +106,10 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during teleoperated mode. */
   @Override
   public void teleopPeriodic() {
-    if(baseController.getL2Axis() > 0.01){
-      intake.forewardState();
+    if(baseController.getL2ButtonPressed()){
+      Constants.intake.forewardState();
     } else{
-      intake.baseState();
+      Constants.intake.baseState();
     }
 
   }

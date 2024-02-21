@@ -32,6 +32,7 @@ public class SwerveJoystickCmd extends Command {
         this.yLimiter = new SlewRateLimiter(Constants.kTeleDriveMaxAccelerationUnitsPerSecond);
         this.turningLimiter = new SlewRateLimiter(Constants.kTeleDriveMaxAngularAccelerationUnitsPerSecond);
         addRequirements(swerveSubsystem);
+        this.resetGyro = resetGyro;
     }
 
     @Override
@@ -45,9 +46,9 @@ public class SwerveJoystickCmd extends Command {
 
     @Override
     public void execute() {
-        // if(resetGyro.get()){
-        //     swerveSubsystem.zeroHeading();
-        // }
+        if(resetGyro.get()){
+            swerveSubsystem.zeroHeading();
+        }
         // 1. Get real-time joystick inputs
         double xSpeed = (xSpdFunction.get()*2);
         double ySpeed = (ySpdFunction.get()*2);
