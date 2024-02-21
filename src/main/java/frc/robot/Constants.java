@@ -123,6 +123,7 @@ public class Constants {
                         kPhysicalMaxSpeedMetersPerSecond, kPhysicalMaxAngularSpeedRadiansPerSecond);
         TrapezoidProfile.State previousProfiledReference = new TrapezoidProfile.State();
 
+
         public static Intake intake = new Intake();
 
         public static final class ShooterConstants{
