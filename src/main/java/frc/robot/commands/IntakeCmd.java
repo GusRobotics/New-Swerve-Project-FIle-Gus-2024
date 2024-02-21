@@ -25,6 +25,10 @@ public class IntakeCmd extends SubsystemBase{
         intake.baseState();
     }
 
+    //controller.l2.ontrue then command to turn intake  on 
+
+    //command to turn it off
+
     public void execute(){
         //run the intake either when codriver is pressing and the sensor isn't triggered
         //or when the sensor is triggered and the base driver runs intake to index
