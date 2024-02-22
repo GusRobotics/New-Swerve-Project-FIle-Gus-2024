@@ -4,18 +4,13 @@
 
 package frc.robot;
 
-// import com.playingwithfusion.TimeOfFlight;
-// import com.revrobotics.CANSparkMax;
-// import com.revrobotics.CANSparkLowLevel.MotorType;
-
 import edu.wpi.first.wpilibj.PS4Controller;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 //import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-//import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.SwerveJoystickCmd;
@@ -25,7 +20,6 @@ import frc.robot.commands.Autonomous.fourPieceCenterMiddle;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.SwerveDrive;
 
-
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -34,21 +28,17 @@ import frc.robot.subsystems.SwerveDrive;
  */
 public class RobotContainer {
 
+
   public static SwerveDrive drive = new SwerveDrive();
-  public static PS4Controller controller = new PS4Controller(0);
-  public static PS4Controller coDriveControl = new PS4Controller(1);
-  public static PS4Controller climbControl = new PS4Controller(2);
-  private Intake intake = new Intake();
+  public static PS4Controller baseController = new PS4Controller(0);
 
-
-  //TimeOfFlight sensor = new TimeOfFlight(Constants.flightId);
-  // static Intake intake = new Intake(new CANSparkMax(Constants.topIntakeMotor,  MotorType.kBrushless), 
-  //   new CANSparkMax(Constants.bottomIntakeMotor,  MotorType.kBrushless));
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
+  private Intake intake = new Intake();
 
+  
 
-  // The robot's subsystems and commands are defined here...s
+  // The robot's subsystems and commands are defined here...
   //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -93,19 +83,13 @@ public class RobotContainer {
     // cancellin on release.
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
     //SmartDashboard.putData(new ModuleTest());
+
     SmartDashboard.putData(new IntakeCmd(intake, false));
 
-    SmartDashboard.putData(new SwerveJoystickCmd(drive, controller::getLeftX,
-       controller::getLeftY, controller::getRightY, controller::getTriangleButtonPressed));
- 
-    // SmartDashboard.putData(new SwerveJoystickCmd(RobotContainer.drive,
-    // RobotContainer.controller::getLeftX, RobotContainer.controller::getLeftY, RobotContainer.controller::getR2Axis,
-    // RobotContainer.controller::getTriangleButtonPressed));
 
-    //controller.button(2).onTrue(new IntakeCmd(intake, true));
-    // SmartDashboard.putData(new SwerveJoystickCmd(RobotContainer.drive,
-    // RobotContainer.controller::getLeftX, RobotContainer.controller::getLeftY, RobotContainer.controller::getR2Axis,
-    // RobotContainer.controller::getTriangleButtonPressed));
+    SmartDashboard.putData(new SwerveJoystickCmd(drive, baseController::getLeftX,
+       baseController::getLeftY, baseController::getRightY, baseController::getTriangleButtonPressed));
+ 
   }
 
   /**
