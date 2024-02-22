@@ -6,7 +6,6 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
 //import edu.wpi.first.math.trajectory.TrapezoidProfile.Constraints;
 import edu.wpi.first.math.util.Units;
 //import edu.wpi.first.wpilibj2.command.TrapezoidProfileCommand;
-import frc.robot.subsystems.Intake;
 
 public class Constants {
         public static final double kWheelDiameterMeters = Units.inchesToMeters(4);
@@ -62,8 +61,8 @@ public class Constants {
         public static final int redSteer = 19;
         public static final int kRedDriveAbsoluteEncoderPort = 20;
         //intake ids
-        public static final int topIntakeMotor = 15;
-        public static final int bottomIntakeMotor = 16;
+         public static final int topIntakeMotor = 40;
+         public static final int bottomIntakeMotor = 16;
         //shooter ids
         public static final int topShooterMotor = 17;
         public static final int bottomShooterMotor = 18;
@@ -123,10 +122,10 @@ public class Constants {
                         kPhysicalMaxSpeedMetersPerSecond, kPhysicalMaxAngularSpeedRadiansPerSecond);
         TrapezoidProfile.State previousProfiledReference = new TrapezoidProfile.State();
 
-        public static final class ShooterConstants{
-                public static final int topShooterId = 23; //idk if thats the actual id
-                public static final int bottomShooterId = 24; //idk if that's the actual id
-        }
+        // public static final class ShooterConstants{
+        //         public static final int topShooterId = 23; //idk if thats the actual id
+        //         public static final int bottomShooterId = 24; //idk if that's the actual id
+        // }
 
         // public static final class IntakeConstants{
         //        public static final int topIntakeMotorId = 21; //idk if thats the actual id

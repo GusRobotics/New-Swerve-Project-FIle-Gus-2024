@@ -28,7 +28,6 @@ import edu.wpi.first.wpilibj.PS4Controller;
  * directory.
  */
 public class Robot extends TimedRobot {
-  PS4Controller baseController = new PS4Controller(0);
   Rotation2d desRot = new Rotation2d(0);
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
@@ -40,10 +39,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    new RobotContainer();
     CommandScheduler.getInstance().setDefaultCommand(RobotContainer.drive, new SwerveJoystickCmd(RobotContainer.drive,
     RobotContainer.baseController::getLeftX, RobotContainer.baseController::getLeftY, RobotContainer.baseController::getR2Axis,
-    RobotContainer.baseController::getTriangleButtonPressed));
+    RobotContainer.baseController.triangle()::getAsBoolean));
 
     m_robotContainer = new RobotContainer();
   }

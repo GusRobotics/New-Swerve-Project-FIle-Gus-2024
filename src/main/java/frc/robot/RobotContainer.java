@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 //import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.CommandPS4Controller;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -30,13 +31,13 @@ public class RobotContainer {
 
 
   public static SwerveDrive drive = new SwerveDrive();
-  public static PS4Controller baseController = new PS4Controller(0);
+  public static CommandPS4Controller baseController = new CommandPS4Controller(0);
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   private Intake intake = new Intake();
+  private Trigger intakeForward = baseController.L2();
 
-  
 
   // The robot's subsystems and commands are defined here...
   //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
@@ -85,10 +86,10 @@ public class RobotContainer {
     //SmartDashboard.putData(new ModuleTest());
 
     SmartDashboard.putData(new IntakeCmd(intake, false));
-
+    intakeForward.onTrue(new IntakeCmd(intake, false));
 
     SmartDashboard.putData(new SwerveJoystickCmd(drive, baseController::getLeftX,
-       baseController::getLeftY, baseController::getRightY, baseController::getTriangleButtonPressed));
+       baseController::getLeftY, baseController::getRightY, RobotContainer.baseController.triangle()::getAsBoolean));
  
   }
 

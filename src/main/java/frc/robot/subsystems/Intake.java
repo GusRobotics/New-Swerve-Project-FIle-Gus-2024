@@ -61,8 +61,8 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 /** Lower Intake Subsystem */
 public class Intake implements Subsystem {
     // Hardware
-    private CANSparkFlex topIntakeMotor = new CANSparkFlex(Constants.topIntakeMotor, MotorType.kBrushless);    
-    private CANSparkFlex bottomIntakeMotor = new CANSparkFlex(Constants.bottomIntakeMotor, MotorType.kBrushless);;
+    private CANSparkFlex topIntakeMotor = new CANSparkFlex(40, MotorType.kBrushless);    
+    private CANSparkFlex bottomIntakeMotor = new CANSparkFlex(16, MotorType.kBrushless);;
     private TimeOfFlight sensor;
 
     private SparkPIDController intakeController;
@@ -102,7 +102,7 @@ public class Intake implements Subsystem {
         bottomIntakeMotor.set(-0.3);
     }
 
-    
+
         public void forewardIntakeState(){
         topIntakeMotor.set(Constants.topIntakeSpeed);
         bottomIntakeMotor.set(Constants.bottomIntakeSpeed);
