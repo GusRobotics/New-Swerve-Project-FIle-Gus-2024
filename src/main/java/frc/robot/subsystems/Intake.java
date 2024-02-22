@@ -54,8 +54,6 @@ import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.Constants;
-import frc.robot.Constants;
-import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkPIDController;
 import com.revrobotics.CANSparkBase.ControlType;
@@ -65,17 +63,16 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 /** Lower Intake Subsystem */
 public class Intake implements Subsystem {
     // Hardware
-    private CANSparkFlex topIntakeMotor;    
-    private CANSparkFlex bottomIntakeMotor;
+    private CANSparkFlex topIntakeMotor = new CANSparkFlex(Constants.topIntakeMotor, MotorType.kBrushless);    
+    private CANSparkFlex bottomIntakeMotor = new CANSparkFlex(Constants.bottomIntakeMotor, MotorType.kBrushless);;
     private TimeOfFlight sensor;
 
-    private CANSparkMax intake = new CANSparkMax(Constants.topIntakeMotor, MotorType.kBrushless);
     private SparkPIDController intakeController;
 
     // Init
     public Intake() {
-        intake.setIdleMode(IdleMode.kBrake);
-        intake.setInverted(false);
+        // intake.setIdleMode(IdleMode.kBrake);
+        // intake.setInverted(false);
         // intake.setSmartCurrentLimit(IntakeConstants.kINTAKE_CURRENT_LIMIT);
 
         // intakeController = intake.getPIDController();
