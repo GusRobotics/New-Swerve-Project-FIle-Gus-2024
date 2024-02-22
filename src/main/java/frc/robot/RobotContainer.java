@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.hal.FRCNetComm.tResourceType;
 import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 //import edu.wpi.first.wpilibj.XboxController;
@@ -15,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.SwerveJoystickCmd;
+import frc.robot.commands.TestCmd;
 //import frc.robot.commands.Autonomous.AutoTest;
 import frc.robot.commands.Autonomous.FourNoteNoMid;
 import frc.robot.commands.Autonomous.fourPieceCenterMiddle;
@@ -36,8 +38,8 @@ public class RobotContainer {
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   private Intake intake = new Intake();
-  private Trigger intakeForward = baseController.L2();
-
+  private Trigger intakeForward = baseController.circle();
+  private Trigger test = baseController.square();
 
   // The robot's subsystems and commands are defined here...
   //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
@@ -85,8 +87,9 @@ public class RobotContainer {
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
     //SmartDashboard.putData(new ModuleTest());
 
-    SmartDashboard.putData(new IntakeCmd(intake, false));
-    intakeForward.onTrue(new IntakeCmd(intake, false));
+    // SmartDashboard.putData(new IntakeCmd(intake, false));
+    intakeForward.toggleOnTrue(new IntakeCmd(intake, false));
+    test.onTrue(new TestCmd());
 
     SmartDashboard.putData(new SwerveJoystickCmd(drive, baseController::getLeftX,
        baseController::getLeftY, baseController::getRightY, RobotContainer.baseController.triangle()::getAsBoolean));
