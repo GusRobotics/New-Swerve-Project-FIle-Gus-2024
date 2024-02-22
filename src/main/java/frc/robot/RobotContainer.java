@@ -25,6 +25,7 @@ import frc.robot.commands.Autonomous.fourPieceCenterMiddle;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.SwerveDrive;
 
+
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -39,8 +40,7 @@ public class RobotContainer {
   public static PS4Controller climbControl = new PS4Controller(2);
   private Intake intake = new Intake();
 
-  // CANSparkMax topIntake = new CANSparkMax(Constants.topIntakeMotor,  MotorType.kBrushless);
-  // CANSparkMax bottomIntake = new CANSparkMax(Constants.bottomIntakeMotor,  MotorType.kBrushless);
+
   //TimeOfFlight sensor = new TimeOfFlight(Constants.flightId);
   // static Intake intake = new Intake(new CANSparkMax(Constants.topIntakeMotor,  MotorType.kBrushless), 
   //   new CANSparkMax(Constants.bottomIntakeMotor,  MotorType.kBrushless));
@@ -93,16 +93,16 @@ public class RobotContainer {
     // cancellin on release.
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
     //SmartDashboard.putData(new ModuleTest());
-
+    SmartDashboard.putData(new IntakeCmd(intake, false));
 
     SmartDashboard.putData(new SwerveJoystickCmd(drive, controller::getLeftX,
        controller::getLeftY, controller::getRightY, controller::getTriangleButtonPressed));
  
-    SmartDashboard.putData(new SwerveJoystickCmd(RobotContainer.drive,
-    RobotContainer.controller::getLeftX, RobotContainer.controller::getLeftY, RobotContainer.controller::getR2Axis,
-    RobotContainer.controller::getTriangleButtonPressed));
+    // SmartDashboard.putData(new SwerveJoystickCmd(RobotContainer.drive,
+    // RobotContainer.controller::getLeftX, RobotContainer.controller::getLeftY, RobotContainer.controller::getR2Axis,
+    // RobotContainer.controller::getTriangleButtonPressed));
 
-    controller.button(2).onTrue(new IntakeCmd(intake, true));
+    //controller.button(2).onTrue(new IntakeCmd(intake, true));
     // SmartDashboard.putData(new SwerveJoystickCmd(RobotContainer.drive,
     // RobotContainer.controller::getLeftX, RobotContainer.controller::getLeftY, RobotContainer.controller::getR2Axis,
     // RobotContainer.controller::getTriangleButtonPressed));

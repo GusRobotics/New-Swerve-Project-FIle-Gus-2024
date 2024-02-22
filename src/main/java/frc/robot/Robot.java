@@ -14,7 +14,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.SwerveJoystickCmd;
 import frc.robot.subsystems.Intake;
 //import frc.robot.commands.Autonomous.AutoTest;
-import edu.wpi.first.wpilibj.PS4Controller;
+//import edu.wpi.first.wpilibj.PS4Controller;
+import edu.wpi.first.wpilibj2.command.button.CommandPS4Controller;
 
 //FOR THE FIRST MEETING AFTER KICKOFF:: 
 //write method to read the cancoder values in SwerveDrive, use in robotinit to display to smartdashboard, 
@@ -31,7 +32,7 @@ import edu.wpi.first.wpilibj.PS4Controller;
  * directory.
  */
 public class Robot extends TimedRobot {
-  PS4Controller baseController = new PS4Controller(0);
+  CommandPS4Controller baseController = new CommandPS4Controller(0);
   Rotation2d desRot = new Rotation2d(0);
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;

@@ -71,10 +71,10 @@ public class SwerveDrive extends SubsystemBase {
                 Constants.kRedDriveAbsoluteEncoderOffset,
                 Constants.kRedDriveAbsoluteEncoderReversed);
 
-        driveStates[0] = blue.getState();
-        driveStates[1] = orange.getState();
-        driveStates[2] = red.getState();
-        driveStates[3] = green.getState();
+        // driveStates[0] = blue.getState();
+        // driveStates[1] = orange.getState();
+        // driveStates[2] = red.getState();
+        // driveStates[3] = green.getState();
 
     }
 
@@ -147,8 +147,8 @@ public class SwerveDrive extends SubsystemBase {
         SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, Constants.kPhysicalMaxSpeedMetersPerSecond);
         blue.setDesiredState(desiredStates[0]);
         orange.setDesiredState(desiredStates[1]);
-        green.setDesiredState(desiredStates[2]);
-        red.setDesiredState(desiredStates[3]);
+        red.setDesiredState(desiredStates[2]);
+        green.setDesiredState(desiredStates[3]);
     }
 
     public Rotation2d getRotation2D() {

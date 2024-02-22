@@ -42,7 +42,7 @@ public class Constants {
         public static final boolean kBlueDriveEncoderReversed = false;
         public static final boolean kGreenDriveEncoderReversed = false;
         public static final boolean kOrangeDriveEncoderReversed = true;
-        public static final boolean kRedDriveEncoderReversed = true;
+        public static final boolean kRedDriveEncoderReversed = false;
 
         //Drive ID Constants 
         //Blue pod ids
@@ -50,8 +50,8 @@ public class Constants {
         public static final int blueSteer = 7;
         public static final int kBlueDriveAbsoluteEncoderPort = 8;
         //green pod ids
-        public static final int greenDrive = 10;
-        public static final int greenSteer = 12;
+        public static final int greenDrive = 12;
+        public static final int greenSteer = 10;
         public static final int kGreenDriveAbsoluteEncoderPort = 11;
         //orange drive ids
         public static final int orangeDrive = 5;
@@ -91,10 +91,10 @@ public class Constants {
         public static final boolean kOrangeDriveAbsoluteEncoderReversed = false;
         public static final boolean kRedDriveAbsoluteEncoderReversed = false;
 
-        public static final double kBlueDriveAbsoluteEncoderOffset = 0.061768;
-        public static final double kGreenDriveAbsoluteEncoderOffset = 0.044922;
-        public static final double kOrangeDriveAbsoluteEncoderOffset = 0.124268;
-        public static final double kRedDriveAbsoluteEncoderOffset = -0.046387;
+        public static final double kBlueDriveAbsoluteEncoderOffset = -0.178223;
+        public static final double kGreenDriveAbsoluteEncoderOffset = 0.416260;
+        public static final double kOrangeDriveAbsoluteEncoderOffset = 0.376465;
+        public static final double kRedDriveAbsoluteEncoderOffset = -0.188965;
 
         public static final double kPhysicalMaxSpeedMetersPerSecond = 7;
         //below originally 2 * 2 * Math.PI
@@ -122,9 +122,6 @@ public class Constants {
         public static final TrapezoidProfile.Constraints kThetaControllerConstraints = new TrapezoidProfile.Constraints(
                         kPhysicalMaxSpeedMetersPerSecond, kPhysicalMaxAngularSpeedRadiansPerSecond);
         TrapezoidProfile.State previousProfiledReference = new TrapezoidProfile.State();
-
-
-        public static Intake intake = new Intake();
 
         public static final class ShooterConstants{
                 public static final int topShooterId = 23; //idk if thats the actual id

@@ -13,9 +13,7 @@
 //         private TimeOfFlight sensor;
 
 //     public Intake(){
-//         topIntakeMotor = new CANSparkMax(Constants.IntakeConstants.topIntakeMotorId, CANSparkMax.MotorType.kBrushless);
-//         bottomIntakeMotor = new CANSparkMax(Constants.IntakeConstants.bottomIntakeMotorId, CANSparkMax.MotorType.kBrushless);
-//     }
+//         
 
 //     public void baseState(){
 //         topIntakeMotor.set(0);
@@ -103,6 +101,8 @@ public class Intake implements Subsystem {
         topIntakeMotor.set(-0.3);
         bottomIntakeMotor.set(-0.3);
     }
+
+    
         public void forewardIntakeState(){
         topIntakeMotor.set(Constants.topIntakeSpeed);
         bottomIntakeMotor.set(Constants.bottomIntakeSpeed);
@@ -110,7 +110,8 @@ public class Intake implements Subsystem {
 
     /** Ends the intake function */
     public void end() {
-        intakeController.setReference(0.0, ControlType.kVelocity, 0);
+        topIntakeMotor.set(0);
+        bottomIntakeMotor.set(0);
     }
 
     @Override
