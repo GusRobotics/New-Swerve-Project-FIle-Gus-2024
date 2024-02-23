@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.LowShootCmd;
+import frc.robot.commands.PneumaticCmd;
 import frc.robot.commands.ReverseIntakeCmd;
 import frc.robot.commands.HighShootCmd;
 import frc.robot.commands.SwerveJoystickCmd;

@@ -2,7 +2,6 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Pneumatics;
-import frc.robot.subsystems.Shooter;
 
 public class PneumaticCmd extends Command {
     private Pneumatics pneumatic;
@@ -30,7 +29,7 @@ public class PneumaticCmd extends Command {
 
     @Override
     public void end(boolean terminated) {
-        pneumatic.end();
+        pneumatic.basePosition();
     }
 
     @Override
