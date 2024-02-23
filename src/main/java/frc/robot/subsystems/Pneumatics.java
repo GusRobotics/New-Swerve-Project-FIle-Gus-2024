@@ -23,4 +23,8 @@ public class Pneumatics implements Subsystem{
     public void shootingPosition(){
         actuation.set(DoubleSolenoid.Value.kForward);
     }
+
+    public void basePosition(){
+        actuation.set(DoubleSolenoid.Value.kReverse);
+    }
 }

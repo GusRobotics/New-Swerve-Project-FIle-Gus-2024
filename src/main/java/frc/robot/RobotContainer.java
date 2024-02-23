@@ -35,8 +35,7 @@ import frc.robot.subsystems.SwerveDrive;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
-
-
+  // The robot's subsystems and commands are defined here...
   public static SwerveDrive drive = new SwerveDrive();
   public static CommandPS4Controller baseController = new CommandPS4Controller(0);
   public static CommandPS4Controller coController = new CommandPS4Controller(1);
@@ -57,15 +56,6 @@ public class RobotContainer {
 
   //pneumatics hold
   private Trigger pneumaticLift = coController.triangle();
-
-
-
-  // The robot's subsystems and commands are defined here...
-  //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-
-  // Replace with CommandPS4Controller or CommandJoystick if needed
-  //private final CommandXboxController m_driverController =
-      //new CommandXboxController(OperatorConstants.kDriverControllerPort)
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -116,6 +106,8 @@ public class RobotContainer {
     //become spinUpForward
     highSpinup.toggleOnTrue(new HighShootCmd(shooter, true));
     lowSpinup.toggleOnTrue(new LowShootCmd(shooter, true));
+
+    pneumaticLift.toggleOnTrue(new PneumaticCmd(pneumatic, true));
     //need spinUpReverse
     //test.onTrue(new TestCmd());
 
