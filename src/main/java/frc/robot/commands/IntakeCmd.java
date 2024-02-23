@@ -78,11 +78,11 @@ public class IntakeCmd extends Command {
     public void initialize() {
         if (direction) 
         {
-            intake.enableIntake();
+            intake.reverseIntake();
         }
         else 
         {
-            intake.reverseIntake();
+            intake.enableIntake();
         }
     }
 

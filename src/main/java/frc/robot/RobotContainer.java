@@ -15,12 +15,14 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.IntakeCmd;
+import frc.robot.commands.ShooterCmd;
 import frc.robot.commands.SwerveJoystickCmd;
-import frc.robot.commands.TestCmd;
+//import frc.robot.commands.TestCmd;
 //import frc.robot.commands.Autonomous.AutoTest;
 import frc.robot.commands.Autonomous.FourNoteNoMid;
 import frc.robot.commands.Autonomous.fourPieceCenterMiddle;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SwerveDrive;
 
 /**
@@ -38,8 +40,10 @@ public class RobotContainer {
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   private Intake intake = new Intake();
-  private Trigger intakeForward = baseController.circle();
-  private Trigger test = baseController.square();
+  private Shooter shooter = new Shooter();
+  private Trigger intakeForward = baseController.L2();
+  private Trigger test = baseController.circle();
+  private Trigger shoot = baseController.L1();
 
   // The robot's subsystems and commands are defined here...
   //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
@@ -87,10 +91,10 @@ public class RobotContainer {
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
     //SmartDashboard.putData(new ModuleTest());
 
-    // SmartDashboard.putData(new IntakeCmd(intake, false));
-    intakeForward.toggleOnTrue(new IntakeCmd(intake, false));
-    test.onTrue(new TestCmd());
-
+    SmartDashboard.putData(new IntakeCmd(intake, false));
+    intakeForward.onTrue(new IntakeCmd(intake, true));//(new IntakeCmd(intake, true));
+    //test.onTrue(new TestCmd());
+    SmartDashboard.putData(new ShooterCmd(shooter, true));
     SmartDashboard.putData(new SwerveJoystickCmd(drive, baseController::getLeftX,
        baseController::getLeftY, baseController::getRightY, RobotContainer.baseController.triangle()::getAsBoolean));
  

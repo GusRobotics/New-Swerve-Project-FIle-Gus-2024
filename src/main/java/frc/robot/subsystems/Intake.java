@@ -93,17 +93,16 @@ public class Intake implements Subsystem {
     /** Runs the intake forward */
     public void enableIntake() {
         topIntakeMotor.set(0.3);
-        bottomIntakeMotor.set(0.3);
+        bottomIntakeMotor.set(-0.3);
     }
 
     /** Runs the intake in reverse */
     public void reverseIntake() {
         topIntakeMotor.set(-0.3);
-        bottomIntakeMotor.set(-0.3);
+        bottomIntakeMotor.set(0.3);
     }
 
-
-        public void forewardIntakeState(){
+    public void forewardIntakeState(){
         topIntakeMotor.set(Constants.topIntakeSpeed);
         bottomIntakeMotor.set(Constants.bottomIntakeSpeed);
     }
