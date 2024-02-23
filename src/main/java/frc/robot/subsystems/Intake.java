@@ -1,46 +1,3 @@
-// package frc.robot.subsystems;
-
-// import com.playingwithfusion.TimeOfFlight;
-// import com.revrobotics.CANSparkMax;
-
-// import edu.wpi.first.wpilibj2.command.SubsystemBase;
-// import frc.robot.Constants;
-
-// public class Intake extends SubsystemBase{
-
-//         private CANSparkMax topIntakeMotor;    
-//         private CANSparkMax bottomIntakeMotor;
-//         private TimeOfFlight sensor;
-
-//     public Intake(){
-//         
-
-//     public void baseState(){
-//         topIntakeMotor.set(0);
-//         bottomIntakeMotor.set(0);
-//     }
-
-//     //we need the measurement in milimeters 
-//     //goal is if the sensor is triggered (ie if the note is in intake) it auto stops
-//     public boolean getSensorInRange(){
-//         if(sensor.getRange() < 110){
-//             return true;
-//         }
-//         return false;
-//     }
-
-//     public void forewardState(){
-//         topIntakeMotor.set(Constants.topIntakeSpeed);
-//         bottomIntakeMotor.set(Constants.bottomIntakeSpeed);
-//     }
-
-//     public void reverseState(){
-//         topIntakeMotor.set(Constants.negIntakeSpeed);
-//         bottomIntakeMotor.set(Constants.negIntakeSpeed);
-//     }
-
-// }
-
 package frc.robot.subsystems;
 
 import com.playingwithfusion.TimeOfFlight;
@@ -69,19 +26,7 @@ public class Intake implements Subsystem {
 
     // Init
     public Intake() {
-        // intake.setIdleMode(IdleMode.kBrake);
-        // intake.setInverted(false);
-        // intake.setSmartCurrentLimit(IntakeConstants.kINTAKE_CURRENT_LIMIT);
-
-        // intakeController = intake.getPIDController();
-        // intakeController.setP(IntakeConstants.kINTAKE_P, 0);
-        // intakeController.setI(IntakeConstants.kINTAKE_I, 0);
-        // intakeController.setD(IntakeConstants.kINTAKE_D, 0);
-
-    // public Intake(){ //TimeOfFlight sensor){
-    //     topIntakeMotor = new CANSparkFlex(Constants.topIntakeMotor, MotorType.kBrushless);
-    //     bottomIntakeMotor = new CANSparkFlex(Constants.bottomIntakeMotor, MotorType.kBrushless);
-    // }
+ 
     }
     /** Sets the intake's default command (not moving) */
     public void initDefaultCommand() {

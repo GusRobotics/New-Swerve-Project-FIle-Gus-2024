@@ -61,7 +61,7 @@ public class Constants {
         public static final int redSteer = 19;
         public static final int kRedDriveAbsoluteEncoderPort = 20;
         //intake ids
-         public static final int topIntakeMotor = 40;
+         public static final int topIntakeMotor = 15;
          public static final int bottomIntakeMotor = 16;
         //shooter ids
         public static final int topShooterMotor = 17;

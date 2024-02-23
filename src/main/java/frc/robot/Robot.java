@@ -1,13 +1,9 @@
 package frc.robot;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkLowLevel.MotorType;
-
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-//import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.SwerveJoystickCmd;
 //import frc.robot.commands.Autonomous.AutoTest;
@@ -57,8 +53,6 @@ public class Robot extends TimedRobot {
   /** This function is run once each time the robot enters autonomous mode. */
   @Override
   public void autonomousInit() {
-    // m_timer.reset();
-    // m_timer.start();
     m_autonomousCommand =  m_robotContainer.getAutonomousCommand();
     if (m_autonomousCommand != null) {
       SmartDashboard.putData(m_autonomousCommand);
@@ -71,15 +65,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    // Drive for 2 seconds
-    // if (m_timer.get() < 2.0) {
-    // m_robotDrive.arcadeDrive(0.5, 0.0); // drive forwards half speed
-    // } else {
-    // m_robotDrive.stopMotor(); // stop robot
-    // }
 
-    // if (m_autonomousCommand != null)
-    //   m_autonomousCommand.cancel();
   }
 
   /**
