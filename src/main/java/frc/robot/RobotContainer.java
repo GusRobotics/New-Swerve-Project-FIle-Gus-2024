@@ -104,11 +104,11 @@ public class RobotContainer {
 
     //SmartDashboard.putData(new IntakeCmd(intake, false));
     intakeForward.toggleOnTrue(new IntakeCmd(intake, false));
-    intakeReverse.onTrue(new ReverseIntakeCmd(intake, true));
+    intakeReverse.toggleOnTrue(new ReverseIntakeCmd(intake, true));
 
     //become spinUpForward
-    highSpinup.onTrue(new HighShootCmd(shooter, true));
-    lowSpinup.onTrue(new LowShootCmd(shooter, true));
+    highSpinup.toggleOnTrue(new HighShootCmd(shooter, true));
+    lowSpinup.toggleOnTrue(new LowShootCmd(shooter, true));
     //need spinUpReverse
     //test.onTrue(new TestCmd());
 
