@@ -3,11 +3,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Intake;
 
-public class IntakeCmd extends Command {
+public class ReverseIntakeCmd extends Command {
     private Intake intake;
     private boolean direction;
 
-    public IntakeCmd(Intake intake, boolean direction) {
+    public ReverseIntakeCmd(Intake intake, boolean direction) {
         this.intake = intake;
         this.direction = direction;
 
@@ -19,11 +19,11 @@ public class IntakeCmd extends Command {
     public void initialize() {
         if (direction) 
         {
-            intake.reverseIntake();
+            intake.enableIntake();
         }
         else 
         {
-            intake.enableIntake();
+            intake.reverseIntake();
         }
     }
 

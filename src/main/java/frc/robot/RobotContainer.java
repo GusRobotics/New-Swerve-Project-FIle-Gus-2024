@@ -15,7 +15,9 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.IntakeCmd;
-import frc.robot.commands.ShooterCmd;
+import frc.robot.commands.LowShootCmd;
+import frc.robot.commands.ReverseIntakeCmd;
+import frc.robot.commands.HighShootCmd;
 import frc.robot.commands.SwerveJoystickCmd;
 //import frc.robot.commands.TestCmd;
 //import frc.robot.commands.Autonomous.AutoTest;
@@ -36,14 +38,23 @@ public class RobotContainer {
 
   public static SwerveDrive drive = new SwerveDrive();
   public static CommandPS4Controller baseController = new CommandPS4Controller(0);
+  public static CommandPS4Controller coController = new CommandPS4Controller(1);
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   private Intake intake = new Intake();
   private Shooter shooter = new Shooter();
-  private Trigger intakeForward = baseController.L2();
-  private Trigger test = baseController.circle();
-  private Trigger shoot = baseController.L1();
+
+  //intaking and reversing
+  private Trigger intakeForward = coController.R1();
+  private Trigger intakeReverse = coController.square();
+ //forward and reverse flywheel
+  private Trigger highSpinup = coController.L1();
+  private Trigger lowSpinup = coController.circle();
+  private Trigger spinUpReverse = coController.cross();
+
+  //pneumatics hold
+  private Trigger pneumaticLift = coController.triangle();
 
   // The robot's subsystems and commands are defined here...
   //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
@@ -91,10 +102,17 @@ public class RobotContainer {
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
     //SmartDashboard.putData(new ModuleTest());
 
-    SmartDashboard.putData(new IntakeCmd(intake, false));
-    intakeForward.onTrue(new IntakeCmd(intake, true));//(new IntakeCmd(intake, true));
+    //SmartDashboard.putData(new IntakeCmd(intake, false));
+    intakeForward.toggleOnTrue(new IntakeCmd(intake, false));
+    intakeReverse.onTrue(new ReverseIntakeCmd(intake, true));
+
+    //become spinUpForward
+    highSpinup.onTrue(new HighShootCmd(shooter, true));
+    lowSpinup.onTrue(new LowShootCmd(shooter, true));
+    //need spinUpReverse
     //test.onTrue(new TestCmd());
-    SmartDashboard.putData(new ShooterCmd(shooter, true));
+
+    SmartDashboard.putData(new HighShootCmd(shooter, true));
     SmartDashboard.putData(new SwerveJoystickCmd(drive, baseController::getLeftX,
        baseController::getLeftY, baseController::getRightY, RobotContainer.baseController.triangle()::getAsBoolean));
  
@@ -107,8 +125,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    //return Autos.exampleAuto(m_exampleSubsystem);
-    //return new FourNoteNoMid(drive);
     return m_chooser.getSelected();
   }
 }

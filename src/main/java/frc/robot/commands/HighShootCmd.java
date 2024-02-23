@@ -1,17 +1,17 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
 
-public class IntakeCmd extends Command {
-    private Intake intake;
+public class HighShootCmd extends Command {
+    private Shooter shooter;
     private boolean direction;
 
-    public IntakeCmd(Intake intake, boolean direction) {
-        this.intake = intake;
+    public HighShootCmd(Shooter shooter, boolean direction) {
+        this.shooter = shooter;
         this.direction = direction;
 
-        addRequirements(intake);
+        addRequirements(shooter);
     }
 
     // Start
@@ -19,17 +19,17 @@ public class IntakeCmd extends Command {
     public void initialize() {
         if (direction) 
         {
-            intake.reverseIntake();
+            shooter.enableShooter();
         }
         else 
         {
-            intake.enableIntake();
+            shooter.stopShooter();
         }
     }
 
     @Override
     public void end(boolean terminated) {
-        intake.end();
+        shooter.end();
     }
 
     @Override
