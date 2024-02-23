@@ -24,6 +24,7 @@ import frc.robot.commands.SwerveJoystickCmd;
 import frc.robot.commands.Autonomous.FourNoteNoMid;
 import frc.robot.commands.Autonomous.fourPieceCenterMiddle;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Pneumatics;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SwerveDrive;
 
@@ -44,6 +45,7 @@ public class RobotContainer {
 
   private Intake intake = new Intake();
   private Shooter shooter = new Shooter();
+  private Pneumatics pneumatic = new Pneumatics();
 
   //intaking and reversing
   private Trigger intakeForward = coController.R1();
@@ -55,6 +57,8 @@ public class RobotContainer {
 
   //pneumatics hold
   private Trigger pneumaticLift = coController.triangle();
+
+
 
   // The robot's subsystems and commands are defined here...
   //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
@@ -71,14 +75,17 @@ public class RobotContainer {
             new FourNoteNoMid(drive)
         );
 
-        m_chooser.addOption(
+    m_chooser.addOption(
             "RedFourPieceCenterMiddle", 
             new fourPieceCenterMiddle(drive)
         );
 
-        SmartDashboard.putData("Autonomous", m_chooser);
+    SmartDashboard.putData("Autonomous", m_chooser);
     // Configure the trigger bindings
     configureBindings();
+
+    //enable compressor
+    pneumatic.startCompressor();
   }
 
   /**

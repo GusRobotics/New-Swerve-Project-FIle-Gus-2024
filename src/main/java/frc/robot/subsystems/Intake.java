@@ -4,8 +4,6 @@ import com.playingwithfusion.TimeOfFlight;
 import com.revrobotics.CANSparkFlex;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
-import edu.wpi.first.util.datalog.DoubleLogEntry;
-import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.Constants;
@@ -20,7 +18,7 @@ public class Intake implements Subsystem {
     // Hardware
     private CANSparkFlex topIntakeMotor = new CANSparkFlex(40, MotorType.kBrushless);    
     private CANSparkFlex bottomIntakeMotor = new CANSparkFlex(16, MotorType.kBrushless);;
-    private TimeOfFlight sensor;
+    private TimeOfFlight sensor = new TimeOfFlight(13);
 
     private SparkPIDController intakeController;
 
@@ -47,9 +45,19 @@ public class Intake implements Subsystem {
         bottomIntakeMotor.set(0.3);
     }
 
+    public void indexToShoot(){
+        if(sensor.getRange() > 110){
+            topIntakeMotor.set(Constants.topIntakeSpeed);
+            bottomIntakeMotor.set(Constants.bottomIntakeSpeed);
+        }
+    }
+
     public void forewardIntakeState(){
-        topIntakeMotor.set(Constants.topIntakeSpeed);
-        bottomIntakeMotor.set(Constants.bottomIntakeSpeed);
+        if(sensor.getRange() < 110){
+            topIntakeMotor.set(Constants.topIntakeSpeed);
+            bottomIntakeMotor.set(Constants.bottomIntakeSpeed);
+        }
+
     }
 
     /** Ends the intake function */
