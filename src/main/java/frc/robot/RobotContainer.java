@@ -56,7 +56,7 @@ public class RobotContainer {
   private Trigger spinUpReverse = coController.cross();
 
   //pneumatics hold
-  private Trigger pneumaticLift = coController.triangle();
+  private Trigger pneumaticLift = baseController.R1();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -107,8 +107,8 @@ public class RobotContainer {
     //become spinUpForward
     highSpinup.toggleOnTrue(new HighShootCmd(shooter, true));
     lowSpinup.toggleOnTrue(new LowShootCmd(shooter, true));
-
-    pneumaticLift.toggleOnTrue(new PneumaticCmd(pneumatic, true));
+    SmartDashboard.putData(new PneumaticCmd(pneumatic, true));
+    //pneumaticLift.toggleOnTrue(new PneumaticCmd(pneumatic, true));
     //need spinUpReverse
     //test.onTrue(new TestCmd());
 
