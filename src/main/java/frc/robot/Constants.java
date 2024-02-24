@@ -70,6 +70,8 @@ public class Constants {
         public static final int kPigeonPort = 23;
         //pneumatic hub id
         public static final int pneumaticHubId = 22;
+        public static final int pneumaticForwardChannel = 9;
+        public static final int pneumaticReverseChannel = 8;
         //time of flight id
         public static final int timeOfFlightId = 14;
         //climber ids

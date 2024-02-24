@@ -10,7 +10,8 @@ import frc.robot.Constants;
 public class Pneumatics implements Subsystem{
     PneumaticHub pneumatic = new PneumaticHub(Constants.pneumaticHubId);
     Compressor compressor = pneumatic.makeCompressor();
-    DoubleSolenoid actuation = pneumatic.makeDoubleSolenoid(8, 9);
+    DoubleSolenoid actuation = pneumatic.makeDoubleSolenoid(Constants.pneumaticForwardChannel, 
+        Constants.pneumaticReverseChannel);
 
     public Pneumatics(){
 
@@ -21,10 +22,10 @@ public class Pneumatics implements Subsystem{
     }
 
     public void shootingPosition(){
-        actuation.set(DoubleSolenoid.Value.kForward);
+        actuation.set(DoubleSolenoid.Value.kReverse);
     }
 
     public void basePosition(){
-        actuation.set(DoubleSolenoid.Value.kReverse);
+        actuation.set(DoubleSolenoid.Value.kForward);
     }
 }

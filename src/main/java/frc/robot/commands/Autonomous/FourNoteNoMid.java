@@ -64,7 +64,7 @@ public class FourNoteNoMid extends SequentialCommandGroup{
                 new Translation2d(.25, .1), 
                 new Translation2d(1.25, 1), 
                 new Translation2d(1.5, .1)),
-                // End 3 meters straight ahead of where we started, facing forward
+                // End 
                 new Pose2d(2, 1, new Rotation2d(0)),
                 config);
 
