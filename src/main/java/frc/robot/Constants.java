@@ -70,11 +70,18 @@ public class Constants {
         public static final int kPigeonPort = 23;
         //pneumatic hub id
         public static final int pneumaticHubId = 22;
+        public static final int pneumaticForwardChannel = 9;
+        public static final int pneumaticReverseChannel = 8;
         //time of flight id
         public static final int timeOfFlightId = 14;
         //climber ids
         public static final int leftClimb = 6;
         public static final int rightClimb = 13;
+
+        public static final int ledChannel = 0;
+        public static final double pinkLights = 0.57;
+        public static final double blueLights = 0.83;
+        public static final double yellowLights = 0.69;
 
         //light ids 
         public static final int lightId = 2; //CONFIRM ID PICKED A RANDOM NUMBER 
@@ -124,16 +131,6 @@ public class Constants {
         public static final TrapezoidProfile.Constraints kThetaControllerConstraints = new TrapezoidProfile.Constraints(
                         kPhysicalMaxSpeedMetersPerSecond, kPhysicalMaxAngularSpeedRadiansPerSecond);
         TrapezoidProfile.State previousProfiledReference = new TrapezoidProfile.State();
-
-        // public static final class ShooterConstants{
-        //         public static final int topShooterId = 23; //idk if thats the actual id
-        //         public static final int bottomShooterId = 24; //idk if that's the actual id
-        // }
-
-        // public static final class IntakeConstants{
-        //        public static final int topIntakeMotorId = 21; //idk if thats the actual id
-        //        public static final int bottomIntakeMotorId = 22; //idk if that's the actual id
-        // }
 
         public static final class AutoConstants {
                 public static final double kMaxSpeedMetersPerSecond = 5;

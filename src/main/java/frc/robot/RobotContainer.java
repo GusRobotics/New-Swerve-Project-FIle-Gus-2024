@@ -4,15 +4,11 @@
 
 package frc.robot;
 
-import edu.wpi.first.hal.FRCNetComm.tResourceType;
-import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 //import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandPS4Controller;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.LowShootCmd;
@@ -29,6 +25,8 @@ import frc.robot.subsystems.Pneumatics;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SwerveDrive;
 
+import com.revrobotics.ColorSensorV3;
+
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -40,7 +38,7 @@ public class RobotContainer {
   public static SwerveDrive drive = new SwerveDrive();
   public static CommandPS4Controller baseController = new CommandPS4Controller(0);
   public static CommandPS4Controller coController = new CommandPS4Controller(1);
-
+  
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   private Intake intake = new Intake();
@@ -48,17 +46,17 @@ public class RobotContainer {
   private Pneumatics pneumatic = new Pneumatics();
 
   //intaking and reversing
-  private Trigger intakeForward = coController.R2();
-  private Trigger intakeReverse = coController.square();
+  private Trigger intakeForward = coController.R1();
+  private Trigger intakeReverse = coController.R2();
  //forward and reverse flywheel
   private Trigger highSpinup = coController.L1();
   private Trigger lowSpinup = coController.circle();
-  private Trigger spinUpReverse = coController.cross();
+  //private Trigger spinUpReverse = coController.cross();
 
 
   //not working r2 and l2 triggers are not working
   //pneumatics hold
-  private Trigger pneumaticLift = coController.triangle();
+  private Trigger pneumaticLift = baseController.R1();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -79,6 +77,10 @@ public class RobotContainer {
 
     //enable compressor
     pneumatic.startCompressor();
+
+    //set pink lights
+    intake.setDefaultLights();
+
   }
 
   /**
@@ -94,31 +96,27 @@ public class RobotContainer {
 
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`x
-    // new Trigger(m_exampleSubsystem::exampleCondition)
-    //     .onTrue(new ExampleCommand(m_exampleSubsystem));
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancellin on release.
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
-    //SmartDashboard.putData(new ModuleTest());
 
     //SmartDashboard.putData(new IntakeCmd(intake, false));
     intakeForward.toggleOnTrue(new IntakeCmd(intake, false));
-    intakeReverse.toggleOnTrue(new ReverseIntakeCmd(intake, true));
+    intakeReverse.whileTrue(new ReverseIntakeCmd(intake, true));
 
     //become spinUpForward
     highSpinup.toggleOnTrue(new HighShootCmd(shooter, true));
     lowSpinup.toggleOnTrue(new LowShootCmd(shooter, true));
-
-
-    SmartDashboard.putData(new PneumaticCmd(pneumatic, true));
-    //pneumaticLift.toggleOnTrue(new PneumaticCmd(pneumatic, true));
+    //SmartDashboard.putData(new PneumaticCmd(pneumatic, true));
+    pneumaticLift.toggleOnTrue(new PneumaticCmd(pneumatic, true));
     //need spinUpReverse
     //test.onTrue(new TestCmd());
 
     SmartDashboard.putData(new HighShootCmd(shooter, true));
     SmartDashboard.putData(new SwerveJoystickCmd(drive, baseController::getLeftX,
        baseController::getLeftY, baseController::getRightY, RobotContainer.baseController.triangle()::getAsBoolean));
+
  
   }
 
