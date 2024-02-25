@@ -3,8 +3,10 @@ package frc.robot.subsystems;
 import com.playingwithfusion.TimeOfFlight;
 import com.revrobotics.CANSparkFlex;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.revrobotics.ColorSensorV3;
 
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -20,6 +22,8 @@ public class Intake implements Subsystem {
     private AnalogInput distSensor = new AnalogInput(1);
 
     private Spark lightstrip = new Spark(0);
+
+    private ColorSensorV3 colors = new ColorSensorV3(new I2C(2, 1));
 
     // Init
     public Intake() {
@@ -39,6 +43,10 @@ public class Intake implements Subsystem {
         lightstrip.set(Constants.blueLights);
     }
 
+    public double sensorVal(){
+        return distSensor.getValue();
+    }
+
     /** Runs the intake in reverse */
     public void reverseIntake() {
         bottomIntakeMotor.setInverted(true);
@@ -55,10 +63,9 @@ public class Intake implements Subsystem {
 
     public void forewardIntakeState(){
         bottomIntakeMotor.setInverted(true);
-        SmartDashboard.putNumber("sensor returns", distSensor.getValue());
-        if(distSensor.getValue() < 250){
-            topIntakeMotor.set(Constants.topIntakeSpeed);
-            bottomIntakeMotor.set(Constants.bottomIntakeSpeed);
+        if(distSensor.getValue() > 250){
+            topIntakeMotor.set(/*Constants.topIntakeSpeed*/ 0.05);
+            bottomIntakeMotor.set(/*Constants.bottomIntakeSpeed*/ 0.05);
             lightstrip.set(Constants.blueLights);
         } else{
             topIntakeMotor.set(0);

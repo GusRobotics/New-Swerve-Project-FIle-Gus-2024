@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Intake;
 
@@ -17,6 +18,7 @@ public class IntakeCmd extends Command {
     // Start
     @Override
     public void initialize() {
+        SmartDashboard.putNumber("sensor", intake.sensorVal());
         if (direction) 
         {
             //intake.reverseIntake();

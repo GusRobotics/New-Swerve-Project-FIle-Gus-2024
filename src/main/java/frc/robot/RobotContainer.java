@@ -4,7 +4,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 //import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -25,6 +24,8 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Pneumatics;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SwerveDrive;
+
+import com.revrobotics.ColorSensorV3;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -100,7 +101,7 @@ public class RobotContainer {
 
     //SmartDashboard.putData(new IntakeCmd(intake, false));
     intakeForward.toggleOnTrue(new IntakeCmd(intake, false));
-    intakeReverse.toggleOnTrue(new ReverseIntakeCmd(intake, true));
+    intakeReverse.whileTrue(new ReverseIntakeCmd(intake, true));
 
     //become spinUpForward
     highSpinup.toggleOnTrue(new HighShootCmd(shooter, true));
