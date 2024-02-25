@@ -12,15 +12,17 @@ import com.revrobotics.SparkPIDController;
 import com.revrobotics.CANSparkBase.ControlType;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 
 /** Lower Intake Subsystem */
 public class Intake implements Subsystem {
     // Hardware
-    private CANSparkFlex topIntakeMotor = new CANSparkFlex(40, MotorType.kBrushless);    
-    private CANSparkFlex bottomIntakeMotor = new CANSparkFlex(16, MotorType.kBrushless);;
+    private CANSparkFlex topIntakeMotor = new CANSparkFlex(Constants.topIntakeMotor, MotorType.kBrushless);    
+    private CANSparkFlex bottomIntakeMotor = new CANSparkFlex(Constants.bottomIntakeMotor, MotorType.kBrushless);;
     private TimeOfFlight sensor = new TimeOfFlight(13);
+    private Spark lightstrip = new Spark(Constants.lightId);
 
-    private SparkPIDController intakeController;
+    //private SparkPIDController intakeController;
 
     // Init
     public Intake() {
@@ -35,14 +37,15 @@ public class Intake implements Subsystem {
 
     /** Runs the intake forward */
     public void enableIntake() {
-        topIntakeMotor.set(0.3);
-        bottomIntakeMotor.set(-0.3);
+        topIntakeMotor.set(Constants.topIntakeSpeed);
+        bottomIntakeMotor.set(Constants.bottomIntakeSpeed);
+        
     }
 
     /** Runs the intake in reverse */
     public void reverseIntake() {
-        topIntakeMotor.set(-0.3);
-        bottomIntakeMotor.set(0.3);
+        topIntakeMotor.set(Constants.topIntakeSpeed);
+        bottomIntakeMotor.set(Constants.bottomIntakeSpeed);
     }
 
     public void indexToShoot(){

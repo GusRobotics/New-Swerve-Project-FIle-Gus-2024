@@ -48,13 +48,15 @@ public class RobotContainer {
   private Pneumatics pneumatic = new Pneumatics();
 
   //intaking and reversing
-  private Trigger intakeForward = coController.R1();
+  private Trigger intakeForward = coController.R2();
   private Trigger intakeReverse = coController.square();
  //forward and reverse flywheel
   private Trigger highSpinup = coController.L1();
   private Trigger lowSpinup = coController.circle();
   private Trigger spinUpReverse = coController.cross();
 
+
+  //not working r2 and l2 triggers are not working
   //pneumatics hold
   private Trigger pneumaticLift = coController.triangle();
 
@@ -108,7 +110,9 @@ public class RobotContainer {
     highSpinup.toggleOnTrue(new HighShootCmd(shooter, true));
     lowSpinup.toggleOnTrue(new LowShootCmd(shooter, true));
 
-    pneumaticLift.toggleOnTrue(new PneumaticCmd(pneumatic, true));
+
+    SmartDashboard.putData(new PneumaticCmd(pneumatic, true));
+    //pneumaticLift.toggleOnTrue(new PneumaticCmd(pneumatic, true));
     //need spinUpReverse
     //test.onTrue(new TestCmd());
 
