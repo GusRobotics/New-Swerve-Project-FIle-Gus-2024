@@ -84,6 +84,9 @@ public class Constants {
         public static final double blueLights = 0.83;
         public static final double yellowLights = 0.69;
 
+        //light ids 
+        public static final int lightId = 2; //CONFIRM ID PICKED A RANDOM NUMBER 
+        
         //ADD THE ACTUAL VALUES
         public static final double topIntakeSpeed = 0.3;
         public static final double bottomIntakeSpeed = 0.3;

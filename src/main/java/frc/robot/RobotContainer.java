@@ -54,6 +54,8 @@ public class RobotContainer {
   private Trigger lowSpinup = coController.circle();
   //private Trigger spinUpReverse = coController.cross();
 
+
+  //not working r2 and l2 triggers are not working
   //pneumatics hold
   private Trigger pneumaticLift = baseController.R1();
 
