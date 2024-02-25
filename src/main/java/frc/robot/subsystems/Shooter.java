@@ -38,8 +38,9 @@ public class Shooter implements Subsystem {
     }
 
     public void enableLowShooter() {
-        topShooterMotor.set(0.4);
-        bottomShooterMotor.set(-0.4);
+        //best so far was .1, -.5
+        topShooterMotor.set(0.11);
+        bottomShooterMotor.set(-0.41);
     }
 
     public void stopShooter() {
@@ -48,12 +49,13 @@ public class Shooter implements Subsystem {
     }
 
     /** Runs the intake in reverse */
-    public void reverseIntake() {
-        topShooterMotor.set(-0.6);
-        bottomShooterMotor.set(0.6);
-    }
 
-    public void forewardIntakeState(){
+    // public void reverseShooter() {
+    //     topShooterMotor.set(-0.6);
+    //     bottomShooterMotor.set(0.6);
+    // }
+
+    public void forewardShooterState(){
         topShooterMotor.set(Constants.topIntakeSpeed);
         bottomShooterMotor.set(Constants.bottomIntakeSpeed);
     }

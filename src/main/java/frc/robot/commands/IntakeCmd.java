@@ -19,7 +19,8 @@ public class IntakeCmd extends Command {
     public void initialize() {
         if (direction) 
         {
-            intake.reverseIntake();
+            //intake.reverseIntake();
+            intake.forewardIntakeState();
         }
         else 
         {

@@ -1,13 +1,13 @@
 package frc.robot;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.SwerveJoystickCmd;
-//import frc.robot.commands.Autonomous.AutoTest;
-import edu.wpi.first.wpilibj.PS4Controller;
+import frc.robot.subsystems.Intake;
 
 //FOR THE FIRST MEETING AFTER KICKOFF:: 
 //write method to read the cancoder values in SwerveDrive, use in robotinit to display to smartdashboard, 
@@ -46,7 +46,7 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
       CommandScheduler.getInstance().run();
       SmartDashboard.putNumber("RightJoystickX", RobotContainer.baseController.getR2Axis());
-      SmartDashboard.putNumber("LeftJoystickX", RobotContainer.baseController.getLeftX());
+
 
 
     }
@@ -80,12 +80,12 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
 
-
   }
 
   /** This function is called once each time the robot enters test mode. */
   @Override
   public void testInit() {
+    
   }
 
   /** This function is called periodically during test mode. */

@@ -4,6 +4,7 @@ import com.playingwithfusion.TimeOfFlight;
 import com.revrobotics.CANSparkFlex;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.Constants;
@@ -17,10 +18,10 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 public class Intake implements Subsystem {
     // Hardware
     private CANSparkFlex topIntakeMotor = new CANSparkFlex(Constants.topIntakeMotor, MotorType.kBrushless);    
-    private CANSparkFlex bottomIntakeMotor = new CANSparkFlex(Constants.bottomIntakeMotor, MotorType.kBrushless);;
-    private TimeOfFlight sensor = new TimeOfFlight(13);
+    private CANSparkFlex bottomIntakeMotor = new CANSparkFlex(Constants.bottomIntakeMotor, MotorType.kBrushless);
+    private AnalogInput distSensor = new AnalogInput(1);
 
-    //private SparkPIDController intakeController;
+    private Lights lights;
 
     // Init
     public Intake() {
@@ -32,11 +33,12 @@ public class Intake implements Subsystem {
             this::end, this
         ));
     }
-
+    
     /** Runs the intake forward */
     public void enableIntake() {
         topIntakeMotor.set(0.3);
         bottomIntakeMotor.set(-0.3);
+        lights.setIntakeOn();
     }
 
     /** Runs the intake in reverse */
@@ -46,17 +48,22 @@ public class Intake implements Subsystem {
     }
 
     public void indexToShoot(){
-        if(sensor.getRange() > 110){
-            topIntakeMotor.set(Constants.topIntakeSpeed);
-            bottomIntakeMotor.set(Constants.bottomIntakeSpeed);
-        }
+        // if(sensor.getRange() > 110){
+        //     topIntakeMotor.set(Constants.topIntakeSpeed);
+        //     bottomIntakeMotor.set(Constants.bottomIntakeSpeed);
+        // }
     }
 
     public void forewardIntakeState(){
-        if(sensor.getRange() < 110){
+        if(/*distSensor.getValue() < 110 */ true){
             topIntakeMotor.set(Constants.topIntakeSpeed);
             bottomIntakeMotor.set(Constants.bottomIntakeSpeed);
-        }
+            lights.setIntakeOn(); }
+        // } else{
+        //     topIntakeMotor.set(0);
+        //     bottomIntakeMotor.set(0);
+        //     lights.setSensorTriggered();
+        // }
 
     }
 
@@ -64,6 +71,7 @@ public class Intake implements Subsystem {
     public void end() {
         topIntakeMotor.set(0);
         bottomIntakeMotor.set(0);
+        lights.baseLights();
     }
 
     @Override
