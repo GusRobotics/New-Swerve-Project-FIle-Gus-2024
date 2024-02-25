@@ -10,8 +10,6 @@ import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.Constants;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkPIDController;
-import com.revrobotics.CANSparkBase.ControlType;
-import com.revrobotics.CANSparkBase.IdleMode;
 
 /** Lower Intake Subsystem */
 public class Shooter implements Subsystem {
@@ -33,7 +31,7 @@ public class Shooter implements Subsystem {
 
     /** Runs the intake forward */
     public void enableShooter() {
-        topShooterMotor.set(0.6);
+        topShooterMotor.set(0.5);
         bottomShooterMotor.set(-0.6);
     }
 

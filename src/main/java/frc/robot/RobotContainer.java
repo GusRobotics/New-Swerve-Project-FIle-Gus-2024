@@ -4,19 +4,14 @@
 
 package frc.robot;
 
-import edu.wpi.first.hal.FRCNetComm.tResourceType;
-import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 //import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandPS4Controller;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.IntakeCmd;
-import frc.robot.commands.LightsCmd;
 import frc.robot.commands.LowShootCmd;
 import frc.robot.commands.PneumaticCmd;
 import frc.robot.commands.ReverseIntakeCmd;
@@ -27,7 +22,6 @@ import frc.robot.commands.SwerveJoystickCmd;
 import frc.robot.commands.Autonomous.FourNoteNoMid;
 import frc.robot.commands.Autonomous.fourPieceCenterMiddle;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Lights;
 import frc.robot.subsystems.Pneumatics;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SwerveDrive;
@@ -49,11 +43,10 @@ public class RobotContainer {
   private Intake intake = new Intake();
   private Shooter shooter = new Shooter();
   private Pneumatics pneumatic = new Pneumatics();
-  private Lights lights = new Lights();
-;
+
   //intaking and reversing
   private Trigger intakeForward = coController.R1();
-  private Trigger intakeReverse = coController.triangle();
+  private Trigger intakeReverse = coController.R2();
  //forward and reverse flywheel
   private Trigger highSpinup = coController.L1();
   private Trigger lowSpinup = coController.circle();
@@ -82,7 +75,8 @@ public class RobotContainer {
     //enable compressor
     pneumatic.startCompressor();
 
-    lights.baseLights();
+    //set pink lights
+    intake.setDefaultLights();
 
   }
 
@@ -99,16 +93,13 @@ public class RobotContainer {
 
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`x
-    // new Trigger(m_exampleSubsystem::exampleCondition)
-    //     .onTrue(new ExampleCommand(m_exampleSubsystem));
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancellin on release.
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
-    //SmartDashboard.putData(new ModuleTest());
 
     //SmartDashboard.putData(new IntakeCmd(intake, false));
-    intakeForward.toggleOnTrue/*(new IntakeCmd(intake, false)).and*/(new LightsCmd(lights, true));
+    intakeForward.toggleOnTrue(new IntakeCmd(intake, false));
     intakeReverse.toggleOnTrue(new ReverseIntakeCmd(intake, true));
 
     //become spinUpForward

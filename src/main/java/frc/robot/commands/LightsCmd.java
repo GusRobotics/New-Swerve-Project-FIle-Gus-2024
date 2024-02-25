@@ -1,40 +1,42 @@
-package frc.robot.commands;
+// package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.Lights;
-import frc.robot.subsystems.Shooter;
+// import java.util.function.BooleanSupplier;
 
-public class LightsCmd extends Command {
-    private Lights lights;
-    private boolean on;
+// import edu.wpi.first.wpilibj2.command.Command;
+// import frc.robot.subsystems.Lights;
+// import frc.robot.subsystems.Shooter;
 
-    public LightsCmd(Lights lights, boolean on) {
-        this.lights = lights;
-        this.on = on;
+// public class LightsCmd extends Command implements BooleanSupplier {
+//     private Lights lights;
+//     private boolean on;
 
-        addRequirements(lights);
-    }
+//     public LightsCmd(Lights lights, boolean on) {
+//         this.lights = lights;
+//         this.on = on;
 
-    // Start
-    @Override
-    public void initialize() {
-        if (on) 
-        {
-            lights.setIntakeOn();
-        }
-        else 
-        {
-            lights.baseLights();
-        }
-    }
+//         addRequirements(lights);
+//     }
 
-    @Override
-    public void end(boolean terminated) {
-        lights.baseLights();
-    }
+//     // Start
+//     @Override
+//     public void initialize() {
+//         if (on) 
+//         {
+//             lights.setIntakeOn();
+//         }
+//         else 
+//         {
+//             lights.baseLights();
+//         }
+//     }
 
-    @Override
-    public boolean isFinished() { 
-        return false; 
-    }
-}
+//     @Override
+//     public void end(boolean terminated) {
+//         lights.baseLights();
+//     }
+
+//     @Override
+//     public boolean isFinished() { 
+//         return false; 
+//     }
+// }
