@@ -127,7 +127,7 @@ public class RobotContainer {
     // {
     //   new IntakeCmd(intake, false);
     // }
-    //intakeBase.whileTrue(new IntakeBaseCmd(intake, false));
+    intakeBase.whileTrue(new IntakeBaseCmd(intake, true));
       //SmartDashboard.putData(new PneumaticCmd(pneumatic, true));
     pneumaticLift.toggleOnTrue(new PneumaticCmd(pneumatic, true));
     //need spinUpReverse

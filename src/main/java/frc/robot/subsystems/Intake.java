@@ -43,7 +43,6 @@ public class Intake implements Subsystem {
         bottomIntakeMotor.setInverted(true);
         SmartDashboard.putNumber("Left Distance Sensor", distSensorLeft.getValue());
         SmartDashboard.putNumber("Right Distance Sensor", distSensorRight.getValue());
-
         //nothing happened when less than 200
         //means the value is greater than 200
         //stuff happened when less than 500
@@ -81,15 +80,19 @@ public class Intake implements Subsystem {
 
     /** Runs the intake in reverse */
     public void reverseIntake() {
+        SmartDashboard.putNumber("Left Distance Sensor", distSensorLeft.getValue());
+        SmartDashboard.putNumber("Right Distance Sensor", distSensorRight.getValue());
         bottomIntakeMotor.setInverted(true);
         topIntakeMotor.set(-0.3);
         bottomIntakeMotor.set(-0.3);
     }
 
     public void indexToShoot(){
-        if(distSensorLeft.getValue() > 30){
-            topIntakeMotor.set(Constants.topIntakeSpeed);
-            bottomIntakeMotor.set(Constants.bottomIntakeSpeed);
+        bottomIntakeMotor.setInverted(true);
+        if(distSensorLeft.getValue() > 900 || distSensorRight.getValue() > 900){
+            topIntakeMotor.set(0.3);
+            bottomIntakeMotor.set(0.3);
+            lightstrip.set(Constants.blueLights);
         }
     }
 

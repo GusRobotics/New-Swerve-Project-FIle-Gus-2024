@@ -5,14 +5,14 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Intake;
 
 public class IntakeBaseCmd extends Command {
-    private Intake intake;
+    private Intake intakebase;
     private boolean direction;
 
-    public IntakeBaseCmd(Intake intake, boolean direction) {
-        this.intake = intake;
+    public IntakeBaseCmd(Intake intakebase, boolean direction) {
+        this.intakebase = intakebase;
         this.direction = direction;
 
-        addRequirements(intake);
+        addRequirements(intakebase);
     }
 
     // Start
@@ -21,21 +21,21 @@ public class IntakeBaseCmd extends Command {
         
         if (direction) 
         {
-            intake.reverseIntake();
+            intakebase.indexToShoot();
         }
         else 
         {
-            intake.enableIntake();
+            intakebase.end();
         }
     }
 
     public void execute(){
-        intake.enableIntake();
+        intakebase.indexToShoot();
     }
 
     @Override
     public void end(boolean terminated) {
-        intake.end();
+        intakebase.end();
     }
 
     @Override
