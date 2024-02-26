@@ -117,7 +117,17 @@ public class RobotContainer {
     highSpinup.toggleOnTrue(new HighShootCmd(shooter, true));
     lowSpinup.toggleOnTrue(new LowShootCmd(shooter, true));
     
-    intakeBase.whileTrue(new IntakeBaseCmd(intake, false));
+    //OPTION ONE FOR TRIGGERS PROBLEM
+    
+    //intakeBase.debounce(0.1).whileTrue(new IntakeCmd(intake, false));
+    
+    //OPTION TWO FOR TRIGGERS (IF STATEMENT)
+    
+    // if (baseController.getL2Axis() > 0.05)
+    // {
+    //   new IntakeCmd(intake, false);
+    // }
+    //intakeBase.whileTrue(new IntakeBaseCmd(intake, false));
       //SmartDashboard.putData(new PneumaticCmd(pneumatic, true));
     pneumaticLift.toggleOnTrue(new PneumaticCmd(pneumatic, true));
     //need spinUpReverse
