@@ -4,18 +4,22 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 //import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandPS4Controller;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
+import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.LowShootCmd;
 import frc.robot.commands.PneumaticCmd;
 import frc.robot.commands.ReverseIntakeCmd;
 import frc.robot.commands.HighShootCmd;
+import frc.robot.commands.IntakeBaseCmd;
 import frc.robot.commands.SwerveJoystickCmd;
 //import frc.robot.commands.TestCmd;
 //import frc.robot.commands.Autonomous.AutoTest;
@@ -38,7 +42,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static SwerveDrive drive = new SwerveDrive();
   public static CommandPS4Controller baseController = new CommandPS4Controller(0);
-  public static CommandPS4Controller coController = new CommandPS4Controller(1);
+  public static CommandXboxController coController = new CommandXboxController(1);
   
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -47,11 +51,14 @@ public class RobotContainer {
   private Pneumatics pneumatic = new Pneumatics();
 
   //intaking and reversing
-  private Trigger intakeForward = coController.R1();
-  private Trigger intakeReverse = coController.R2();
+  private Trigger intakeForward = coController.rightBumper();
+  private Trigger intakeReverse = coController.rightTrigger();
  //forward and reverse flywheel
-  private Trigger highSpinup = coController.L1();
-  private Trigger lowSpinup = coController.circle();
+  private Trigger highSpinup = coController.leftBumper();
+  private Trigger intakeBase = baseController.L1();
+
+  //b is circle
+  private Trigger lowSpinup = coController.leftBumper();
   //private Trigger spinUpReverse = coController.cross();
 
 
@@ -103,13 +110,15 @@ public class RobotContainer {
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
 
     //SmartDashboard.putData(new IntakeCmd(intake, false));
-    intakeForward.toggleOnTrue(new IntakeCmd(intake, false));
-    intakeReverse.whileTrue(new ReverseIntakeCmd(intake, true));
+    intakeForward.whileTrue(new IntakeCmd(intake, false));
+    coController.rightTrigger(0.1).whileTrue(new ReverseIntakeCmd(intake, true));
 
     //become spinUpForward
     highSpinup.toggleOnTrue(new HighShootCmd(shooter, true));
     lowSpinup.toggleOnTrue(new LowShootCmd(shooter, true));
-    //SmartDashboard.putData(new PneumaticCmd(pneumatic, true));
+    
+    intakeBase.whileTrue(new IntakeBaseCmd(intake, false));
+      //SmartDashboard.putData(new PneumaticCmd(pneumatic, true));
     pneumaticLift.toggleOnTrue(new PneumaticCmd(pneumatic, true));
     //need spinUpReverse
     //test.onTrue(new TestCmd());

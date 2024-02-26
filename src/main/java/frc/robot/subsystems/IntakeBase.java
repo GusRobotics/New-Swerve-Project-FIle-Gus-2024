@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.Constants;
 
 /** Lower Intake Subsystem */
-public class Intake implements Subsystem {
+public class IntakeBase implements Subsystem {
     // Hardware
     private CANSparkFlex topIntakeMotor = new CANSparkFlex(Constants.topIntakeMotor, MotorType.kBrushless);    
     private CANSparkFlex bottomIntakeMotor = new CANSparkFlex(Constants.bottomIntakeMotor, MotorType.kBrushless);
@@ -22,10 +22,9 @@ public class Intake implements Subsystem {
     private Spark lightstrip = new Spark(0);
 
 
-    private AnalogInput distSensorLeft = new AnalogInput(0);
-    private AnalogInput distSensorRight = new AnalogInput(1);
+    
     // Init
-    public Intake() {
+    public IntakeBase() {
  
     }
     /** Sets the intake's default command (not moving) */
@@ -41,44 +40,18 @@ public class Intake implements Subsystem {
         // bottomIntakeMotor.set(-0.3);
         // lightstrip.set(Constants.blueLights);
         bottomIntakeMotor.setInverted(true);
-        SmartDashboard.putNumber("Left Distance Sensor", distSensorLeft.getValue());
-        SmartDashboard.putNumber("Right Distance Sensor", distSensorRight.getValue());
-
+     
         //nothing happened when less than 200
         //means the value is greater than 200
         //stuff happened when less than 500
         //means its less than 500 and greater than 200
         //worked when less than 400 so between 200 and 400
-
-        if(distSensorLeft.getValue() > 900 || distSensorRight.getValue() > 900){
-            topIntakeMotor.set(/*Constants.topIntakeSpeed*/ 0);
-            bottomIntakeMotor.set(/*Constants.bottomIntakeSpeed*/0);
-            lightstrip.set(Constants.blueLights);
-        }
-         else if(distSensorLeft.getValue() >= 350 || distSensorRight.getValue() >= 350) {
             topIntakeMotor.set(0.3);
             bottomIntakeMotor.set(0.3);
             lightstrip.set(Constants.yellowLights);
         }
 
-        // if (distSensorLeft.getValue() < 900  || distSensorRight.getValue() <900)
-        // {
-        //     topIntakeMotor.set(0.35);
-        //     bottomIntakeMotor.set(0.35);
-        //     lightstrip.set(Constants.yellowLights);
-        // }
-        // else if (distSensorLeft.getValue() > 900 || distSensorRight.getValue() > 900)
-        // {
-        //     topIntakeMotor.set(0);
-        //     bottomIntakeMotor.set(0);
-        //     lightstrip.set(Constants.yellowLights);
-        // }
-    }
-
-    public double sensorVal(){
-        return distSensorLeft.getValue();
-    }
-
+   
     /** Runs the intake in reverse */
     public void reverseIntake() {
         bottomIntakeMotor.setInverted(true);
@@ -87,24 +60,10 @@ public class Intake implements Subsystem {
     }
 
     public void indexToShoot(){
-        if(distSensorLeft.getValue() > 30){
-            topIntakeMotor.set(Constants.topIntakeSpeed);
-            bottomIntakeMotor.set(Constants.bottomIntakeSpeed);
-        }
+        
     }
 
     public void forewardIntakeState(){
-        // bottomIntakeMotor.setInverted(true);
-        // SmartDashboard.putNumber("ultrasonic range", distSensor.getValue());
-        // if(distSensor.getValue() > 200){
-        //     topIntakeMotor.set(/*Constants.topIntakeSpeed*/ 0.05);
-        //     bottomIntakeMotor.set(/*Constants.bottomIntakeSpeed*/ 0.05);
-        //     lightstrip.set(Constants.blueLights);
-        // } else if(distSensor.getValue() <= 75){
-        //     topIntakeMotor.set(0);
-        //     bottomIntakeMotor.set(0);
-        //     lightstrip.set(Constants.yellowLights);
-        // }
 
     }
 

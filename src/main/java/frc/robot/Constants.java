@@ -39,7 +39,7 @@ public class Constants {
         public static final boolean kOrangeTurningEncoderReversed = false;
         public static final boolean kRedTurningEncoderReversed = false;
 
-        public static final boolean kBlueDriveEncoderReversed = false;
+        public static final boolean kBlueDriveEncoderReversed = true;
         public static final boolean kGreenDriveEncoderReversed = false;
         public static final boolean kOrangeDriveEncoderReversed = true;
         public static final boolean kRedDriveEncoderReversed = false;
@@ -97,7 +97,7 @@ public class Constants {
         public static final double negIntakeSpeed = -0.3;
 
         public static final boolean kBlueDriveAbsoluteEncoderReversed = false;
-        public static final boolean kGreenDriveAbsoluteEncoderReversed = false;
+        public static final boolean kGreenDriveAbsoluteEncoderReversed = true;
         public static final boolean kOrangeDriveAbsoluteEncoderReversed = false;
         public static final boolean kRedDriveAbsoluteEncoderReversed = false;
 
