@@ -34,11 +34,14 @@ public class Constants {
         public static final double kPYController = 1.5;
         public static final double kPThetaController = 3;
 
+        //we tried making red and green true
+        //originally all false
         public static final boolean kBlueTurningEncoderReversed = false;
         public static final boolean kGreenTurningEncoderReversed = false;
         public static final boolean kOrangeTurningEncoderReversed = false;
         public static final boolean kRedTurningEncoderReversed = false;
 
+        //green and red were originally false
         public static final boolean kBlueDriveEncoderReversed = true;
         public static final boolean kGreenDriveEncoderReversed = false;
         public static final boolean kOrangeDriveEncoderReversed = true;
@@ -97,7 +100,7 @@ public class Constants {
         public static final double negIntakeSpeed = -0.3;
 
         public static final boolean kBlueDriveAbsoluteEncoderReversed = false;
-        public static final boolean kGreenDriveAbsoluteEncoderReversed = true;
+        public static final boolean kGreenDriveAbsoluteEncoderReversed = false;
         public static final boolean kOrangeDriveAbsoluteEncoderReversed = false;
         public static final boolean kRedDriveAbsoluteEncoderReversed = false;
 

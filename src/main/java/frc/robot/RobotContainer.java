@@ -55,7 +55,7 @@ public class RobotContainer {
   private Trigger intakeReverse = coController.rightTrigger();
  //forward and reverse flywheel
   private Trigger highSpinup = coController.leftBumper();
-  private Trigger intakeBase = baseController.L1();
+  private Trigger intakeBase = baseController.L2();
 
   //b is circle
   private Trigger lowSpinup = coController.leftBumper();
@@ -119,7 +119,7 @@ public class RobotContainer {
     
     //OPTION ONE FOR TRIGGERS PROBLEM
     
-    //intakeBase.debounce(0.1).whileTrue(new IntakeCmd(intake, false));
+    intakeBase.debounce(0.1).whileTrue(new IntakeCmd(intake, false));
     
     //OPTION TWO FOR TRIGGERS (IF STATEMENT)
     
@@ -127,7 +127,7 @@ public class RobotContainer {
     // {
     //   new IntakeCmd(intake, false);
     // }
-    intakeBase.whileTrue(new IntakeBaseCmd(intake, true));
+    //intakeBase.whileTrue(new IntakeBaseCmd(intake, true));
       //SmartDashboard.putData(new PneumaticCmd(pneumatic, true));
     pneumaticLift.toggleOnTrue(new PneumaticCmd(pneumatic, true));
     //need spinUpReverse

@@ -147,8 +147,8 @@ public class SwerveDrive extends SubsystemBase {
         SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, Constants.kPhysicalMaxSpeedMetersPerSecond);
         blue.setDesiredState(desiredStates[0]);
         orange.setDesiredState(desiredStates[1]);
-        red.setDesiredState(desiredStates[2]);
-        green.setDesiredState(desiredStates[3]);
+        green.setDesiredState(desiredStates[2]);
+        red.setDesiredState(desiredStates[3]);
     }
 
     public Rotation2d getRotation2D() {
