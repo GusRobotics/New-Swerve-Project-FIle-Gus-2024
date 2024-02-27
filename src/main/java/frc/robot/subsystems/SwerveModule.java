@@ -40,6 +40,13 @@ public class SwerveModule {
         config.MagnetSensor.MagnetOffset = absoluteEncoderOffset;
         config.MagnetSensor.AbsoluteSensorRange = AbsoluteSensorRangeValue.Signed_PlusMinusHalf;
         config.MagnetSensor.SensorDirection = SensorDirectionValue.Clockwise_Positive;
+        // if (absoluteEncoderReversed){
+        //      config.MagnetSensor.SensorDirection = SensorDirectionValue.Clockwise_Positive;
+        // }
+        //else 
+        // {
+        //     config.MagnetSensor.SensorDirection = SensorDirectionValue.CounterClockwise_Positive;
+        // }
 
         absoluteEncoder.getConfigurator().apply(config);
 
