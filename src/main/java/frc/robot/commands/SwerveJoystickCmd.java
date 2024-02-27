@@ -36,12 +36,12 @@ public class SwerveJoystickCmd extends Command {
 
     @Override
     public void initialize() {
-        SwerveModuleState[] startStates = new SwerveModuleState[4];
-        startStates[0] = new SwerveModuleState(0, new Rotation2d(Constants.kBlueDriveAbsoluteEncoderOffset));
-        startStates[1] = new SwerveModuleState(0, new Rotation2d(Constants.kOrangeDriveAbsoluteEncoderOffset));
-        startStates[2] = new SwerveModuleState(0, new Rotation2d(Constants.kRedDriveAbsoluteEncoderOffset));
-        startStates[3] = new SwerveModuleState(0, new Rotation2d(Constants.kGreenDriveAbsoluteEncoderOffset));
-        swerveSubsystem.setModuleStates(startStates);
+        // SwerveModuleState[] startStates = new SwerveModuleState[4];
+        // startStates[0] = new SwerveModuleState(0, new Rotation2d(Constants.kBlueDriveAbsoluteEncoderOffset));
+        // startStates[1] = new SwerveModuleState(0, new Rotation2d(Constants.kOrangeDriveAbsoluteEncoderOffset));
+        // startStates[2] = new SwerveModuleState(0, new Rotation2d(Constants.kRedDriveAbsoluteEncoderOffset));
+        // startStates[3] = new SwerveModuleState(0, new Rotation2d(Constants.kGreenDriveAbsoluteEncoderOffset));
+        // swerveSubsystem.setModuleStates(startStates);
     }
 
     @Override

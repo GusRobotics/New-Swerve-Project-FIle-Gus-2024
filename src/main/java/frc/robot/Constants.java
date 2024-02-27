@@ -99,10 +99,10 @@ public class Constants {
 
         public static final double negIntakeSpeed = -0.3;
 
-        public static final boolean kBlueDriveAbsoluteEncoderReversed = false;
-        public static final boolean kGreenDriveAbsoluteEncoderReversed = false;
-        public static final boolean kOrangeDriveAbsoluteEncoderReversed = false;
-        public static final boolean kRedDriveAbsoluteEncoderReversed = false;
+        public static final boolean kBlueDriveAbsoluteEncoderReversed = true;
+        public static final boolean kGreenDriveAbsoluteEncoderReversed = true;
+        public static final boolean kOrangeDriveAbsoluteEncoderReversed = true;
+        public static final boolean kRedDriveAbsoluteEncoderReversed = true;
 
         public static final double kBlueDriveAbsoluteEncoderOffset = -0.178223;
         public static final double kGreenDriveAbsoluteEncoderOffset = 0.416260;
