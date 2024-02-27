@@ -30,6 +30,11 @@ public class Constants {
                         new Translation2d(-kWheelBase / 2, -kTrackWidth / 2),
                         new Translation2d(-kWheelBase / 2, kTrackWidth / 2));
 
+                    //front right- green
+                    //front left - blue
+                    //back left - orange
+                    //back right - red
+
         public static final double kPXController = 1.5;
         public static final double kPYController = 1.5;
         public static final double kPThetaController = 3;
@@ -42,10 +47,10 @@ public class Constants {
         public static final boolean kRedTurningEncoderReversed = false;
 
         //green and red were originally false
-        public static final boolean kBlueDriveEncoderReversed = false;
+        public static final boolean kBlueDriveEncoderReversed = true;
         public static final boolean kGreenDriveEncoderReversed = false;
         public static final boolean kOrangeDriveEncoderReversed = true;
-        public static final boolean kRedDriveEncoderReversed = true;
+        public static final boolean kRedDriveEncoderReversed = false;
 
         //Drive ID Constants 
         //Blue pod ids
