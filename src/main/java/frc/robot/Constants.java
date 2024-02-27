@@ -18,7 +18,7 @@ public class Constants {
         // private static int kDriveEncoderRot2Meter;
         public static final double kDriveEncoderRPM2MeterPerSec = kDriveEncoderRot2Meter / 60;
         public static final double kTurningEncoderRPM2RadPerSec = kTurningEncoderRot2Rad / 60;
-        public static final double kPTurning = 0.5;
+        public static final double kPTurning = 0.3;
 
         public static final double kTrackWidth = Units.inchesToMeters(21);
         // Distance between right and left wheels
@@ -42,10 +42,10 @@ public class Constants {
         public static final boolean kRedTurningEncoderReversed = false;
 
         //green and red were originally false
-        public static final boolean kBlueDriveEncoderReversed = true;
+        public static final boolean kBlueDriveEncoderReversed = false;
         public static final boolean kGreenDriveEncoderReversed = false;
         public static final boolean kOrangeDriveEncoderReversed = true;
-        public static final boolean kRedDriveEncoderReversed = false;
+        public static final boolean kRedDriveEncoderReversed = true;
 
         //Drive ID Constants 
         //Blue pod ids
