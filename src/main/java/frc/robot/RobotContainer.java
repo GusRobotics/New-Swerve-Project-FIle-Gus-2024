@@ -52,6 +52,7 @@ public class RobotContainer {
 
   //intaking and reversing
   private Trigger intakeForward = coController.R1();
+  private Trigger intakeReverse = coController.triangle();
  //forward and reverse flywheel
   private Trigger highSpinup = coController.L1();
 
@@ -65,8 +66,6 @@ public class RobotContainer {
 
   //inside robot.java pastebin stuff 
   //not working r2 and l2 triggers are not working
-  //pneumatics hold
-  private Trigger pneumaticLift = baseController.R1();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -113,13 +112,13 @@ public class RobotContainer {
 
     //SmartDashboard.putData(new IntakeCmd(intake, false));
     intakeForward.whileTrue(new IntakeCmd(intake, false));
+    intakeReverse.whileTrue(new ReverseIntakeCmd(intake, true));
+    highSpinup.whileTrue(new HighShootCmd(shooter, true));
 
     //Controls:
     //charli: intake forward right bumper, intake reverse right trigger, slow shooter left trigger, high shot left bumper
     //charli (cont) reverse intake on triangle (or its equvilant)
     //carter: left trigger shooting, right trigger pivot pneumatics
-  
-    highSpinup.whileTrue(new HighShootCmd(shooter, true));
 
     SmartDashboard.putData(new HighShootCmd(shooter, true));
     SmartDashboard.putData(new SwerveJoystickCmd(drive, baseController::getLeftX,
