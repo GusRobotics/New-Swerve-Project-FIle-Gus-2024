@@ -42,7 +42,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static SwerveDrive drive = new SwerveDrive();
   public static CommandPS4Controller baseController = new CommandPS4Controller(0);
-  public static CommandXboxController coController = new CommandXboxController(1);
+  public static CommandPS4Controller coController = new CommandPS4Controller(1);
   
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -51,15 +51,11 @@ public class RobotContainer {
   private Pneumatics pneumatic = new Pneumatics();
 
   //intaking and reversing
-  private Trigger intakeForward = coController.rightBumper();
-  private Trigger intakeReverse = coController.rightTrigger();
+  private Trigger intakeForward = coController.R1();
  //forward and reverse flywheel
-  private Trigger highSpinup = coController.leftBumper();
-  private Trigger intakeBase = baseController.L1();
+  private Trigger highSpinup = coController.L1();
 
   //b is circle
-  private Trigger lowSpinup = coController.leftBumper();
-  //private Trigger spinUpReverse = coController.cross();
 
   //add a bit of logic into hte code where you go into robotperiodic, have an if statement constantly check of either trigger
   //if trigger axis is greater than .75 and ifi t is scheudle a command and if it isn't schedule a command
@@ -117,32 +113,17 @@ public class RobotContainer {
 
     //SmartDashboard.putData(new IntakeCmd(intake, false));
     intakeForward.whileTrue(new IntakeCmd(intake, false));
-    coController.rightTrigger(0.1).whileTrue(new ReverseIntakeCmd(intake, true));
 
-    //become spinUpForward
-    highSpinup.toggleOnTrue(new HighShootCmd(shooter, true));
-    lowSpinup.whileTrue(new LowShootCmd(shooter, true));
-    
-    //OPTION ONE FOR TRIGGERS PROBLEM
-    
-    
-    //OPTION TWO FOR TRIGGERS (IF STATEMENT)
-    
-    // if (baseController.getL2Axis() > 0.05)
-    // {
-    //   new IntakeCmd(intake, false);
-    // }
-    intakeBase.whileTrue(new IntakeBaseCmd(intake, true));
-      //SmartDashboard.putData(new PneumaticCmd(pneumatic, true));
-    pneumaticLift.toggleOnTrue(new PneumaticCmd(pneumatic, true));
-    //need spinUpReverse
-    //test.onTrue(new TestCmd());
+    //Controls:
+    //charli: intake forward right bumper, intake reverse right trigger, slow shooter left trigger, high shot left bumper
+    //charli (cont) reverse intake on triangle (or its equvilant)
+    //carter: left trigger shooting, right trigger pivot pneumatics
+  
+    highSpinup.whileTrue(new HighShootCmd(shooter, true));
 
     SmartDashboard.putData(new HighShootCmd(shooter, true));
     SmartDashboard.putData(new SwerveJoystickCmd(drive, baseController::getLeftX,
        baseController::getLeftY, baseController::getRightY, RobotContainer.baseController.triangle()::getAsBoolean));
-
- 
   }
 
   /**

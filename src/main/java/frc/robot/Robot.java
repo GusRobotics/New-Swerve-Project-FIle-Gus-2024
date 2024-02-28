@@ -29,7 +29,10 @@ public class Robot extends TimedRobot {
   Rotation2d desRot = new Rotation2d(0);
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
-  
+  boolean reverseIntake = false;
+  boolean lowShot = false;
+  boolean indexToShoot = false;
+  boolean pneumaticPivot = false;
 
 
   /**
@@ -83,7 +86,41 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during teleoperated mode. */
   @Override
   public void teleopPeriodic() {
+    //charli intake reverse
+    if(!reverseIntake && RobotContainer.coController.getR2Axis() > 0.1){
+      //command scheduling method that i dont remember
+      reverseIntake = true;
+    } else {
+      //stop command method that i dont remember
+      reverseIntake = false;
+    }
 
+    //charli slow shooter 
+    if(!lowShot && RobotContainer.coController.getL2Axis() > 0.1){
+      //command scheduling method that i dont remember
+      lowShot = true;
+    } else {
+      //stop command method that i dont remember
+      lowShot = false;
+    }
+
+    //carter left trigger index
+    if(!pneumaticPivot && RobotContainer.baseController.getR2Axis() > 0.1){
+      //command scheduling method that i dont remember
+      pneumaticPivot = true;
+    } else {
+      //stop command method that i dont remember
+      pneumaticPivot = false;
+    }
+
+    //carter left trigger index
+    if(!indexToShoot && RobotContainer.coController.getL2Axis() > 0.1){
+      //command scheduling method that i dont remember
+      indexToShoot = true;
+    } else {
+      //stop command method that i dont remember
+      indexToShoot = false;
+    }
   }
 
   /** This function is called once each time the robot enters test mode. */
