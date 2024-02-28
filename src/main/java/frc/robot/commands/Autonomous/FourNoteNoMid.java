@@ -22,6 +22,13 @@ import frc.robot.Constants;
 
 public class FourNoteNoMid extends SequentialCommandGroup{
 
+    //robotcontainer.drive.resetgyro
+    //can reset gyro in auto based on setup positio
+//set to -180 if you starting up in x location 
+//reset heading function.. need setheading function
+
+//pigeon.setyaw(whatever angle in degrees) 
+//do at begin of auto routine .. for now if we have one were running every routine we can put it in autonomous init
     public FourNoteNoMid(SwerveDrive s_Swerve) {
         SwerveModuleState[] startStates = new SwerveModuleState[4];
         startStates[0] = new SwerveModuleState(0, new Rotation2d(Constants.kBlueDriveAbsoluteEncoderOffset));

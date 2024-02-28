@@ -55,13 +55,19 @@ public class RobotContainer {
   private Trigger intakeReverse = coController.rightTrigger();
  //forward and reverse flywheel
   private Trigger highSpinup = coController.leftBumper();
-  private Trigger intakeBase = baseController.L2();
+  private Trigger intakeBase = baseController.L1();
 
   //b is circle
   private Trigger lowSpinup = coController.leftBumper();
   //private Trigger spinUpReverse = coController.cross();
 
+  //add a bit of logic into hte code where you go into robotperiodic, have an if statement constantly check of either trigger
+  //if trigger axis is greater than .75 and ifi t is scheudle a command and if it isn't schedule a command
+  //inside of if statement, commandscheudler.getinstance.schedule and then the command
+  //make sure you aren't repeatedly calling the command so need a flag inside of if statement which makes sure youve only pressed it once 
 
+
+  //inside robot.java pastebin stuff 
   //not working r2 and l2 triggers are not working
   //pneumatics hold
   private Trigger pneumaticLift = baseController.R1();
@@ -115,11 +121,10 @@ public class RobotContainer {
 
     //become spinUpForward
     highSpinup.toggleOnTrue(new HighShootCmd(shooter, true));
-    lowSpinup.toggleOnTrue(new LowShootCmd(shooter, true));
+    lowSpinup.whileTrue(new LowShootCmd(shooter, true));
     
     //OPTION ONE FOR TRIGGERS PROBLEM
     
-    intakeBase.debounce(0.1).whileTrue(new IntakeCmd(intake, false));
     
     //OPTION TWO FOR TRIGGERS (IF STATEMENT)
     
@@ -127,7 +132,7 @@ public class RobotContainer {
     // {
     //   new IntakeCmd(intake, false);
     // }
-    //intakeBase.whileTrue(new IntakeBaseCmd(intake, true));
+    intakeBase.whileTrue(new IntakeBaseCmd(intake, true));
       //SmartDashboard.putData(new PneumaticCmd(pneumatic, true));
     pneumaticLift.toggleOnTrue(new PneumaticCmd(pneumatic, true));
     //need spinUpReverse

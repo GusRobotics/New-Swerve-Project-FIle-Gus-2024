@@ -29,11 +29,18 @@ public class Constants {
                         new Translation2d(kWheelBase / 2, kTrackWidth / 2),
                         new Translation2d(-kWheelBase / 2, -kTrackWidth / 2),
                         new Translation2d(-kWheelBase / 2, kTrackWidth / 2));
-
+                    
+                    
+                    //back left - orange
                     //front right- green
                     //front left - blue
+                    //back right - red
+
+                    //front left - blue
+                    //front right - green
                     //back left - orange
                     //back right - red
+
 
         public static final double kPXController = 1.5;
         public static final double kPYController = 1.5;

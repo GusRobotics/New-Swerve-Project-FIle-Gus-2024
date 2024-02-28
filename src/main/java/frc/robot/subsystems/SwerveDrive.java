@@ -79,8 +79,8 @@ public class SwerveDrive extends SubsystemBase {
     }
 
     public SwerveModulePosition[] positioning(SwerveModulePosition[] positions) {
-        positions[0] = new SwerveModulePosition(0, new Rotation2d(Constants.kGreenDriveAbsoluteEncoderOffset));
-        positions[1] = new SwerveModulePosition(0, new Rotation2d(Constants.kBlueDriveAbsoluteEncoderOffset));
+        positions[0] = new SwerveModulePosition(0, new Rotation2d(Constants.kBlueDriveAbsoluteEncoderOffset));
+        positions[1] = new SwerveModulePosition(0, new Rotation2d(Constants.kGreenDriveAbsoluteEncoderOffset));
         positions[2] = new SwerveModulePosition(0, new Rotation2d(Constants.kOrangeDriveAbsoluteEncoderOffset));
         positions[3] = new SwerveModulePosition(0, new Rotation2d(Constants.kRedDriveAbsoluteEncoderOffset));
         return positions;
@@ -145,8 +145,8 @@ public class SwerveDrive extends SubsystemBase {
 
     public void setModuleStates(SwerveModuleState[] desiredStates) {
         SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, Constants.kPhysicalMaxSpeedMetersPerSecond);
-        green.setDesiredState(desiredStates[0]);
-        blue.setDesiredState(desiredStates[1]);
+        blue.setDesiredState(desiredStates[0]);
+        green.setDesiredState(desiredStates[1]);
         orange.setDesiredState(desiredStates[2]);
         red.setDesiredState(desiredStates[3]);
     }
@@ -189,8 +189,8 @@ public class SwerveDrive extends SubsystemBase {
         driveStates[2] = desiredState;
         driveStates[3] = desiredState;
 
-        green.setDesiredState(desiredState);
         blue.setDesiredState(desiredState);
+        green.setDesiredState(desiredState);
         orange.setDesiredState(desiredState);
         red.setDesiredState(desiredState);
     }
