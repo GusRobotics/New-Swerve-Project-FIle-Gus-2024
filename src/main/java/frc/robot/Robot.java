@@ -10,6 +10,13 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.SwerveJoystickCmd;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Pneumatics;
+import frc.robot.subsystems.Shooter;
+import frc.robot.commands.IntakeBaseCmd;
+import frc.robot.commands.IntakeCmd;
+import frc.robot.commands.LowShootCmd;
+import frc.robot.commands.PneumaticCmd;
+import frc.robot.commands.ReverseIntakeCmd;
 
 //FOR THE FIRST MEETING AFTER KICKOFF:: 
 //write method to read the cancoder values in SwerveDrive, use in robotinit to display to smartdashboard, 
@@ -33,7 +40,10 @@ public class Robot extends TimedRobot {
   boolean lowShot = false;
   boolean indexToShoot = false;
   boolean pneumaticPivot = false;
-
+  ReverseIntakeCmd reverseIntakeCmd = new ReverseIntakeCmd(RobotContainer.intake, true);
+  LowShootCmd lowShootCmd = new LowShootCmd(RobotContainer.shooter, true);
+  PneumaticCmd pneumaticsCmd = new PneumaticCmd(RobotContainer.pneumatic, true);
+  IntakeBaseCmd intakeBaseCmd = new IntakeBaseCmd(RobotContainer.intake, true);
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -86,39 +96,39 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during teleoperated mode. */
   @Override
   public void teleopPeriodic() {
-    //charli intake reverse
+    //co right trigger (intake reverse)
     if(!reverseIntake && RobotContainer.coController.getR2Axis() > 0.1){
-      //command scheduling method that i dont remember
+      CommandScheduler.getInstance().schedule(reverseIntakeCmd);
       reverseIntake = true;
     } else {
-      //stop command method that i dont remember
+      CommandScheduler.getInstance().cancel(reverseIntakeCmd);
       reverseIntake = false;
     }
 
-    //charli slow shooter 
+    //co left trigger (slow shooter)
     if(!lowShot && RobotContainer.coController.getL2Axis() > 0.1){
-      //command scheduling method that i dont remember
+      CommandScheduler.getInstance().schedule(lowShootCmd);
       lowShot = true;
     } else {
-      //stop command method that i dont remember
+      CommandScheduler.getInstance().cancel(lowShootCmd);
       lowShot = false;
     }
 
-    //carter left trigger index
-    if(!pneumaticPivot && RobotContainer.baseController.getR2Axis() > 0.1){
-      //command scheduling method that i dont remember
+    //base right trigger (pneumatics)
+    if(!pneumaticPivot && RobotContainer.baseController.getRightX() > 0.1){
+      CommandScheduler.getInstance().schedule(pneumaticsCmd);
       pneumaticPivot = true;
     } else {
-      //stop command method that i dont remember
+      CommandScheduler.getInstance().cancel(pneumaticsCmd);
       pneumaticPivot = false;
     }
 
-    //carter left trigger index
-    if(!indexToShoot && RobotContainer.coController.getL2Axis() > 0.1){
-      //command scheduling method that i dont remember
+    //base left trigger (intaking when co cannot)
+    if(!indexToShoot && RobotContainer.baseController.getL2Axis() > 0.1){
+      CommandScheduler.getInstance().schedule(intakeBaseCmd);
       indexToShoot = true;
     } else {
-      //stop command method that i dont remember
+      CommandScheduler.getInstance().cancel(intakeBaseCmd);
       indexToShoot = false;
     }
   }

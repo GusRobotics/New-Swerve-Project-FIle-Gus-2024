@@ -80,7 +80,7 @@ public class Intake implements Subsystem {
         else {
         //  else if(distSensorLeft.getValue() >= 350 || distSensorRight.getValue() >= 350) {
             topIntakeMotor.set(0.25);
-            bottomIntakeMotor.set();
+            bottomIntakeMotor.set(0.25);
             lightstrip.set(Constants.yellowLights);
         }
 
