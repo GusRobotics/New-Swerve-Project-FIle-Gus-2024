@@ -42,7 +42,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static SwerveDrive drive = new SwerveDrive();
   public static CommandPS4Controller baseController = new CommandPS4Controller(0);
-  public static CommandXboxController coController = new CommandXboxController(1);
+  public static CommandPS4Controller coController = new CommandPS4Controller(1);
   
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -51,15 +51,13 @@ public class RobotContainer {
   private Pneumatics pneumatic = new Pneumatics();
 
   //intaking and reversing
-  private Trigger intakeForward = coController.rightBumper();
-  private Trigger intakeReverse = coController.rightTrigger();
+  private Trigger intakeForward = coController.R1();
+  private Trigger intakeReverse = coController.triangle();
  //forward and reverse flywheel
-  private Trigger highSpinup = coController.leftTrigger();
+  private Trigger highSpinup = coController.leftBumper();
   private Trigger intakeBase = baseController.L1();
 
   //b is circle
-  private Trigger lowSpinup = coController.leftBumper();
-  //private Trigger spinUpReverse = coController.cross();
 
   //add a bit of logic into hte code where you go into robotperiodic, have an if statement constantly check of either trigger
   //if trigger axis is greater than .75 and ifi t is scheudle a command and if it isn't schedule a command
@@ -69,8 +67,6 @@ public class RobotContainer {
 
   //inside robot.java pastebin stuff 
   //not working r2 and l2 triggers are not working
-  //pneumatics hold
-  private Trigger pneumaticLift = baseController.R1();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -119,8 +115,8 @@ public class RobotContainer {
     intakeForward.whileTrue(new IntakeCmd(intake, false));
     coController.rightTrigger(0.1).whileTrue(new ReverseIntakeCmd(intake, true));
 
-    //become spinUpForpward
-    highSpinup.whileTrue(new HighShootCmd(shooter, true));
+    //become spinUpForward
+    highSpinup.toggleOnTrue(new HighShootCmd(shooter, true));
     lowSpinup.whileTrue(new LowShootCmd(shooter, true));
     
     //OPTION ONE FOR TRIGGERS PROBLEM
@@ -141,8 +137,6 @@ public class RobotContainer {
     SmartDashboard.putData(new HighShootCmd(shooter, true));
     SmartDashboard.putData(new SwerveJoystickCmd(drive, baseController::getLeftX,
        baseController::getLeftY, baseController::getRightY, RobotContainer.baseController.triangle()::getAsBoolean));
-
- 
   }
 
   /**
