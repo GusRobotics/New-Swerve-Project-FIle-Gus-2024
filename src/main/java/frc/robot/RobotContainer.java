@@ -54,7 +54,7 @@ public class RobotContainer {
   private Trigger intakeForward = coController.rightBumper();
   private Trigger intakeReverse = coController.rightTrigger();
  //forward and reverse flywheel
-  private Trigger highSpinup = coController.leftBumper();
+  private Trigger highSpinup = coController.leftTrigger();
   private Trigger intakeBase = baseController.L1();
 
   //b is circle
@@ -119,8 +119,8 @@ public class RobotContainer {
     intakeForward.whileTrue(new IntakeCmd(intake, false));
     coController.rightTrigger(0.1).whileTrue(new ReverseIntakeCmd(intake, true));
 
-    //become spinUpForward
-    highSpinup.toggleOnTrue(new HighShootCmd(shooter, true));
+    //become spinUpForpward
+    highSpinup.whileTrue(new HighShootCmd(shooter, true));
     lowSpinup.whileTrue(new LowShootCmd(shooter, true));
     
     //OPTION ONE FOR TRIGGERS PROBLEM
