@@ -38,4 +38,7 @@ public class Pneumatics implements Subsystem{
         actuation.set(DoubleSolenoid.Value.kForward);
     }
 
+    public void toggle(){
+        actuation.toggle();
+    }
 }

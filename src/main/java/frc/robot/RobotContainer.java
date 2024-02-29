@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import com.pathplanner.lib.auto.AutoBuilder;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 //import edu.wpi.first.wpilibj.XboxController;
@@ -30,7 +32,6 @@ import frc.robot.subsystems.Pneumatics;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SwerveDrive;
 
-import com.revrobotics.ColorSensorV3;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -44,6 +45,8 @@ public class RobotContainer {
   public static CommandPS4Controller baseController = new CommandPS4Controller(0);
   public static CommandPS4Controller coController = new CommandPS4Controller(1);
   
+  //plan b
+  //public static CommandXboxController baseController = new CommandXboxController(0);
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   public static Intake intake = new Intake();
@@ -52,8 +55,9 @@ public class RobotContainer {
 
   //intaking and reversing
   private Trigger intakeForward = coController.R1();
-  //private Trigger intakeReverse = coController.triangle();
-  //private Trigger lowSpinup = coController.L1();
+  private Trigger intakeReverse = coController.triangle();
+  private Trigger pneumaticActuate = coController.circle();
+
  //forward and reverse flywheel
   private Trigger highSpinup = coController.L1();
   private Trigger intakeBase = baseController.L1();
@@ -72,6 +76,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
+        m_chooser = AutoBuilder.buildAutoChooser();
     m_chooser.setDefaultOption(
             "RedFourNoteNoMid", 
             new FourNoteNoMid(drive)
@@ -114,26 +119,14 @@ public class RobotContainer {
 
     //SmartDashboard.putData(new IntakeCmd(intake, false));
     intakeForward.whileTrue(new IntakeCmd(intake, false));
-    //coController.rightTrigger(0.1).whileTrue(new ReverseIntakeCmd(intake, true));
+    intakeReverse.whileTrue(new ReverseIntakeCmd(intake, true));
 
     //become spinUpForward
     //highSpinup.toggleOnTrue(new HighShootCmd(shooter, true));
-    highSpinup.whileTrue(new LowShootCmd(shooter, true));
-    
-    //OPTION ONE FOR TRIGGERS PROBLEM
-    
-    
-    //OPTION TWO FOR TRIGGERS (IF STATEMENT)
-    
-    // if (baseController.getL2Axis() > 0.05)
-    // {
-    //   new IntakeCmd(intake, false);
-    // }
+    highSpinup.whileTrue(new HighShootCmd(shooter, true));
+
+    pneumaticActuate.toggleOnTrue(new PneumaticCmd(pneumatic, true));
     intakeBase.whileTrue(new IntakeBaseCmd(intake, true));
-      //SmartDashboard.putData(new PneumaticCmd(pneumatic, true));
-    //pneumaticLift.toggleOnTrue(new PneumaticCmd(pneumatic, true));
-    //need spinUpReverse
-    //test.onTrue(new TestCmd());
 
     SmartDashboard.putData(new HighShootCmd(shooter, true));
     SmartDashboard.putData(new SwerveJoystickCmd(drive, baseController::getLeftX,

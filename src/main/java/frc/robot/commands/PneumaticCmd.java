@@ -17,11 +17,6 @@ public class PneumaticCmd extends Command {
     // Start
     @Override
     public void initialize() {
-        // if (direction){
-        //     pneumatic.shootingPosition();
-        // } else{
-        //     pneumatic.basePosition();
-        // }
         pneumatic.shootingPosition();
     }
 

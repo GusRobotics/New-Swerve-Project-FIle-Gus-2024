@@ -114,14 +114,15 @@ public class Robot extends TimedRobot {
       lowShot = false;
     }
 
-    //base right trigger (pneumatics)
-    if(!pneumaticPivot && RobotContainer.baseController.getRightX() > 0.1){
-      CommandScheduler.getInstance().schedule(pneumaticsCmd);
-      pneumaticPivot = true;
-    } else {
-      CommandScheduler.getInstance().cancel(pneumaticsCmd);
-      pneumaticPivot = false;
-    }
+    // //base right trigger (pneumatics)
+    // if(!pneumaticPivot && RobotContainer.baseController.getRightX() > 0.1){
+    //   CommandScheduler.getInstance().schedule(pneumaticsCmd);
+    //   pneumaticPivot = true;
+    // } else {
+    //   CommandScheduler.getInstance().cancel(pneumaticsCmd);
+    //   RobotContainer.pneumatic.toggle();
+    //   pneumaticPivot = false;
+    // }
 
     //base left trigger (intaking when co cannot)
     if(!indexToShoot && RobotContainer.baseController.getL2Axis() > 0.1){

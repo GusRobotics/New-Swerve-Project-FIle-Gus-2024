@@ -4,6 +4,10 @@ package frc.robot.subsystems;
 import com.ctre.phoenix6.hardware.Pigeon2;
 //import com.ctre.phoenix6.hardware.CANcoder;
 //import com.kauailabs.navx.frc.AHRS;
+import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
+import com.pathplanner.lib.util.PIDConstants;
+import com.pathplanner.lib.util.ReplanningConfig;
 
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -13,6 +17,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.DriverStation;
 //import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -75,8 +80,27 @@ public class SwerveDrive extends SubsystemBase {
         // driveStates[1] = orange.getState();
         // driveStates[2] = red.getState();
         // driveStates[3] = green.getState();
+        
+        AutoBuilder.configureRamsete(
+            this::getPose, // Robot pose supplier
+            this::resetOdometry, // Method to reset odometry (will be called if your auto has a starting pose)
+            this::// Current ChassisSpeeds supplier
+            this::, // Method that will drive the robot given ChassisSpeeds
+            new ReplanningConfig(), // Default path replanning config. See the API for the options here
+            () -> {
+              // Boolean supplier that controls when the path will be mirrored for the red alliance
+              // This will flip the path being followed to the red side of the field.
+              // THE ORIGIN WILL REMAIN ON THE BLUE SIDE
 
-    }
+              var alliance = DriverStation.getAlliance();
+              if (alliance.isPresent()) {
+                return alliance.get() == DriverStation.Alliance.Red;
+              }
+              return false;
+            },
+            this // Reference to this subsystem to set requirements
+    );
+
 
     public SwerveModulePosition[] positioning(SwerveModulePosition[] positions) {
         positions[0] = new SwerveModulePosition(0, new Rotation2d(Constants.kBlueDriveAbsoluteEncoderOffset));
@@ -132,7 +156,7 @@ public class SwerveDrive extends SubsystemBase {
         // swervedriveposition
         // odometer.update(getRotation2d(), driveStates);
         SmartDashboard.putNumber("Robot Heading", getHeading());
-        // SmartDashboard.putString("Robot Location",
+        // SmartDashboard.putString("Robot Location",(
         // getPose().getTranslation().toString());
     }
 
@@ -150,7 +174,7 @@ public class SwerveDrive extends SubsystemBase {
         orange.setDesiredState(desiredStates[2]);
         red.setDesiredState(desiredStates[3]);
     }
-
+    
     public Rotation2d getRotation2D() {
         //gets pigeon value for rotation in degrees, converts to radians
         double numDegrees = pigeon.getYaw().getValue();
