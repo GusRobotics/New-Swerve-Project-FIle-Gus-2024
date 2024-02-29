@@ -1,4 +1,8 @@
 package frc.robot.subsystems;
+import java.util.Arrays;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
 //got rid of that pigeon import bc  for some reason it wasn't getting the values of old class
 //import com.ctre.phoenix6.hardware.Pigeon2;
 import com.ctre.phoenix6.hardware.Pigeon2;
@@ -38,6 +42,8 @@ public class SwerveDrive extends SubsystemBase {
     // toggling between SwerveModelState and SwerveModelPosition, attempting to
     // debug odometer
     SwerveModuleState driveStates[] = new SwerveModuleState[4];
+    private final Consumer<ChassisSpeeds> output;
+    private final Supplier<ChassisSpeeds> speedsSupplier;
 
     public SwerveDrive () {
         blue = new SwerveModule(
@@ -76,6 +82,14 @@ public class SwerveDrive extends SubsystemBase {
                 Constants.kRedDriveAbsoluteEncoderOffset,
                 Constants.kRedDriveAbsoluteEncoderReversed);
 
+
+         private final SwerveModule[] m_Modules = new SwerveModule[]{
+            blue,
+            orange,
+            red,
+            green
+        };
+
         // driveStates[0] = blue.getState();
         // driveStates[1] = orange.getState();
         // driveStates[2] = red.getState();
@@ -84,8 +98,8 @@ public class SwerveDrive extends SubsystemBase {
         AutoBuilder.configureRamsete(
             this::getPose, // Robot pose supplier
             this::resetOdometry, // Method to reset odometry (will be called if your auto has a starting pose)
-            this::// Current ChassisSpeeds supplier
-            this::, // Method that will drive the robot given ChassisSpeeds
+            this::getSpeeds,// Current ChassisSpeeds supplier
+            this::driveRobotRelative, // Method that will drive the robot given ChassisSpeeds
             new ReplanningConfig(), // Default path replanning config. See the API for the options here
             () -> {
               // Boolean supplier that controls when the path will be mirrored for the red alliance
@@ -99,7 +113,10 @@ public class SwerveDrive extends SubsystemBase {
               return false;
             },
             this // Reference to this subsystem to set requirements
+
+            
     );
+        }
 
 
     public SwerveModulePosition[] positioning(SwerveModulePosition[] positions) {
@@ -110,9 +127,27 @@ public class SwerveDrive extends SubsystemBase {
         return positions;
     }
 
+    private void driveRobotRelative(ChassisSpeeds robotRelativeSpeeds) {
+        ChassisSpeeds targetSpeeds = ChassisSpeeds.discretize(robotRelativeSpeeds, 0.02);
+    
+        SwerveModuleState[] targetStates = Constants.kDriveKinematics.toSwerveModuleStates(targetSpeeds);
+        setModuleStates(targetStates);
+      }
+
+    private ChassisSpeeds getSpeeds() {
+        return Constants.kDriveKinematics.toChassisSpeeds(getModuleStates());
+      }
+
     public void zeroHeading() {
         pigeon.reset();
     }
+
+     private SwerveModuleState[] getModuleStates() {
+    SwerveModuleState[] states = Arrays.stream(m_modules)
+      .map(module -> module.getState())
+      .toArray(size -> new SwerveModuleState[size]);
+    return states;
+  }
 
     public double getHeading() {
         return Math.IEEEremainder(pigeon.getAngle(), 360);
@@ -150,6 +185,7 @@ public class SwerveDrive extends SubsystemBase {
         odometer.resetPosition(getRotation2d(), position, pose);
     }
 
+
     @Override
     public void periodic() {
         // note odometry settings commented out bc of swervedrivestate and
@@ -174,6 +210,13 @@ public class SwerveDrive extends SubsystemBase {
         orange.setDesiredState(desiredStates[2]);
         red.setDesiredState(desiredStates[3]);
     }
+
+    // public void doChassisIdfk(){
+    //     SwerveDrive swerveDrive;
+    //     ChassisSpeeds chassisSpeeds;
+    //     SwerveModuleState[] moduleStates = Constants.kDriveKinematics.toSwerveModuleStates(chassisSpeeds);
+    //     swerveDrive.setModuleStates(moduleStates);
+    // }
     
     public Rotation2d getRotation2D() {
         //gets pigeon value for rotation in degrees, converts to radians
