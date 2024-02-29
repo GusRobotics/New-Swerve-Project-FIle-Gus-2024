@@ -39,6 +39,7 @@ public class SwerveDrive extends SubsystemBase {
     private final Pigeon2 pigeon = new Pigeon2(Constants.kPigeonPort);
     private static SwerveModulePosition[] position = new SwerveModulePosition[4]; 
     private final SwerveDriveOdometry odometer = new SwerveDriveOdometry(Constants.kDriveKinematics, new Rotation2d(0), positioning(position));
+    private final SwerveModule[] modules = new SwerveModule[4];
     // toggling between SwerveModelState and SwerveModelPosition, attempting to
     // debug odometer
     SwerveModuleState driveStates[] = new SwerveModuleState[4];
@@ -82,14 +83,17 @@ public class SwerveDrive extends SubsystemBase {
                 Constants.kRedDriveAbsoluteEncoderOffset,
                 Constants.kRedDriveAbsoluteEncoderReversed);
 
+        modules[0] = blue;
+        modules[1] = orange;
+        modules[2] = green;
+        modules[3] = red;
 
-         private final SwerveModule[] m_Modules = new SwerveModule[]{
-            blue,
-            orange,
-            red,
-            green
-        };
-
+        // private final SwerveModule[] allModules = new SwerveModule[]{
+        //     blue,
+        //     orange,
+        //     green,
+        //     red
+  };
         // driveStates[0] = blue.getState();
         // driveStates[1] = orange.getState();
         // driveStates[2] = red.getState();
@@ -143,11 +147,11 @@ public class SwerveDrive extends SubsystemBase {
     }
 
      private SwerveModuleState[] getModuleStates() {
-    SwerveModuleState[] states = Arrays.stream(m_modules)
+        SwerveModuleState[] states = Arrays.stream(modules)
       .map(module -> module.getState())
       .toArray(size -> new SwerveModuleState[size]);
     return states;
-  }
+    }
 
     public double getHeading() {
         return Math.IEEEremainder(pigeon.getAngle(), 360);
