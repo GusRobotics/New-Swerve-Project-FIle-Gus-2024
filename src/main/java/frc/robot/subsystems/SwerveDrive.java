@@ -43,8 +43,6 @@ public class SwerveDrive extends SubsystemBase {
     // toggling between SwerveModelState and SwerveModelPosition, attempting to
     // debug odometer
     SwerveModuleState driveStates[] = new SwerveModuleState[4];
-    private final Consumer<ChassisSpeeds> output;
-    private final Supplier<ChassisSpeeds> speedsSupplier;
 
     public SwerveDrive () {
         blue = new SwerveModule(
@@ -93,7 +91,6 @@ public class SwerveDrive extends SubsystemBase {
         //     orange,
         //     green,
         //     red
-  };
         // driveStates[0] = blue.getState();
         // driveStates[1] = orange.getState();
         // driveStates[2] = red.getState();

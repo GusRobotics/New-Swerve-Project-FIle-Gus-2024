@@ -5,7 +5,10 @@
 package frc.robot;
 
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
+import com.pathplanner.lib.commands.PathPlannerAuto;
 
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 //import edu.wpi.first.wpilibj.XboxController;
@@ -63,7 +66,6 @@ public class RobotContainer {
   private Trigger intakeBase = baseController.L1();
 
   //b is circle
-
   //add a bit of logic into hte code where you go into robotperiodic, have an if statement constantly check of either trigger
   //if trigger axis is greater than .75 and ifi t is scheudle a command and if it isn't schedule a command
   //inside of if statement, commandscheudler.getinstance.schedule and then the command
@@ -75,12 +77,14 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    NamedCommands.registerCommand("Low Shoot Command", new HighShootCmd(shooter, true));
+    NamedCommands.registerCommand("Intake Command", new IntakeCmd(intake, false));
+    NamedCommands.registerCommand("Reverse Intake Commands", new ReverseIntakeCmd(intake, true));
+    NamedCommands.registerCommand("High Shoot Command ", new LowShootCmd(shooter, true));
 
-        m_chooser = AutoBuilder.buildAutoChooser();
-    m_chooser.setDefaultOption(
-            "RedFourNoteNoMid", 
-            new FourNoteNoMid(drive)
-        );
+    m_chooser = AutoBuilder.buildAutoChooser();
+    //m_chooser.setDefaultOption("Test", new PathPlannerAuto("AutoTest"));
+
 
     m_chooser.addOption(
             "RedFourPieceCenterMiddle", 
@@ -140,6 +144,13 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    return m_chooser.getSelected();
+   // return m_chooser.getSelected();
+   Command selectedCommand = m_chooser.getSelected();
+    if (selectedCommand instanceof PathPlannerAuto) {
+      PathPlannerAuto selectedAuto = (PathPlannerAuto)selectedCommand;
+    //  Pose2d transformedPose = mirrorPose2d(startingPose);
+    }
+    return selectedCommand;
   }
+  
 }
