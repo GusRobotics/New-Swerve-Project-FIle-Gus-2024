@@ -48,6 +48,7 @@ public class RobotContainer {
   public static CommandPS4Controller baseController = new CommandPS4Controller(0);
   public static CommandPS4Controller coController = new CommandPS4Controller(1);
   
+
   //plan b
   //public static CommandXboxController baseController = new CommandXboxController(0);
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -83,8 +84,8 @@ public class RobotContainer {
     NamedCommands.registerCommand("High Shoot Command ", new LowShootCmd(shooter, true));
 
     m_chooser = AutoBuilder.buildAutoChooser();
-    //m_chooser.setDefaultOption("Test", new PathPlannerAuto("AutoTest"));
-
+    m_chooser.setDefaultOption("Test", new PathPlannerAuto("AutoTest"));
+    
 
     m_chooser.addOption(
             "RedFourPieceCenterMiddle", 
