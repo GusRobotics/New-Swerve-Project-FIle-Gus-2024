@@ -103,7 +103,7 @@ public class SwerveDrive extends SubsystemBase {
             this::getPose, // Robot pose supplier
             this::resetOdometry, // Method to reset odometry (will be called if your auto has a starting pose)
             this::getSpeeds,// Current ChassisSpeeds supplier
-            this::driveRobotRelative, // Method that will drive the robot given ChassisSpeeds
+            this::driveRobot, // Method that will drive the robot given ChassisSpeeds
             new ReplanningConfig(), // Default path replanning config. See the API for the options here
             () -> {
               // Boolean supplier that controls when the path will be mirrored for the red alliance
@@ -131,7 +131,7 @@ public class SwerveDrive extends SubsystemBase {
         return positions;
     }
 
-    private void driveRobotRelative(ChassisSpeeds robotRelativeSpeeds) {
+    private void driveRobot(ChassisSpeeds robotRelativeSpeeds) {
         ChassisSpeeds targetSpeeds = ChassisSpeeds.discretize(robotRelativeSpeeds, 0.02);
     
         SwerveModuleState[] targetStates = Constants.kDriveKinematics.toSwerveModuleStates(targetSpeeds);
