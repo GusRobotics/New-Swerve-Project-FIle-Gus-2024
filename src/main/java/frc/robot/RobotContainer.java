@@ -28,8 +28,8 @@ import frc.robot.commands.IntakeBaseCmd;
 import frc.robot.commands.SwerveJoystickCmd;
 //import frc.robot.commands.TestCmd;
 //import frc.robot.commands.Autonomous.AutoTest;
-import frc.robot.commands.Autonomous.FourNoteNoMid;
-import frc.robot.commands.Autonomous.fourPieceCenterMiddle;
+//import frc.robot.commands.Autonomous.FourNoteNoMid;
+//import frc.robot.commands.Autonomous.fourPieceCenterMiddle;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Pneumatics;
 import frc.robot.subsystems.Shooter;
@@ -84,13 +84,13 @@ public class RobotContainer {
     NamedCommands.registerCommand("High Shoot Command ", new LowShootCmd(shooter, true));
 
     m_chooser = AutoBuilder.buildAutoChooser();
-    m_chooser.setDefaultOption("Test", new PathPlannerAuto("AutoTest"));
+    m_chooser.setDefaultOption("AutoWithPath", new PathPlannerAuto("AutoWithPath"));
     
 
-    m_chooser.addOption(
-            "RedFourPieceCenterMiddle", 
-            new fourPieceCenterMiddle(drive)
-        );
+    // m_chooser.addOption(
+    //         "RedFourPieceCenterMiddle", 
+    //         new fourPieceCenterMiddle(drive)
+    //     );
 
     SmartDashboard.putData("Autonomous", m_chooser);
     // Configure the trigger bindings
