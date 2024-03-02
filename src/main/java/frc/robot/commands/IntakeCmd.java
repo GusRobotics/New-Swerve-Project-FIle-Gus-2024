@@ -32,27 +32,20 @@ public class IntakeCmd extends Command {
         {
             intake.enableIntake();
         }
-        // if (direction) 
-        // {
-        //     //intake.reverseIntake();
-        //     intake.forewardIntakeState();
-        // }
-        // else 
-        // {
-        //     intake.enableIntake();
-        // }
         intakeTimer.restart();
+
     }
 
-    public void execute(){
-        intake.enableIntake();
-    }
+    // public void execute(){
+    //     intake.enableIntake();
+    // }
 
     @Override
     public void end(boolean terminated) {
         if (!DriverStation.isAutonomous())
         {
             intake.end();
+            intake.setBlueLights();
         }
     }
 

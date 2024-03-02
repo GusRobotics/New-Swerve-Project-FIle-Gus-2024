@@ -20,7 +20,7 @@ public class LightsCmd extends Command {
     public void initialize() {
         if (on) 
         {
-            lights.setIntakeOn();
+            //lights.setIntakeOn();
         }
         else 
         {

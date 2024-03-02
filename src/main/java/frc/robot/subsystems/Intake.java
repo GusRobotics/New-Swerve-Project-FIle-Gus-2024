@@ -41,19 +41,10 @@ public class Intake implements Subsystem {
     
     /** Runs the intake forward */
     public void enableIntake() {
-        // topIntakeMotor.set(0.3);
-        // bottomIntakeMotor.set(-0.3);
-        // lightstrip.set(Constants.blueLights);
         bottomIntakeMotor.setInverted(true);
         SmartDashboard.putNumber("Left Distance Sensor", distSensorLeft.getValue());
         SmartDashboard.putNumber("Right Distance Sensor", distSensorRight.getValue());
-        //nothing happened when less than 200
-        //means the value is greater than 200
-        //stuff happened when less than 500
-        //means its less than 500 and greater than 200
-        //worked when less than 400 so between 200 and 400
 
-        
         if(distSensorLeft.getValue() > 700 || distSensorRight.getValue() > 700){
             topIntakeMotor.set(/*Constants.topIntakeSpeed*/ 0);
             bottomIntakeMotor.set(/*Constants.bottomIntakeSpeed*/0);
@@ -61,8 +52,8 @@ public class Intake implements Subsystem {
         }
         else {
         //  else if(distSensorLeft.getValue() >= 350 || distSensorRight.getValue() >= 350) {
-            topIntakeMotor.set(0.25);
-            bottomIntakeMotor.set(0.25);
+            topIntakeMotor.set(0.27);
+            bottomIntakeMotor.set(0.27);
             lightstrip.set(Constants.yellowLights);
         }
 
@@ -90,21 +81,6 @@ public class Intake implements Subsystem {
         }
     }
 
-    public void forewardIntakeState(){
-        // bottomIntakeMotor.setInverted(true);
-        // SmartDashboard.putNumber("ultrasonic range", distSensor.getValue());
-        // if(distSensor.getValue() > 200){
-        //     topIntakeMotor.set(/*Constants.topIntakeSpeed*/ 0.05);
-        //     bottomIntakeMotor.set(/*Constants.bottomIntakeSpeed*/ 0.05);
-        //     lightstrip.set(Constants.blueLights);
-        // } else if(distSensor.getValue() <= 75){
-        //     topIntakeMotor.set(0);
-        //     bottomIntakeMotor.set(0);
-        //     lightstrip.set(Constants.yellowLights);
-        // }
-
-    }
-
     /** Ends the intake function */
     public void end() {
         topIntakeMotor.set(0);
@@ -114,6 +90,10 @@ public class Intake implements Subsystem {
 
     public void setDefaultLights(){
         lightstrip.set(Constants.pinkLights);
+    }
+
+    public void setBlueLights(){
+        lightstrip.set(Constants.blueLights);
     }
 
     @Override

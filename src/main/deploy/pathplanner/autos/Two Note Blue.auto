@@ -2,8 +2,8 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.5,
-      "y": 5.55
+      "x": 1.325730468864645,
+      "y": 5.550936522700434
     },
     "rotation": 0
   },
@@ -24,35 +24,40 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
           "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "named",
+                "type": "path",
                 "data": {
-                  "name": "Intake Command"
+                  "pathName": "Drive Up Note"
                 }
               },
               {
-                "type": "path",
+                "type": "named",
                 "data": {
-                  "pathName": "GetFirstNote"
+                  "name": "Intake Base"
                 }
               }
             ]
           }
         },
         {
-          "type": "sequential",
+          "type": "path",
           "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "ReturnWithNote"
-                }
-              }
-            ]
+            "pathName": "ReturnWithNote"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "High Shoot Command"
           }
         }
       ]

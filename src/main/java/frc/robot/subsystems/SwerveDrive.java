@@ -39,12 +39,12 @@ public class SwerveDrive extends SubsystemBase {
     private SlewRateLimiter yLimiter = new SlewRateLimiter(0.5);
     private SlewRateLimiter turningLimiter = new SlewRateLimiter(0.5);
     private final Pigeon2 pigeon = new Pigeon2(Constants.kPigeonPort);
-    private static SwerveModulePosition[] position = new SwerveModulePosition[4]; 
-    private final SwerveDriveOdometry odometer = new SwerveDriveOdometry(Constants.kDriveKinematics, new Rotation2d(0), positioning(position));
+    private final SwerveDriveOdometry odometer;
     private final SwerveModule[] modules = new SwerveModule[4];
     // toggling between SwerveModelState and SwerveModelPosition, attempting to
     // debug odometer
     SwerveModuleState driveStates[] = new SwerveModuleState[4];
+    SwerveModulePosition drivePositions[] = new SwerveModulePosition[4];
 
     public SwerveDrive () {
         blue = new SwerveModule(
@@ -87,6 +87,8 @@ public class SwerveDrive extends SubsystemBase {
         modules[1] = orange;
         modules[2] = green;
         modules[3] = red;
+        odometer = new SwerveDriveOdometry(Constants.kDriveKinematics, new Rotation2d(0), getPosition());
+
 
         // private final SwerveModule[] allModules = new SwerveModule[]{
         //     blue,
@@ -175,6 +177,14 @@ public class SwerveDrive extends SubsystemBase {
     return states;
     }
 
+    private SwerveModulePosition[] getPosition(){
+        drivePositions[0] = blue.getPosition();
+        drivePositions[1] = green.getPosition();
+        drivePositions[2] = orange.getPosition();
+        drivePositions[3] = red.getPosition();
+        return drivePositions;
+    }
+
     public double getHeading() {
         return Math.IEEEremainder(pigeon.getAngle(), 360);
     }
@@ -208,7 +218,7 @@ public class SwerveDrive extends SubsystemBase {
     }
 
      public void resetOdometry(Pose2d pose) {
-        odometer.resetPosition(getRotation2d(), position, pose);
+        odometer.resetPosition(getRotation2d(), getPosition(), pose);
     }
 
 
@@ -216,10 +226,12 @@ public class SwerveDrive extends SubsystemBase {
     public void periodic() {
         // note odometry settings commented out bc of swervedrivestate and
         // swervedriveposition
-        // odometer.update(getRotation2d(), driveStates);
+        odometer.update(getRotation2d(), getPosition());
         SmartDashboard.putNumber("Robot Heading", getHeading());
         // SmartDashboard.putString("Robot Location",(
         // getPose().getTranslation().toString());
+        SmartDashboard.putNumber("odometry x", odometer.getPoseMeters().getX());
+        SmartDashboard.putNumber("odometry y", odometer.getPoseMeters().getY());
     }
 
     public void stopModules() {

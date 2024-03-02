@@ -86,7 +86,11 @@ public class RobotContainer {
     //m_chooser = AutoBuilder.buildAutoChooser();
     m_chooser = new SendableChooser<Command>();
     m_chooser.setDefaultOption("do nothing", Commands.none());
-    m_chooser.addOption("AutoAttempt", new PathPlannerAuto("AutoAttempt"));
+    //m_chooser.addOption("AutoAttempt", new PathPlannerAuto("AutoAttempt"));
+    m_chooser.addOption("Single Shot Blue Right", new PathPlannerAuto("SingleShootBlue3"));
+    m_chooser.addOption("Single Shot Blue Left", new PathPlannerAuto("SingleShootBlue1"));
+    m_chooser.addOption("Single Shot Red Left", new PathPlannerAuto("RedSingleShot1"));
+    m_chooser.addOption("Blue center two note", new PathPlannerAuto("Two Note Blue"));
         //m_chooser.addOption("AutoAttempt", new PathPlannerAuto("AutoAttempt"));
  
     //IF THAT DOESN"T WORK:

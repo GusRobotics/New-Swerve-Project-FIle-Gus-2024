@@ -129,7 +129,7 @@ public class Constants {
 
         public static final int driveMotorCurrentLimit = 50;
 
-        public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond / 3;
+        public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond / 2.5;
         public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = //
                         kPhysicalMaxAngularSpeedRadiansPerSecond / 3;
         public static final double kTeleDriveMaxAccelerationUnitsPerSecond = 3;
@@ -160,8 +160,8 @@ public class Constants {
                 public static final double kPYController = 1;
                 public static final double kPThetaController = 1;
                 
-                public static final PIDConstants KTranslationHolonomicPID= new PIDConstants(5.0, 0.0, 0.0);
-                public static final PIDConstants KRotationHolonomicPID= new PIDConstants(5.0, 0.0, 0.0);
+                public static final PIDConstants KTranslationHolonomicPID= new PIDConstants(0.0, 0.0, 0.0);
+                public static final PIDConstants KRotationHolonomicPID= new PIDConstants(0.0, 0.0, 0.0);
 
                 public static final double kDriveBaseRadius = 0.4;
 
