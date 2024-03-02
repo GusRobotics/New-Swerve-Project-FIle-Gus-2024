@@ -31,6 +31,9 @@ public class IntakeCmd extends Command {
         else 
         {
             intake.enableIntake();
+            // if(!DriverStation.isAutonomous()){
+            //     intake.setBlueLights();
+            // }
         }
         intakeTimer.restart();
 

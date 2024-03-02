@@ -2,7 +2,7 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.325730468864645,
+      "x": 1.3959954881393342,
       "y": 5.550936522700434
     },
     "rotation": 0
@@ -26,7 +26,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.5
+            "waitTime": 0.0
           }
         },
         {
@@ -34,18 +34,24 @@
           "data": {
             "commands": [
               {
+                "type": "named",
+                "data": {
+                  "name": "Intake Command"
+                }
+              },
+              {
                 "type": "path",
                 "data": {
                   "pathName": "Drive Up Note"
                 }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "Intake Base"
-                }
               }
             ]
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
           }
         },
         {
@@ -57,7 +63,7 @@
         {
           "type": "named",
           "data": {
-            "name": "High Shoot Command"
+            "name": "Intake Base"
           }
         }
       ]
