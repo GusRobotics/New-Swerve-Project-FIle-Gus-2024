@@ -34,6 +34,10 @@ public class Intake implements Subsystem {
             this::end, this
         ));
     }
+
+    public boolean noteDetected(){
+        return distSensorLeft.getValue() > 700 || distSensorRight.getValue() > 700;
+    }
     
     /** Runs the intake forward */
     public void enableIntake() {
@@ -49,6 +53,7 @@ public class Intake implements Subsystem {
         //means its less than 500 and greater than 200
         //worked when less than 400 so between 200 and 400
 
+        
         if(distSensorLeft.getValue() > 700 || distSensorRight.getValue() > 700){
             topIntakeMotor.set(/*Constants.topIntakeSpeed*/ 0);
             bottomIntakeMotor.set(/*Constants.bottomIntakeSpeed*/0);
@@ -72,15 +77,15 @@ public class Intake implements Subsystem {
         SmartDashboard.putNumber("Left Distance Sensor", distSensorLeft.getValue());
         SmartDashboard.putNumber("Right Distance Sensor", distSensorRight.getValue());
         bottomIntakeMotor.setInverted(true);
-        topIntakeMotor.set(0.3);
+        topIntakeMotor.set(-0.3);
         bottomIntakeMotor.set(-0.3);
     }
 
     public void indexToShoot(){
         bottomIntakeMotor.setInverted(true);
-        if(distSensorLeft.getValue() > 600 || distSensorRight.getValue() > 600){
-            topIntakeMotor.set(0.3);
-            bottomIntakeMotor.set(0.3);
+        if(distSensorLeft.getValue() > 350 || distSensorRight.getValue() > 350){
+            topIntakeMotor.set(0.4);
+            bottomIntakeMotor.set(0.4);
             lightstrip.set(Constants.blueLights);
         }
     }

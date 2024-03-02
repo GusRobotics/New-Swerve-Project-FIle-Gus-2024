@@ -1,5 +1,9 @@
 package frc.robot.commands;
 
+import com.fasterxml.jackson.databind.JsonSerializable.Base;
+
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Intake;
@@ -7,11 +11,13 @@ import frc.robot.subsystems.Intake;
 public class IntakeBaseCmd extends Command {
     private Intake intakebase;
     private boolean direction;
+    private Timer baseTimer;
 
     public IntakeBaseCmd(Intake intakebase, boolean direction) {
         this.intakebase = intakebase;
         this.direction = direction;
 
+        this.baseTimer = new Timer();
         addRequirements(intakebase);
     }
 
@@ -27,6 +33,8 @@ public class IntakeBaseCmd extends Command {
         {
             intakebase.end();
         }
+
+        baseTimer.restart();
     }
 
     public void execute(){
@@ -40,6 +48,6 @@ public class IntakeBaseCmd extends Command {
 
     @Override
     public boolean isFinished() { 
-        return false; 
+        return DriverStation.isAutonomous() && baseTimer.get() > 1;
     }
 }

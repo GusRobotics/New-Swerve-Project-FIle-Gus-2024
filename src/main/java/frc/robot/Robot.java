@@ -75,7 +75,7 @@ public class Robot extends TimedRobot {
       SmartDashboard.putData(m_autonomousCommand);
       m_autonomousCommand.schedule();
     }
-    m_robotContainer.getAutonomousCommand().schedule();
+    //m_robotContainer.getAutonomousCommand().schedule();
 
   }
 
@@ -97,22 +97,22 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     //co right trigger (intake reverse)
-    if(!reverseIntake && RobotContainer.coController.getR2Axis() > 0.1){
-      CommandScheduler.getInstance().schedule(reverseIntakeCmd);
-      reverseIntake = true;
-    } else {
-      CommandScheduler.getInstance().cancel(reverseIntakeCmd);
-      reverseIntake = false;
-    }
+    // if(!reverseIntake && RobotContainer.coController.getR2Axis() > 0.1){
+    //   CommandScheduler.getInstance().schedule(reverseIntakeCmd);
+    //   reverseIntake = true;
+    // } else {
+    //   CommandScheduler.getInstance().cancel(reverseIntakeCmd);
+    //   reverseIntake = false;
+    // }
 
     //co left trigger (slow shooter)
-    if(!lowShot && RobotContainer.coController.getL2Axis() > 0.1){
-      CommandScheduler.getInstance().schedule(lowShootCmd);
-      lowShot = true;
-    } else {
-      CommandScheduler.getInstance().cancel(lowShootCmd);
-      lowShot = false;
-    }
+    // if(!lowShot && RobotContainer.coController.getL2Axis() > 0.1){
+    //   CommandScheduler.getInstance().schedule(lowShootCmd);
+    //   lowShot = true;
+    // } else {
+    //   CommandScheduler.getInstance().cancel(lowShootCmd);
+    //   lowShot = false;
+    // }
 
     // //base right trigger (pneumatics)
     // if(!pneumaticPivot && RobotContainer.baseController.getRightX() > 0.1){
@@ -125,14 +125,14 @@ public class Robot extends TimedRobot {
     // }
 
     //base left trigger (intaking when co cannot)
-    if(!indexToShoot && RobotContainer.baseController.getL2Axis() > 0.1){
+    if(!indexToShoot && RobotContainer.baseController.getR2Axis() > 0.1){
       CommandScheduler.getInstance().schedule(intakeBaseCmd);
       indexToShoot = true;
     } else {
       CommandScheduler.getInstance().cancel(intakeBaseCmd);
       indexToShoot = false;
     }
-  }
+   }
 
   /** This function is called once each time the robot enters test mode. */
   @Override

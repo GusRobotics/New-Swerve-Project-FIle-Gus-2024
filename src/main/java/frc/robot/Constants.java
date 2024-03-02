@@ -1,5 +1,7 @@
 package frc.robot;
 
+import com.pathplanner.lib.util.PIDConstants;
+
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
@@ -157,10 +159,21 @@ public class Constants {
                 public static final double kPXController = 1;
                 public static final double kPYController = 1;
                 public static final double kPThetaController = 1;
-            
+                
+                public static final PIDConstants KTranslationHolonomicPID= new PIDConstants(5.0, 0.0, 0.0);
+                public static final PIDConstants KRotationHolonomicPID= new PIDConstants(5.0, 0.0, 0.0);
+
+                public static final double kDriveBaseRadius = 0.4;
+
                 // Constraint for the motion profilied robot angle controller
                 public static final TrapezoidProfile.Constraints kThetaControllerConstraints =
                     new TrapezoidProfile.Constraints(
                         kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
+
+                        
               }
+
+    
             }
+
+    
