@@ -1,19 +1,12 @@
 package frc.robot;
 
-import com.revrobotics.ColorSensorV3;
-
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.SwerveJoystickCmd;
-import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Pneumatics;
-import frc.robot.subsystems.Shooter;
 import frc.robot.commands.IntakeBaseCmd;
-import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.LowShootCmd;
 import frc.robot.commands.PneumaticCmd;
 import frc.robot.commands.ReverseIntakeCmd;
@@ -42,7 +35,7 @@ public class Robot extends TimedRobot {
   boolean pneumaticPivot = false;
   ReverseIntakeCmd reverseIntakeCmd = new ReverseIntakeCmd(RobotContainer.intake, true);
   LowShootCmd lowShootCmd = new LowShootCmd(RobotContainer.shooter, true);
-  PneumaticCmd pneumaticsCmd = new PneumaticCmd(RobotContainer.pneumatic, true);
+  PneumaticCmd pneumaticsCmd = new PneumaticCmd(RobotContainer.pneumatic);
   IntakeBaseCmd intakeBaseCmd = new IntakeBaseCmd(RobotContainer.intake, true);
 
   /**

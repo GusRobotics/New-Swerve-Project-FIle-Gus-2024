@@ -5,11 +5,9 @@ import frc.robot.subsystems.Pneumatics;
 
 public class PneumaticCmd extends Command {
     private Pneumatics pneumatic;
-    private boolean direction;
 
-    public PneumaticCmd(Pneumatics pneumatic, boolean direction) {
+    public PneumaticCmd(Pneumatics pneumatic) {
         this.pneumatic = pneumatic;
-        this.direction = direction;
 
         addRequirements(pneumatic);
     }

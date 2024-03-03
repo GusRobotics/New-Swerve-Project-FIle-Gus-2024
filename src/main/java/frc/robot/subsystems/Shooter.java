@@ -3,21 +3,17 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkFlex;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
-import edu.wpi.first.util.datalog.DoubleLogEntry;
-import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.Constants;
-import com.revrobotics.RelativeEncoder;
-import com.revrobotics.SparkPIDController;
+// import com.revrobotics.RelativeEncoder;
+// import com.revrobotics.SparkPIDController;
 
 /** Lower Intake Subsystem */
 public class Shooter implements Subsystem {
     // Hardware
     private CANSparkFlex topShooterMotor = new CANSparkFlex(Constants.topShooterMotor, MotorType.kBrushless);    
     private CANSparkFlex bottomShooterMotor = new CANSparkFlex(Constants.bottomShooterMotor, MotorType.kBrushless);
-
-    private SparkPIDController shooterController;
 
     // Init
     public Shooter() {
@@ -38,7 +34,7 @@ public class Shooter implements Subsystem {
     public void enableLowShooter() {
         //best so far was .1, -.5
         topShooterMotor.set(0.15);
-        bottomShooterMotor.set(-0.625);
+        bottomShooterMotor.set(-0.62);
     }
 
     public void stopShooter() {

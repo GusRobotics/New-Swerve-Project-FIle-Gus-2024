@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 15.788613602904809,
-      "y": 4.2978770123018135
+      "x": 0.75,
+      "y": 4.32
     },
-    "rotation": -120.73548770192016
+    "rotation": -60.80251395393549
   },
   "command": {
     "type": "sequential",
@@ -22,10 +22,22 @@
           "data": {
             "name": "Intake Base"
           }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "SideHalfWay"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "GetOut"
+          }
         }
       ]
     }
   },
-  "folder": "Red Single Shots",
+  "folder": null,
   "choreoAuto": false
 }

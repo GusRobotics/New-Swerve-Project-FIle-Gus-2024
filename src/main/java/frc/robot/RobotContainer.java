@@ -8,8 +8,8 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
  
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.wpilibj.Joystick;
+// import edu.wpi.first.math.geometry.Pose2d;
+// import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 //import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -85,12 +85,12 @@ public class RobotContainer {
     NamedCommands.registerCommand("Intake Base", new IntakeBaseCmd(intake, true));
     //m_chooser = AutoBuilder.buildAutoChooser();
     m_chooser = new SendableChooser<Command>();
-    m_chooser.setDefaultOption("do nothing", Commands.none());
-    //m_chooser.addOption("AutoAttempt", new PathPlannerAuto("AutoAttempt"));
+
     m_chooser.addOption("Single Shot Red Left", new PathPlannerAuto("SingleShootBlue3"));
     m_chooser.addOption("Single Shot Blue Right", new PathPlannerAuto("SingleShootBlue1"));
     m_chooser.addOption("Single Shot Blue Left", new PathPlannerAuto("RedSingleShot1"));
     m_chooser.addOption("Two Note Left", new PathPlannerAuto("Two Note Blue"));
+    m_chooser.addOption("GTFO", new PathPlannerAuto("GetOutAuto"));
     //m_chooser.addOption("Blue center two note", new PathPlannerAuto("Two Note Blue"));
         //m_chooser.addOption("AutoAttempt", new PathPlannerAuto("AutoAttempt"));
  
@@ -143,7 +143,7 @@ public class RobotContainer {
     coController.rightTrigger(0.1).whileTrue(new ReverseIntakeCmd(intake, true));
 
 
-    pneumaticActuate.whileTrue(new PneumaticCmd(pneumatic, true));
+    pneumaticActuate.whileTrue(new PneumaticCmd(pneumatic));
 
     intakeBase.whileTrue(new IntakeBaseCmd(intake, true));
     //lowSpinup.whileTrue(new LowShootCmd(shooter, false));

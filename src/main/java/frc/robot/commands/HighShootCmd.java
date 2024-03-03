@@ -1,6 +1,6 @@
 package frc.robot.commands;
 
-import java.sql.Driver;
+//import java.sql.Driver;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
@@ -35,8 +35,6 @@ public class HighShootCmd extends Command {
 
     @Override
     public void end(boolean terminated) {
-        //shooter.end();
-
         if (!DriverStation.isAutonomous())
         {
             shooter.end();
@@ -45,6 +43,6 @@ public class HighShootCmd extends Command {
 
     @Override
     public boolean isFinished() { 
-        return DriverStation.isAutonomous() && ourTimer.get() > 4; 
+        return DriverStation.isAutonomous() && ourTimer.get() > 3; 
     }
 }
