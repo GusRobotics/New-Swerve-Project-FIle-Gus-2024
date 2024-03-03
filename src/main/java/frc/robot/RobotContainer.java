@@ -21,9 +21,11 @@ import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.IntakeCmd;
+import frc.robot.commands.LeftClimbCmd;
 import frc.robot.commands.LowShootCmd;
 import frc.robot.commands.PneumaticCmd;
 import frc.robot.commands.ReverseIntakeCmd;
+import frc.robot.commands.RightClimbCmd;
 import frc.robot.commands.HighShootCmd;
 import frc.robot.commands.IntakeBaseCmd;
 import frc.robot.commands.SwerveJoystickCmd;
@@ -32,7 +34,9 @@ import frc.robot.commands.SwerveJoystickCmd;
 //import frc.robot.commands.Autonomous.FourNoteNoMid;
 //import frc.robot.commands.Autonomous.fourPieceCenterMiddle;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.LeftClimber;
 import frc.robot.subsystems.Pneumatics;
+import frc.robot.subsystems.RightClimber;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SwerveDrive;
  
@@ -48,6 +52,7 @@ public class RobotContainer {
   public static SwerveDrive drive = new SwerveDrive();
   public static CommandPS4Controller baseController = new CommandPS4Controller(0);
   public static CommandXboxController coController = new CommandXboxController(1);
+  public static CommandXboxController climbController = new CommandXboxController(2);
   
  
   //plan b
@@ -57,6 +62,8 @@ public class RobotContainer {
   public static Intake intake = new Intake();
   public static  Shooter shooter = new Shooter();
   public static Pneumatics pneumatic = new Pneumatics();
+  public static LeftClimber leftClimber = new LeftClimber();
+  public static RightClimber rightClimber = new RightClimber();
  
  
  //forward and reverse flywheel
@@ -69,6 +76,7 @@ public class RobotContainer {
 //private Trigger intakeBase = baseController.L1();
 
   private Trigger pneumaticActuate = baseController.R1();
+
   //b is circle
   //add a bit of logic into hte code where you go into robotperiodic, have an if statement constantly check of either trigger
   //if trigger axis is greater than .75 and ifi t is scheudle a command and if it isn't schedule a command
@@ -94,15 +102,6 @@ public class RobotContainer {
     //m_chooser.addOption("Blue center two note", new PathPlannerAuto("Two Note Blue"));
         //m_chooser.addOption("AutoAttempt", new PathPlannerAuto("AutoAttempt"));
  
-    //IF THAT DOESN"T WORK:
-    //uncomment line below and try 
-    // m_chooser = AutoBuilder.buildAutoChooser("AutoAttempt");
- 
- 
-    // m_chooser.addOption(
-    //         "RedFourPieceCenterMiddle", 
-    //         new fourPieceCenterMiddle(drive)
-    //     );
  
     SmartDashboard.putData("Auto Chooser", m_chooser);
     
@@ -133,6 +132,12 @@ public class RobotContainer {
     //l1 co (high spinup)
     highSpinup.whileTrue(new HighShootCmd(shooter, true));
 
+    climbController.leftTrigger(0.1).whileTrue(new LeftClimbCmd(leftClimber, false));
+    climbController.leftBumper().whileTrue(new LeftClimbCmd(leftClimber, true));
+
+    climbController.rightTrigger(0.1).whileTrue(new RightClimbCmd(rightClimber, false));
+    climbController.rightBumper().whileTrue(new RightClimbCmd(rightClimber, true));
+
     //l2 co (low spin up)
     coController.leftTrigger(0.1).whileTrue(new LowShootCmd(shooter, true));
 
@@ -141,7 +146,6 @@ public class RobotContainer {
 
     //r2 co (intake reverse)
     coController.rightTrigger(0.1).whileTrue(new ReverseIntakeCmd(intake, true));
-
 
     pneumaticActuate.whileTrue(new PneumaticCmd(pneumatic));
 
@@ -155,12 +159,7 @@ public class RobotContainer {
  
     //SmartDashboard.putData(new IntakeCmd(intake, false));
     // intakeReverse.whileTrue(new ReverseIntakeCmd(intake, true));
- 
-    //become spinUpForward
-    //highSpinup.toggleOnTrue(new HighShootCmd(shooter, true));
-    
-    //pneumaticActuate.toggleOnTrue(new PneumaticCmd(pneumatic, true));
- 
+
     //SmartDashboard.putData(new HighShootCmd(shooter, true));
     SmartDashboard.putData(new SwerveJoystickCmd(drive, baseController::getLeftX,
        baseController::getLeftY, baseController::getRightY, RobotContainer.baseController.triangle()::getAsBoolean));

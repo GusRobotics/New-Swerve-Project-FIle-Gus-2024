@@ -10,7 +10,6 @@ import frc.robot.Constants;
 
 public class LeftClimber implements Subsystem {
     CANSparkMax leftClimb;
-    CANSparkMax rightClimb; 
 
     public LeftClimber(){
         leftClimb  = new CANSparkMax(Constants.leftClimb, MotorType.kBrushless);
@@ -22,13 +21,21 @@ public class LeftClimber implements Subsystem {
         ));
     }
 
-    private void setDefaultCommand(InstantCommand instantCommand) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setDefaultCommand'");
-    }
-
     public void end(){
         leftClimb.set(0);
-        rightClimb.set(0);
+    }
+
+    /** Runs the intake forward */
+    public void setLeftClimbUp() {
+        leftClimb.set(0.5);
+    }
+
+    public void setLeftClimbDown(){
+        leftClimb.set(-0.5);
+    }
+
+    @Override
+    public void periodic() {
+
     }
 }
