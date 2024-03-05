@@ -27,8 +27,9 @@ public class Shooter implements Subsystem {
 
     /** Runs the intake forward */
     public void enableShooter() {
-        topShooterMotor.set(0.5);
-        bottomShooterMotor.set(-0.63);
+        //orignally .5
+        topShooterMotor.set(0.6);
+        bottomShooterMotor.set(-0.4);
     }
 
     public void enableLowShooter() {

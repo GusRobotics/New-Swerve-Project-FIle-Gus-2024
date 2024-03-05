@@ -91,6 +91,7 @@ public class RobotContainer {
     NamedCommands.registerCommand("Reverse Intake Commands", new ReverseIntakeCmd(intake, true));
     NamedCommands.registerCommand("Low Shoot Command ", new LowShootCmd(shooter, true));
     NamedCommands.registerCommand("Intake Base", new IntakeBaseCmd(intake, true));
+    NamedCommands.registerCommand("Pneumatics Up", new PneumaticCmd(pneumatic));
     //m_chooser = AutoBuilder.buildAutoChooser();
     m_chooser = new SendableChooser<Command>();
 
