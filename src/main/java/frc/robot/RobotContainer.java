@@ -21,11 +21,9 @@ import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.IntakeCmd;
-import frc.robot.commands.LeftClimbCmd;
 import frc.robot.commands.LowShootCmd;
 import frc.robot.commands.PneumaticCmd;
 import frc.robot.commands.ReverseIntakeCmd;
-import frc.robot.commands.RightClimbCmd;
 import frc.robot.commands.HighShootCmd;
 import frc.robot.commands.IntakeBaseCmd;
 import frc.robot.commands.SwerveJoystickCmd;
@@ -34,9 +32,7 @@ import frc.robot.commands.SwerveJoystickCmd;
 //import frc.robot.commands.Autonomous.FourNoteNoMid;
 //import frc.robot.commands.Autonomous.fourPieceCenterMiddle;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.LeftClimber;
 import frc.robot.subsystems.Pneumatics;
-import frc.robot.subsystems.RightClimber;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SwerveDrive;
  
@@ -62,9 +58,6 @@ public class RobotContainer {
   public static Intake intake = new Intake();
   public static  Shooter shooter = new Shooter();
   public static Pneumatics pneumatic = new Pneumatics();
-  public static LeftClimber leftClimber = new LeftClimber();
-  public static RightClimber rightClimber = new RightClimber();
- 
  
  //forward and reverse flywheel
   private Trigger highSpinup = coController.leftBumper();
@@ -100,6 +93,7 @@ public class RobotContainer {
     m_chooser.addOption("Single Shot Blue Left", new PathPlannerAuto("RedSingleShot1"));
     m_chooser.addOption("Two Note Left", new PathPlannerAuto("Two Note Blue"));
     m_chooser.addOption("GTFO", new PathPlannerAuto("GetOutAuto"));
+    m_chooser.addOption("Four Piece", new PathPlannerAuto("Four Piece"));
     //m_chooser.addOption("Blue center two note", new PathPlannerAuto("Two Note Blue"));
         //m_chooser.addOption("AutoAttempt", new PathPlannerAuto("AutoAttempt"));
  
@@ -132,12 +126,6 @@ public class RobotContainer {
 
     //l1 co (high spinup)
     highSpinup.whileTrue(new HighShootCmd(shooter, true));
-
-    climbController.leftTrigger(0.1).whileTrue(new LeftClimbCmd(leftClimber, false));
-    climbController.leftBumper().whileTrue(new LeftClimbCmd(leftClimber, true));
-
-    climbController.rightTrigger(0.1).whileTrue(new RightClimbCmd(rightClimber, false));
-    climbController.rightBumper().whileTrue(new RightClimbCmd(rightClimber, true));
 
     //l2 co (low spin up)
     coController.leftTrigger(0.1).whileTrue(new LowShootCmd(shooter, true));

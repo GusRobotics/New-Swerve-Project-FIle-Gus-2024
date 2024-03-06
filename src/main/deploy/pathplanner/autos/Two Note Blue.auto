@@ -42,7 +42,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Drive Up Note"
+                  "pathName": "Return With Note"
                 }
               }
             ]
@@ -57,7 +57,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "ReturnWithNote"
+            "pathName": "Return With Note"
           }
         },
         {

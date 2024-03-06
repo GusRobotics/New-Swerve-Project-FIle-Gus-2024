@@ -51,14 +51,26 @@
                 "data": {
                   "name": "Intake Command"
                 }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "High Shoot Command"
-                }
               }
             ]
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Return With Note"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "High Shoot Command"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Intake Base"
           }
         }
       ]
