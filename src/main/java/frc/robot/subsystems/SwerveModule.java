@@ -77,8 +77,8 @@ public class SwerveModule {
     return new CANSparkMax(driveId, MotorType.kBrushless);
     }
 
-    public CANSparkMax getSteeringMotor(int steerId) {
-    return new CANSparkMax(steerId, MotorType.kBrushless);
+    public CANSparkMax getSteeringMotor() {
+    return turningMotor;
     }
 
     public double getTurningPosition() {

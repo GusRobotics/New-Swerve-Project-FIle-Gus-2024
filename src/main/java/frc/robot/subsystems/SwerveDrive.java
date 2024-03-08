@@ -73,6 +73,8 @@ public class SwerveDrive extends SubsystemBase {
                 Constants.kGreenDriveAbsoluteEncoderPort,
                 Constants.kGreenDriveAbsoluteEncoderOffset,
                 Constants.kGreenDriveAbsoluteEncoderReversed);
+        //just invert the motors when you get oscillations when youre done
+        green.getSteeringMotor().setInverted(true);
 
         red = new SwerveModule(
                 Constants.redDrive,
