@@ -49,8 +49,8 @@ public class Intake implements Subsystem {
         }
         else {
         //  else if(distSensorLeft.getValue() >= 350 || distSensorRight.getValue() >= 350) {
-            topIntakeMotor.set(0.3);
-            bottomIntakeMotor.set(0.3);
+            topIntakeMotor.set(0.35);
+            bottomIntakeMotor.set(0.35);
             lightstrip.set(Constants.yellowLights);
         }
 
@@ -65,8 +65,8 @@ public class Intake implements Subsystem {
         SmartDashboard.putNumber("Left Distance Sensor", distSensorLeft.getValue());
         SmartDashboard.putNumber("Right Distance Sensor", distSensorRight.getValue());
         bottomIntakeMotor.setInverted(true);
-        topIntakeMotor.set(-0.3);
-        bottomIntakeMotor.set(-0.3);
+        topIntakeMotor.set(-0.1);
+        bottomIntakeMotor.set(-0.1);
     }
 
     public void indexToShoot(){

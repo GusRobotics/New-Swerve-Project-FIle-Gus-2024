@@ -56,6 +56,8 @@ public class SwerveDrive extends SubsystemBase {
                 Constants.kBlueDriveAbsoluteEncoderOffset,
                 Constants.kBlueDriveAbsoluteEncoderReversed);
 
+        blue.getDriveMotor().setInverted(false);
+
         orange = new SwerveModule(
                 Constants.orangeDrive,
                 Constants.orangeSteer,

@@ -7,7 +7,9 @@ package frc.robot;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
- 
+
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.VideoSource;
 // import edu.wpi.first.math.geometry.Pose2d;
 // import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -70,6 +72,8 @@ public class RobotContainer {
 
   private Trigger pneumaticActuate = baseController.R1();
 
+  public static CameraServer camera;
+
   //b is circle
   //add a bit of logic into hte code where you go into robotperiodic, have an if statement constantly check of either trigger
   //if trigger axis is greater than .75 and ifi t is scheudle a command and if it isn't schedule a command
@@ -94,6 +98,7 @@ public class RobotContainer {
     m_chooser.addOption("Two Note Left", new PathPlannerAuto("Two Note Blue"));
     m_chooser.addOption("GTFO", new PathPlannerAuto("GetOutAuto"));
     m_chooser.addOption("Four Piece", new PathPlannerAuto("Four Piece"));
+    m_chooser.addOption("even shittier four piece", new PathPlannerAuto("Four Piece Modified"));
     //m_chooser.addOption("Blue center two note", new PathPlannerAuto("Two Note Blue"));
         //m_chooser.addOption("AutoAttempt", new PathPlannerAuto("AutoAttempt"));
  
@@ -108,7 +113,8 @@ public class RobotContainer {
  
     //set pink lights
     intake.setDefaultLights();
- 
+    CameraServer.startAutomaticCapture();
+    
   }
  
   /**

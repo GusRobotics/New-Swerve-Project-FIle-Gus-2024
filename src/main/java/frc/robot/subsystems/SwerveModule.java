@@ -73,8 +73,8 @@ public class SwerveModule {
     //     return absoluteEncoder.getAbsolutePosition().getValue();
     // }
 
-    public CANSparkMax getDriveMotor(int driveId) {
-    return new CANSparkMax(driveId, MotorType.kBrushless);
+    public CANSparkMax getDriveMotor() {
+    return driveMotor;
     }
 
     public CANSparkMax getSteeringMotor() {
