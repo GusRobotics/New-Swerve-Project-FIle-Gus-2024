@@ -41,8 +41,8 @@ public class Intake implements Subsystem {
         bottomIntakeMotor.setInverted(true);
         SmartDashboard.putNumber("Left Distance Sensor", distSensorLeft.getValue());
         SmartDashboard.putNumber("Right Distance Sensor", distSensorRight.getValue());
-
-        if(distSensorLeft.getValue() > 700 || distSensorRight.getValue() > 700){
+        
+        if(distSensorLeft.getValue() > 750 || distSensorRight.getValue() > 750){
             topIntakeMotor.set(/*Constants.topIntakeSpeed*/ 0);
             bottomIntakeMotor.set(/*Constants.bottomIntakeSpeed*/0);
             lightstrip.set(Constants.blueLights);
@@ -71,11 +71,11 @@ public class Intake implements Subsystem {
 
     public void indexToShoot(){
         bottomIntakeMotor.setInverted(true);
-        if(distSensorLeft.getValue() > 350 || distSensorRight.getValue() > 350){
-            topIntakeMotor.set(0.4);
-            bottomIntakeMotor.set(0.4);
-            lightstrip.set(Constants.blueLights);
-        }
+        //originally 360
+        //showed 1700 in smartdashboard
+        topIntakeMotor.set(0.4);
+        bottomIntakeMotor.set(0.4);
+        lightstrip.set(Constants.blueLights);
     }
 
     /** Ends the intake function */
@@ -91,6 +91,10 @@ public class Intake implements Subsystem {
 
     public void setBlueLights(){
         lightstrip.set(Constants.blueLights);
+    }
+
+    public void setPinkLights(){
+        lightstrip.set(Constants.pinkLights);
     }
 
     @Override

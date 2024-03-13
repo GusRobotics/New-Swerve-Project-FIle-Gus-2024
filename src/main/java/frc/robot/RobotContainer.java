@@ -83,12 +83,13 @@ public class RobotContainer {
  
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    NamedCommands.registerCommand("High Shoot Command", new HighShootCmd(shooter, true));
+    NamedCommands.registerCommand("High Shoot Command", new HighShootCmd(shooter, true, false));
     NamedCommands.registerCommand("Intake Command", new IntakeCmd(intake, false));
     NamedCommands.registerCommand("Reverse Intake Commands", new ReverseIntakeCmd(intake, true));
-    NamedCommands.registerCommand("Low Shoot Command ", new LowShootCmd(shooter, true));
+    NamedCommands.registerCommand("Low Shoot Command ", new HighShootCmd(shooter, false, false));
     NamedCommands.registerCommand("Intake Base", new IntakeBaseCmd(intake, true));
     NamedCommands.registerCommand("Pneumatics Up", new PneumaticCmd(pneumatic));
+    NamedCommands.registerCommand("Stop Shooter", new HighShootCmd(shooter, false, true));
     //m_chooser = AutoBuilder.buildAutoChooser();
     m_chooser = new SendableChooser<Command>();
 
@@ -97,8 +98,11 @@ public class RobotContainer {
     m_chooser.addOption("Single Shot Blue Left", new PathPlannerAuto("RedSingleShot1"));
     m_chooser.addOption("Two Note Left", new PathPlannerAuto("Two Note Blue"));
     m_chooser.addOption("GTFO", new PathPlannerAuto("GetOutAuto"));
-    m_chooser.addOption("Four Piece", new PathPlannerAuto("Four Piece"));
+    m_chooser.addOption("Two Piece", new PathPlannerAuto("Two Piece"));
     m_chooser.addOption("even shittier four piece", new PathPlannerAuto("Four Piece Modified"));
+    m_chooser.addOption("Getting out (effective)", new PathPlannerAuto("Single Get Out"));
+    m_chooser.addOption("Center Single Shot", new PathPlannerAuto("Center Single Shot"));
+
     //m_chooser.addOption("Blue center two note", new PathPlannerAuto("Two Note Blue"));
         //m_chooser.addOption("AutoAttempt", new PathPlannerAuto("AutoAttempt"));
  
@@ -114,6 +118,7 @@ public class RobotContainer {
     //set pink lights
     intake.setDefaultLights();
     CameraServer.startAutomaticCapture();
+    pneumatic.basePosition();
     
   }
  
@@ -131,7 +136,7 @@ public class RobotContainer {
   private void configureBindings() {
 
     //l1 co (high spinup)
-    highSpinup.whileTrue(new HighShootCmd(shooter, true));
+    highSpinup.whileTrue(new HighShootCmd(shooter, true, false));
 
     //l2 co (low spin up)
     coController.leftTrigger(0.1).whileTrue(new LowShootCmd(shooter, true));

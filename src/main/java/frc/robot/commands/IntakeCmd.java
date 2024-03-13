@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Intake;
 
@@ -21,7 +22,7 @@ public class IntakeCmd extends Command {
     // Start
     @Override
     public void initialize() {
-        
+        SmartDashboard.putNumber("Sensor value", intake.sensorVal());
         if (direction) 
         {
             intake.reverseIntake();
@@ -34,6 +35,7 @@ public class IntakeCmd extends Command {
             // }
             if(intake.noteDetected()){
                 intake.end();
+                intake.setPinkLights();
             }
         }
         intakeTimer.restart();
@@ -46,7 +48,7 @@ public class IntakeCmd extends Command {
 
     @Override
     public void end(boolean terminated) {
-        if (!DriverStation.isAutonomous())
+        if (!DriverStation.isAutonomous()||intakeTimer.get()>1)
         {
             intake.end();
             intake.setBlueLights();
@@ -56,6 +58,6 @@ public class IntakeCmd extends Command {
     @Override
     public boolean isFinished() { 
         // return DriverStation.isAutonomous() && intakeTimer.get() > 1; 
-        return intake.noteDetected();
+        return intake.noteDetected() || DriverStation.isAutonomous() && intakeTimer.get() > 2;
     }
 }

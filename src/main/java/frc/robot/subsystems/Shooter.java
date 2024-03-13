@@ -32,6 +32,10 @@ public class Shooter implements Subsystem {
         bottomShooterMotor.set(-0.625);
     }
 
+    public void enableAutoLowShooter(){
+        topShooterMotor.set(0.52);
+        bottomShooterMotor.set(-0.425);
+    }
     public void enableLowShooter() {
         //best so far was .1, -.5
         topShooterMotor.set(0.15);

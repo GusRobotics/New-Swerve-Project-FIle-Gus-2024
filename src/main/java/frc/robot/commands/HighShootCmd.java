@@ -10,9 +10,10 @@ import frc.robot.subsystems.Shooter;
 public class HighShootCmd extends Command {
     private Shooter shooter;
     private boolean direction;
+    private boolean secondDirection;
     private Timer ourTimer;
 
-    public HighShootCmd(Shooter shooter, boolean direction) {
+    public HighShootCmd(Shooter shooter, boolean direction, boolean secondDirection) {
         this.shooter = shooter;
         this.direction = direction;
         this.ourTimer = new Timer();
@@ -26,9 +27,12 @@ public class HighShootCmd extends Command {
         {
             shooter.enableShooter();
         }
+        else if(secondDirection){
+            shooter.stopShooter();
+        }
         else 
         {
-            shooter.stopShooter();
+            shooter.enableAutoLowShooter();
         }
         ourTimer.restart();
     }

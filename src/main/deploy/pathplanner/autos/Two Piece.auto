@@ -5,7 +5,7 @@
       "x": 1.4077063246801025,
       "y": 5.515804013065169
     },
-    "rotation": 180.0
+    "rotation": -2.0760617336743053e-10
   },
   "command": {
     "type": "sequential",
@@ -18,22 +18,15 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "named",
           "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "Intake Base"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "High Shoot Command"
-                }
-              }
-            ]
+            "name": "Intake Command"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Pneumatics Up"
           }
         },
         {
@@ -56,21 +49,28 @@
           }
         },
         {
-          "type": "path",
+          "type": "parallel",
           "data": {
-            "pathName": "Return With Note"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Intake Command"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Low Shoot Command"
+                }
+              }
+            ]
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "High Shoot Command"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Intake Base"
+            "name": "Stop Shooter"
           }
         }
       ]

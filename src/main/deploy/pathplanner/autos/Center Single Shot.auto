@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 0.75,
-      "y": 4.32
+      "x": 1.4194171612308972,
+      "y": 5.539225686154654
     },
-    "rotation": 120.04517595999008
+    "rotation": 0
   },
   "command": {
     "type": "sequential",
@@ -21,18 +21,6 @@
           "type": "named",
           "data": {
             "name": "Intake Base"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "GetOut"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "High Shoot Command"
           }
         }
       ]
