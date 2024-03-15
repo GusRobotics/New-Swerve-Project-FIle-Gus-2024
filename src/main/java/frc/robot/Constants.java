@@ -8,6 +8,7 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
 //import edu.wpi.first.math.trajectory.TrapezoidProfile.Constraints;
 import edu.wpi.first.math.util.Units;
 //import edu.wpi.first.wpilibj2.command.TrapezoidProfileCommand;
+import edu.wpi.first.wpilibj.AnalogInput;
 
 public class Constants {
         public static final double kWheelDiameterMeters = Units.inchesToMeters(4);
@@ -55,7 +56,7 @@ public class Constants {
         public static final boolean kRedTurningEncoderReversed = false;
 
         //green and red were originally false
-        public static final boolean kBlueDriveEncoderReversed = false;
+        public static final boolean kBlueDriveEncoderReversed = true;
         public static final boolean kGreenDriveEncoderReversed = false;
         public static final boolean kOrangeDriveEncoderReversed = true;
         public static final boolean kRedDriveEncoderReversed = false;
@@ -112,7 +113,7 @@ public class Constants {
 
         public static final double negIntakeSpeed = -0.3;
 
-        public static final boolean kBlueDriveAbsoluteEncoderReversed = false;
+        public static final boolean kBlueDriveAbsoluteEncoderReversed = true;
         public static final boolean kGreenDriveAbsoluteEncoderReversed = true;
         public static final boolean kOrangeDriveAbsoluteEncoderReversed = true;
         public static final boolean kRedDriveAbsoluteEncoderReversed = true;
@@ -159,8 +160,8 @@ public class Constants {
                 public static final double kPYController = 1;
                 public static final double kPThetaController = 1;
                 
-                public static final PIDConstants KTranslationHolonomicPID= new PIDConstants(0.4, 0.0, 0.0);
-                public static final PIDConstants KRotationHolonomicPID= new PIDConstants(0.4, 0.0, 0.0);
+                public static final PIDConstants KTranslationHolonomicPID= new PIDConstants(2.1, 0.0, 0.0);
+                public static final PIDConstants KRotationHolonomicPID= new PIDConstants(0.75, 0.0, 0.0);
 
                 public static final double kDriveBaseRadius = 0.4;
 

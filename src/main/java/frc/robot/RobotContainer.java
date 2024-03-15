@@ -101,7 +101,7 @@ public class RobotContainer {
     m_chooser.addOption("Two Piece", new PathPlannerAuto("Two Piece"));
     m_chooser.addOption("even shittier four piece", new PathPlannerAuto("Four Piece Modified"));
     m_chooser.addOption("Getting out (effective)", new PathPlannerAuto("Single Get Out"));
-    m_chooser.addOption("Center Single Shot", new PathPlannerAuto("Center Single Shot"));
+    m_chooser.addOption("work", new PathPlannerAuto("Copy of Single Get Out"));
 
     //m_chooser.addOption("Blue center two note", new PathPlannerAuto("Two Note Blue"));
         //m_chooser.addOption("AutoAttempt", new PathPlannerAuto("AutoAttempt"));
