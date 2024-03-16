@@ -68,12 +68,6 @@
           }
         },
         {
-          "type": "path",
-          "data": {
-            "pathName": "Second Note Mod"
-          }
-        },
-        {
           "type": "named",
           "data": {
             "name": "High Shoot Command"

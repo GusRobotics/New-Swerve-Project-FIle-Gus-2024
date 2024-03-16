@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkFlex;
+import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -15,6 +16,7 @@ public class Intake implements Subsystem {
     // Hardware
     private CANSparkFlex topIntakeMotor = new CANSparkFlex(Constants.topIntakeMotor, MotorType.kBrushless);    
     private CANSparkFlex bottomIntakeMotor = new CANSparkFlex(Constants.bottomIntakeMotor, MotorType.kBrushless);
+    private CANSparkMax floorIntakeRoller = new CANSparkMax(Constants.groundIntakeMotor, MotorType.kBrushless);
 
     private Spark lightstrip = new Spark(0);
 
@@ -39,18 +41,21 @@ public class Intake implements Subsystem {
     /** Runs the intake forward */
     public void enableIntake() {
         bottomIntakeMotor.setInverted(true);
+        floorIntakeRoller.setInverted(true);
         SmartDashboard.putNumber("Left Distance Sensor", distSensorLeft.getValue());
         SmartDashboard.putNumber("Right Distance Sensor", distSensorRight.getValue());
         
         if(distSensorLeft.getValue() > 750 || distSensorRight.getValue() > 750){
             topIntakeMotor.set(/*Constants.topIntakeSpeed*/ 0);
             bottomIntakeMotor.set(/*Constants.bottomIntakeSpeed*/0);
+            floorIntakeRoller.set(/*Constants.bottomIntakeSpeed*/0);
             lightstrip.set(Constants.blueLights);
         }
         else {
         //  else if(distSensorLeft.getValue() >= 350 || distSensorRight.getValue() >= 350) {
             topIntakeMotor.set(0.35);
             bottomIntakeMotor.set(0.35);
+            floorIntakeRoller.set(0.9);
             lightstrip.set(Constants.yellowLights);
         }
 
@@ -67,6 +72,7 @@ public class Intake implements Subsystem {
         bottomIntakeMotor.setInverted(true);
         topIntakeMotor.set(-0.1);
         bottomIntakeMotor.set(-0.1);
+        floorIntakeRoller.set(-0.1);
     }
 
     public void indexToShoot(){
@@ -75,6 +81,7 @@ public class Intake implements Subsystem {
         //showed 1700 in smartdashboard
         topIntakeMotor.set(0.4);
         bottomIntakeMotor.set(0.4);
+        floorIntakeRoller.set(0.4);
         lightstrip.set(Constants.blueLights);
     }
 
@@ -82,6 +89,7 @@ public class Intake implements Subsystem {
     public void end() {
         topIntakeMotor.set(0);
         bottomIntakeMotor.set(0);
+        floorIntakeRoller.set(0);
         lightstrip.set(Constants.pinkLights);
     }
 

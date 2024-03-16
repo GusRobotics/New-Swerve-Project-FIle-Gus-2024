@@ -81,6 +81,7 @@ public class Constants {
         //intake ids
          public static final int topIntakeMotor = 15;
          public static final int bottomIntakeMotor = 16;
+         public static final int groundIntakeMotor = 6;
         //shooter ids
         public static final int topShooterMotor = 17;
         public static final int bottomShooterMotor = 18;
@@ -160,8 +161,8 @@ public class Constants {
                 public static final double kPYController = 1;
                 public static final double kPThetaController = 1;
                 
-                public static final PIDConstants KTranslationHolonomicPID= new PIDConstants(2.1, 0.0, 0.0);
-                public static final PIDConstants KRotationHolonomicPID= new PIDConstants(0.75, 0.0, 0.0);
+                public static final PIDConstants KTranslationHolonomicPID= new PIDConstants(.25, 0.0, 0.0);
+                public static final PIDConstants KRotationHolonomicPID= new PIDConstants(0, 0.0, 0.0);
 
                 public static final double kDriveBaseRadius = 0.4;
 

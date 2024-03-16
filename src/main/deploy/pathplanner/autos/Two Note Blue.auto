@@ -12,21 +12,9 @@
     "data": {
       "commands": [
         {
-          "type": "named",
+          "type": "path",
           "data": {
-            "name": "High Shoot Command"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Intake Base"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.0
+            "pathName": "Copy of Copy of Return from Get Out"
           }
         },
         {
@@ -38,12 +26,6 @@
                 "data": {
                   "name": "Intake Command"
                 }
-              },
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Return With Note"
-                }
               }
             ]
           }
@@ -52,12 +34,6 @@
           "type": "wait",
           "data": {
             "waitTime": 0.5
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Return With Note"
           }
         },
         {
