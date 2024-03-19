@@ -25,7 +25,7 @@ public class Intake implements Subsystem {
     private AnalogInput distSensorRight = new AnalogInput(1);
     // Init
     public Intake() {
- 
+        floorIntakeRoller.setSmartCurrentLimit(30);
     }
     /** Sets the intake's default command (not moving) */
     public void initDefaultCommand() {
@@ -53,8 +53,8 @@ public class Intake implements Subsystem {
         }
         else {
         //  else if(distSensorLeft.getValue() >= 350 || distSensorRight.getValue() >= 350) {
-            topIntakeMotor.set(0.35);
-            bottomIntakeMotor.set(0.35);
+            topIntakeMotor.set(0.4);
+            bottomIntakeMotor.set(0.4);
             floorIntakeRoller.set(0.9);
             lightstrip.set(Constants.yellowLights);
         }
@@ -72,7 +72,18 @@ public class Intake implements Subsystem {
         bottomIntakeMotor.setInverted(true);
         topIntakeMotor.set(-0.1);
         bottomIntakeMotor.set(-0.1);
-        floorIntakeRoller.set(-0.1);
+        floorIntakeRoller.set(-0.75);
+    }
+
+    public void reverseIntakeWSensor() {
+        bottomIntakeMotor.setInverted(true);
+        SmartDashboard.putNumber("Left Sensor", distSensorLeft.getValue());
+        SmartDashboard.putNumber("Right Sensor", distSensorRight.getValue());
+            topIntakeMotor.set(-0.04);
+            bottomIntakeMotor.set(-0.04);
+            floorIntakeRoller.set(0);
+            lightstrip.set(.77);
+        
     }
 
     public void indexToShoot(){

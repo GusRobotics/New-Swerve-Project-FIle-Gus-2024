@@ -26,6 +26,7 @@ import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.LowShootCmd;
 import frc.robot.commands.PneumaticCmd;
 import frc.robot.commands.ReverseIntakeCmd;
+import frc.robot.commands.ReverseShooterCmd;
 import frc.robot.commands.HighShootCmd;
 import frc.robot.commands.IntakeBaseCmd;
 import frc.robot.commands.SwerveJoystickCmd;
@@ -63,7 +64,7 @@ public class RobotContainer {
  
  //forward and reverse flywheel
   private Trigger highSpinup = coController.leftBumper();
-  //private Trigger lowSpinup = coController.leftTrigger();
+  //private Trigger lowSpinup = coController.ftTrigger();
   private Trigger intakeForward = coController.rightBumper();
  // private Trigger intakeReverse = coController.rightTrigger();
 
@@ -71,6 +72,8 @@ public class RobotContainer {
 //private Trigger intakeBase = baseController.L1();
 
   private Trigger pneumaticActuate = baseController.R1();
+
+  private Trigger reverseShooter = baseController.square();
 
   public static CameraServer camera;
 
@@ -83,13 +86,13 @@ public class RobotContainer {
  
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    NamedCommands.registerCommand("High Shoot Command", new HighShootCmd(shooter, true, false));
-    NamedCommands.registerCommand("Intake Command", new IntakeCmd(intake, false));
-    NamedCommands.registerCommand("Reverse Intake Commands", new ReverseIntakeCmd(intake, true));
-    NamedCommands.registerCommand("Low Shoot Command ", new HighShootCmd(shooter, false, false));
-    NamedCommands.registerCommand("Intake Base", new IntakeBaseCmd(intake, true));
-    NamedCommands.registerCommand("Pneumatics Up", new PneumaticCmd(pneumatic));
-    NamedCommands.registerCommand("Stop Shooter", new HighShootCmd(shooter, false, true));
+    // NamedCommands.registerCommand("High Shoot Command", new HighShootCmd(shooter, true, false));
+    // NamedCommands.registerCommand("Intake Command", new IntakeCmd(intake, false));
+    // NamedCommands.registerCommand("Reverse Intake Commands", new ReverseIntakeCmd(intake, true));
+    // NamedCommands.registerCommand("Low Shoot Command ", new HighShootCmd(shooter, false, false));
+    // NamedCommands.registerCommand("Intake Base", new IntakeBaseCmd(intake, true));
+    // NamedCommands.registerCommand("Pneumatics Up", new PneumaticCmd(pneumatic));
+    // NamedCommands.registerCommand("Stop Shooter", new HighShootCmd(shooter, false, true));
     //m_chooser = AutoBuilder.buildAutoChooser();
     m_chooser = new SendableChooser<Command>();
 
@@ -103,12 +106,14 @@ public class RobotContainer {
     // m_chooser.addOption("Getting out (effective)", new PathPlannerAuto("Single Get Out"));
     // m_chooser.addOption("work", new PathPlannerAuto("Copy of Single Get Out"));
     //m_chooser.addOption("test", new PathPlannerAuto("Just Drive"));
+    // m_chooser.addOption("test", new PathPlannerAuto("Just Drive"));
+    //m_chooser.addOption("test", new PathPlannerAuto("straight"));
 
     //m_chooser.addOption("Blue center two note", new PathPlannerAuto("Two Note Blue"));
         //m_chooser.addOption("AutoAttempt", new PathPlannerAuto("AutoAttempt"));
  
  
-    SmartDashboard.putData("Auto Chooser", m_chooser);
+  //  SmartDashboard.putData("Auto Chooser", m_chooser);
     
     // Configure the trigger bindings
     configureBindings();
@@ -151,6 +156,8 @@ public class RobotContainer {
     pneumaticActuate.whileTrue(new PneumaticCmd(pneumatic));
 
     intakeBase.whileTrue(new IntakeBaseCmd(intake, true));
+
+    reverseShooter.whileTrue( new ReverseShooterCmd(shooter, intake, true));
     //lowSpinup.whileTrue(new LowShootCmd(shooter, false));
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`x
  

@@ -39,7 +39,7 @@ public class Shooter implements Subsystem {
     public void enableLowShooter() {
         //best so far was .1, -.5
         topShooterMotor.set(0.15);
-        bottomShooterMotor.set(-0.614);
+        bottomShooterMotor.set(-0.35);
     }
 
     public void stopShooter() {
@@ -59,10 +59,15 @@ public class Shooter implements Subsystem {
         bottomShooterMotor.set(Constants.bottomIntakeSpeed);
     }
 
+    public void reverseShooter(){
+        topShooterMotor.set(-0.3);
+        bottomShooterMotor.set(0.3);
+    }
     /** Ends the intake function */
     public void end() {
         topShooterMotor.set(0);
         bottomShooterMotor.set(0);
+
     }
 
     @Override
