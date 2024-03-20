@@ -109,6 +109,9 @@ public class RobotContainer {
     // m_chooser.addOption("test", new PathPlannerAuto("Just Drive"));
     //m_chooser.addOption("test", new PathPlannerAuto("straight"));
 
+   // m_chooser.addOption("Go Straight", new PathPlannerAuto("Go Straight"));
+   m_chooser.addOption("wait", new PathPlannerAuto("New Auto"));
+
     //m_chooser.addOption("Blue center two note", new PathPlannerAuto("Two Note Blue"));
         //m_chooser.addOption("AutoAttempt", new PathPlannerAuto("AutoAttempt"));
  

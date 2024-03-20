@@ -83,7 +83,6 @@ public class Intake implements Subsystem {
             bottomIntakeMotor.set(-0.04);
             floorIntakeRoller.set(.75);
             lightstrip.set(-.11);
-    t 
     }
 
     public void indexToShoot(){
