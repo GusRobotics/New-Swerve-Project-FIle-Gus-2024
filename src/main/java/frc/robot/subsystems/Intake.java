@@ -81,9 +81,9 @@ public class Intake implements Subsystem {
         SmartDashboard.putNumber("Right Sensor", distSensorRight.getValue());
             topIntakeMotor.set(-0.04);
             bottomIntakeMotor.set(-0.04);
-            floorIntakeRoller.set(0);
-            lightstrip.set(.77);
-        
+            floorIntakeRoller.set(.75);
+            lightstrip.set(-.11);
+    t 
     }
 
     public void indexToShoot(){

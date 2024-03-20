@@ -64,16 +64,16 @@ public class RobotContainer {
  
  //forward and reverse flywheel
   private Trigger highSpinup = coController.leftBumper();
-  //private Trigger lowSpinup = coController.ftTrigger();
   private Trigger intakeForward = coController.rightBumper();
- // private Trigger intakeReverse = coController.rightTrigger();
+
+  private Trigger reverseShooter = coController.a();
 
  private Trigger intakeBase = baseController.L1();
 //private Trigger intakeBase = baseController.L1();
 
   private Trigger pneumaticActuate = baseController.R1();
 
-  private Trigger reverseShooter = baseController.square();
+  //private Trigger reverseShooter = baseController.square();
 
   public static CameraServer camera;
 
@@ -156,7 +156,10 @@ public class RobotContainer {
 
     intakeBase.whileTrue(new IntakeBaseCmd(intake, true));
 
-    reverseShooter.whileTrue( new ReverseShooterCmd(shooter, intake, true));
+    reverseShooter.whileTrue(new ReverseShooterCmd(shooter, intake, true));
+
+    //turnGreen.whileTrue(new ReverseShooterCmd(shooter, intake, false));
+
     //lowSpinup.whileTrue(new LowShootCmd(shooter, false));
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`x
  

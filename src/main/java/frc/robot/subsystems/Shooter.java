@@ -17,6 +17,8 @@ public class Shooter implements Subsystem {
 
     // Init
     public Shooter() {
+        topShooterMotor.setSmartCurrentLimit(50);
+        bottomShooterMotor.setSmartCurrentLimit(50);
     }
     /** Sets the shooter's default command (not moving) */
     public void initDefaultCommand() {
@@ -38,8 +40,8 @@ public class Shooter implements Subsystem {
     }
     public void enableLowShooter() {
         //best so far was .1, -.5
-        topShooterMotor.set(0.15);
-        bottomShooterMotor.set(-0.35);
+        topShooterMotor.set(0.2);
+        bottomShooterMotor.set(-0.5);
     }
 
     public void stopShooter() {
@@ -60,8 +62,8 @@ public class Shooter implements Subsystem {
     }
 
     public void reverseShooter(){
-        topShooterMotor.set(-0.3);
-        bottomShooterMotor.set(0.3);
+        topShooterMotor.set(-0.4);
+        bottomShooterMotor.set(0.4);
     }
     /** Ends the intake function */
     public void end() {
