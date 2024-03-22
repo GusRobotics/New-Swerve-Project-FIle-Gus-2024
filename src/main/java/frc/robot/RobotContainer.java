@@ -10,6 +10,7 @@ import com.pathplanner.lib.commands.PathPlannerAuto;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.VideoSource;
+import edu.wpi.first.math.geometry.Rotation2d;
 // import edu.wpi.first.math.geometry.Pose2d;
 // import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -30,6 +31,8 @@ import frc.robot.commands.ReverseShooterCmd;
 import frc.robot.commands.HighShootCmd;
 import frc.robot.commands.IntakeBaseCmd;
 import frc.robot.commands.SwerveJoystickCmd;
+import frc.robot.commands.Autonomous.AutoTest;
+import frc.robot.commands.Autonomous.TestPath;
 //import frc.robot.commands.TestCmd;
 //import frc.robot.commands.Autonomous.AutoTest;
 //import frc.robot.commands.Autonomous.FourNoteNoMid;
@@ -95,22 +98,9 @@ public class RobotContainer {
     // NamedCommands.registerCommand("Stop Shooter", new HighShootCmd(shooter, false, true));
     //m_chooser = AutoBuilder.buildAutoChooser();
     m_chooser = new SendableChooser<Command>();
-
-    // m_chooser.addOption("Single Shot Red Left", new PathPlannerAuto("SingleShootBlue3"));
-    // m_chooser.addOption("Single Shot Blue Right", new PathPlannerAuto("SingleShootBlue1"));
-    // m_chooser.addOption("Single Shot Blue Left", new PathPlannerAuto("RedSingleShot1"));
-    // m_chooser.addOption("Two Note Left", new PathPlannerAuto("Two Note Blue"));
-    // m_chooser.addOption("GTFO", new PathPlannerAuto("GetOutAuto"));
-    // m_chooser.addOption("Two Piece", new PathPlannerAuto("Two Piece"));
-    // m_chooser.addOption("even shittier four piece", new PathPlannerAuto("Four Piece Modified"));
-    // m_chooser.addOption("Getting out (effective)", new PathPlannerAuto("Single Get Out"));
-    // m_chooser.addOption("work", new PathPlannerAuto("Copy of Single Get Out"));
-    //m_chooser.addOption("test", new PathPlannerAuto("Just Drive"));
-    // m_chooser.addOption("test", new PathPlannerAuto("Just Drive"));
-    //m_chooser.addOption("test", new PathPlannerAuto("straight"));
-
-   // m_chooser.addOption("Go Straight", new PathPlannerAuto("Go Straight"));
-   m_chooser.addOption("wait", new PathPlannerAuto("New Auto"));
+    
+   ///COMMENT BACK IN
+   //m_chooser.addOption("wait", new PathPlannerAuto("New Auto"));
 
     //m_chooser.addOption("Blue center two note", new PathPlannerAuto("Two Note Blue"));
         //m_chooser.addOption("AutoAttempt", new PathPlannerAuto("AutoAttempt"));
@@ -187,7 +177,7 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     SmartDashboard.putString("hi", "hi");
     // An example command will be run in autonomous
-    return m_chooser.getSelected();
+    //return m_chooser.getSelected();
   //  Command selectedCommand = m_chooser.getSelected();
   //   if (selectedCommand instanceof PathPlannerAuto) {
   //     PathPlannerAuto selectedAuto = (PathPlannerAuto)selectedCommand;
@@ -195,6 +185,8 @@ public class RobotContainer {
   //   }
      //return selectedCommand;
 
+     return Commands.runOnce( () -> drive.zeroHeading())
+        .andThen(new TestPath(drive))
+        .andThen(new AutoTest(shooter, intake));
   }
-  
 }

@@ -64,7 +64,12 @@ public class AutoTest extends Command {
 
     @Override
     public void initialize() {
+        timer.start();
         s_Shooter.enableShooter();
+        if (timer.hasElapsed(3) && timer.get() < 7)
+        {
+            s_Intake.indexToShoot();
+        }
     }
 
     @Override
@@ -72,14 +77,14 @@ public class AutoTest extends Command {
             timer.start();
             s_Shooter.enableShooter();
 
-        if (timer.hasElapsed(5)){
+        if (timer.hasElapsed(3) && timer.get() < 7){
             s_Intake.indexToShoot();
         }
     }
 
     @Override
     public boolean isFinished() {
-        if (timer.hasElapsed(10)) {
+        if (timer.hasElapsed(7)) {
             timer.stop();
             timer.reset();
             return true;
@@ -91,6 +96,7 @@ public class AutoTest extends Command {
 
     @Override
     public void end(boolean interrupted) {
-        s_Shooter.stopShooter();
+        s_Shooter.end();
+        s_Intake.end();
     }
 }
