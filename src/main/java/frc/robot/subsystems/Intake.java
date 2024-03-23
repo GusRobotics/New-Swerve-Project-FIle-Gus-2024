@@ -45,7 +45,7 @@ public class Intake implements Subsystem {
         SmartDashboard.putNumber("Left Distance Sensor", distSensorLeft.getValue());
         SmartDashboard.putNumber("Right Distance Sensor", distSensorRight.getValue());
         
-        if(distSensorLeft.getValue() > 750 || distSensorRight.getValue() > 750){
+        if(distSensorLeft.getValue() > 755 || distSensorRight.getValue() > 755){
             topIntakeMotor.set(/*Constants.topIntakeSpeed*/ 0);
             bottomIntakeMotor.set(/*Constants.bottomIntakeSpeed*/0);
             floorIntakeRoller.set(/*Constants.bottomIntakeSpeed*/0);
@@ -53,8 +53,8 @@ public class Intake implements Subsystem {
         }
         else {
         //  else if(distSensorLeft.getValue() >= 350 || distSensorRight.getValue() >= 350) {
-            topIntakeMotor.set(0.4);
-            bottomIntakeMotor.set(0.4);
+            topIntakeMotor.set(0.55);
+            bottomIntakeMotor.set(0.55);
             floorIntakeRoller.set(0.9);
             lightstrip.set(Constants.yellowLights);
         }
@@ -79,8 +79,8 @@ public class Intake implements Subsystem {
         bottomIntakeMotor.setInverted(true);
         SmartDashboard.putNumber("Left Sensor", distSensorLeft.getValue());
         SmartDashboard.putNumber("Right Sensor", distSensorRight.getValue());
-            topIntakeMotor.set(-0.04);
-            bottomIntakeMotor.set(-0.04);
+            topIntakeMotor.set(-0.03);
+            bottomIntakeMotor.set(-0.03);
             floorIntakeRoller.set(.75);
             lightstrip.set(-.11);
     }
